@@ -5,11 +5,16 @@ import { GlobalStyle } from '@app/styles/global';
 import { ThemeProvider } from 'styled-components';
 import theme from '@app/styles/theme';
 import Head from 'next/head';
+import Landing from '@app/components/layout/Landing';
+import { useRouter } from 'next/router';
 
 const App = ({ Component, pageProps }: AppProps) => {
   // TODO: Change description and title
   const metaDescription = 'Sophias portfolio description';
   const metaTitle = 'Sophias website';
+  const router = useRouter();
+  const isLandingPage = router.pathname === '/';
+
   return (
     <>
       <Head>
@@ -28,9 +33,14 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+
+        {isLandingPage ? (
+          <Landing />
+        ) : (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
       </ThemeProvider>
     </>
   );

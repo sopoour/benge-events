@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 import Sidebar from '../Sidebar';
+import { flexColumn } from '@app/styles/mixins';
 
 const Root = styled.div`
   min-height: 100vh;
@@ -27,7 +28,7 @@ const Layout: FC<Props> = ({ children }) => (
   <Root>
     <Sidebar>Some content</Sidebar>
     <Header />
-    <MainLayout>{children}</MainLayout>
+    {children}
     <Footer />
   </Root>
 );
