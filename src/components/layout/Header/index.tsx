@@ -25,10 +25,10 @@ const HeaderWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.bg.default};
   backdrop-filter: ${({ theme }) => theme.filters.backdrop};
 
-  /* ${({ theme }) => theme.media('md')`
+  ${({ theme }) => theme.media('sm')`
     transform: translateY(-100%);
     opacity: 0;
-  `} */
+  `}
 `;
 
 const Line = styled.span<{ $isActive: boolean }>`

@@ -6,9 +6,11 @@ const FooterWrapper = styled.footer`
   width: 100%;
   align-items: center;
   justify-content: center;
-  height: 64px;
   background-color: ${({ theme }) => theme.colors.bg.soft};
   color: ${({ theme }) => theme.colors.fg.contrast};
+  position: relative;
+  z-index: 2;
+  bottom: 0;
 `;
 
 const FooterType = styled.p`

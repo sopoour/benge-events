@@ -16,7 +16,7 @@ html {
 
 body {
   margin: 0;
-  background-color: ${theme.colors.bg.default};
+  /* background-color: ${theme.colors.bg.default}; */
   color: ${theme.colors.fg.default};
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
