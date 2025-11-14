@@ -1,4 +1,4 @@
-import { flexColumn } from '@app/styles/mixins';
+import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
 
@@ -40,16 +40,11 @@ export const BubbleWrapper = styled.div`
   height: 100vh;
 `;
 
-const float = keyframes`
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-`;
-
 export const Bubble = styled(Link)`
   position: absolute;
-  opacity: 0.85;
-  transform: scale(0.5);
+  opacity: 0;
+  ${flexRow};
+  justify-content: center;
   scale: 0.5;
   border-radius: 50%;
   mix-blend-mode: lighten;
@@ -67,7 +62,6 @@ export const Bubble = styled(Link)`
     inset 0 0 20px rgba(255, 255, 255, 0.4),
     inset 0 0 50px rgba(255, 255, 255, 0.1),
     0 0 40px rgba(255, 255, 255, 0.2);
-  animation: ${float} 6s ease-in-out infinite;
   background-size: 200% 200%;
   transition: all 0.2s ease;
 
