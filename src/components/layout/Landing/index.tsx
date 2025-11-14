@@ -1,5 +1,5 @@
-import { FC, useEffect, useRef } from 'react';
-import { BackgroundContainer, Bubble, BubbleWrapper, Content } from './styles';
+import { FC, useEffect } from 'react';
+import { BackgroundContainer, Bubble, Content } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 
@@ -28,7 +28,7 @@ const Landing: FC = () => {
         const delay = rand(0, 3);
 
         // Appear Animation
-        tl.fromTo(
+        gsap.fromTo(
           bubble,
           { scale: 0.5, opacity: 0 },
           {
@@ -39,7 +39,7 @@ const Landing: FC = () => {
             ease: 'power3.out',
             onComplete: () => {
               // Floating Loop
-              gsap.to(bubble, {
+              tl.to(bubble, {
                 y: `+=${floatY}`,
                 x: `+=${floatX}`,
                 duration,

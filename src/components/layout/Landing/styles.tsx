@@ -34,12 +34,6 @@ export const Content = styled.div`
   z-index: 2;
 `;
 
-export const BubbleWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-`;
-
 export const Bubble = styled(Link)`
   position: absolute;
   opacity: 0;
