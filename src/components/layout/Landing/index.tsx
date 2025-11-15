@@ -2,15 +2,17 @@ import { FC, useEffect } from 'react';
 import { BackgroundContainer, Bubble, Content } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
+import Logo from '@app/assets/logo.png';
+import Image from 'next/image';
 
 const Landing: FC = () => {
   const bubbles = [
-    { name: 'Über uns', href: '/about', top: '10%', left: '20%', size: 130 },
-    { name: 'Events', href: '/events', top: '20%', left: '60%', size: 200 },
-    { name: 'Lexikon', href: '/lexikon', top: '30%', left: '10%', size: 200 },
-    { name: 'Bewerbung', href: '/bewerbung', top: '15%', left: '80%', size: 140 },
-    { name: 'Feedback', href: '/feedback', top: '60%', left: '5%', size: 120 },
-    { name: 'Awareness', href: '/awareness', top: '50%', left: '70%', size: 250 },
+    { name: 'Über uns', href: '/about', top: '10%', left: '20%', size: 120 },
+    { name: 'Events', href: '/events', top: '5%', left: '75%', size: 180 },
+    { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 200 },
+    { name: 'Bewerbung', href: '/bewerbung', top: '28%', left: '80%', size: 140 },
+    { name: 'Feedback', href: '/feedback', top: '70%', left: '5%', size: 140 },
+    { name: 'Awareness', href: '/awareness', top: '60%', left: '70%', size: 200 },
   ];
 
   const rand = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -60,6 +62,13 @@ const Landing: FC = () => {
   return (
     <BackgroundContainer>
       <Content>
+        <Image
+          src={Logo.src}
+          alt="Benge Logo"
+          style={{ cursor: 'pointer', top: '5%', position: 'absolute' }}
+          width={Logo.width / 2}
+          height={Logo.height / 2}
+        />
         {bubbles.map((b, i) => (
           <Bubble
             key={i}
@@ -76,7 +85,9 @@ const Landing: FC = () => {
           </Bubble>
         ))}
 
-        <h1>04. April 2026 im 90mil</h1>
+        <Typography fontSize="48px" style={{ backdropFilter: '50px' }}>
+          04. April 2026 im 90mil
+        </Typography>
       </Content>
     </BackgroundContainer>
   );

@@ -50,7 +50,7 @@ export const Bubble = styled(Link)`
   );
   background-size: 400% 400%;
   background-blend-mode: screen;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(50px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow:
     inset 0 0 20px rgba(255, 255, 255, 0.4),
