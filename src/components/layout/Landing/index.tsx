@@ -4,14 +4,15 @@ import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
 import Image from 'next/image';
+import Footer from '../Footer';
 
 const Landing: FC = () => {
   const bubbles = [
-    { name: 'Über uns', href: '/about', top: '10%', left: '20%', size: 120 },
+    { name: 'Über uns', href: '/ueber-uns', top: '10%', left: '20%', size: 120 },
     { name: 'Events', href: '/events', top: '5%', left: '75%', size: 180 },
     { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 200 },
     { name: 'Bewerbung', href: '/bewerbung', top: '28%', left: '80%', size: 140 },
-    { name: 'Feedback', href: '/feedback', top: '70%', left: '5%', size: 140 },
+    { name: 'Feedback', href: '/feedback', top: '65%', left: '5%', size: 140 },
     { name: 'Awareness', href: '/awareness', top: '60%', left: '70%', size: 200 },
   ];
 
@@ -88,6 +89,7 @@ const Landing: FC = () => {
         <Typography fontSize="48px" style={{ backdropFilter: '50px' }}>
           04. April 2026 im 90mil
         </Typography>
+        <Footer />
       </Content>
     </BackgroundContainer>
   );
