@@ -8,12 +8,12 @@ import Footer from '../Footer';
 
 const Landing: FC = () => {
   const bubbles = [
-    { name: 'Über uns', href: '/ueber-uns', top: '10%', left: '20%', size: 120 },
-    { name: 'Events', href: '/events', top: '5%', left: '75%', size: 180 },
-    { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 200 },
-    { name: 'Bewerbung', href: '/bewerbung', top: '28%', left: '80%', size: 140 },
-    { name: 'Feedback', href: '/feedback', top: '65%', left: '5%', size: 140 },
-    { name: 'Awareness', href: '/awareness', top: '60%', left: '70%', size: 200 },
+    { name: 'Über uns', href: '/ueber-uns', top: '3%', left: '15%', size: 250 },
+    { name: 'Events', href: '/events', top: '5%', left: '75%', size: 210 },
+    { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 280 },
+    { name: 'Bewerbung', href: '/bewerbung', top: '28%', left: '75%', size: 300 },
+    { name: 'Feedback', href: '/feedback', top: '60%', left: '20%', size: 220 },
+    { name: 'Awareness', href: '/awareness', top: '60%', left: '70%', size: 250 },
   ];
 
   const rand = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -26,7 +26,7 @@ const Landing: FC = () => {
 
         const tl = gsap.timeline();
         const floatY = rand(10, 50);
-        const floatX = rand(-50, 50);
+        const floatX = rand(-30, 50);
         const duration = rand(5, 9);
         const delay = rand(0, 3);
 
@@ -82,7 +82,7 @@ const Landing: FC = () => {
               height: b.size,
             }}
           >
-            <Typography>{b.name}</Typography>
+            <Typography fontSize="28px">{b.name}</Typography>
           </Bubble>
         ))}
 

@@ -5,7 +5,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Sidebar from '../Sidebar';
 import { flexColumn } from '@app/styles/mixins';
-import { Main } from 'next/document';
 
 const Root = styled.div`
   min-height: 100vh;
