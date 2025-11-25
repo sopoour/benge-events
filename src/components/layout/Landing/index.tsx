@@ -5,6 +5,10 @@ import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
 import Image from 'next/image';
 import Footer from '../Footer';
+import useSWR from 'swr';
+import { fetcher } from '@app/hooks/fetch/useFetch';
+import { Events, GeneralContent } from '@app/services/graphql/types';
+import { Homepage } from '@app/types/graphQL/ownTypes';
 
 const Landing: FC = () => {
   const bubbles = [
@@ -59,6 +63,8 @@ const Landing: FC = () => {
 
     return () => ctx.revert(); // cleanup
   }, []);
+
+  const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
 
   return (
     <BackgroundContainer>

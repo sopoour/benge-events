@@ -1,6 +1,6 @@
 import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const BackgroundContainer = styled.section`
   position: relative;
