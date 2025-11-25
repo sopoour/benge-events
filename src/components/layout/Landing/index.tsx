@@ -65,7 +65,7 @@ const Landing: FC = () => {
   }, []);
 
   const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
-
+  console.log(data?.eventsCollection[0]);
   return (
     <BackgroundContainer>
       <Content>

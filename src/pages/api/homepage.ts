@@ -8,7 +8,7 @@ export default async function getHomepage(req: NextApiRequest, res: NextApiRespo
             generalContent(id: "2jtBnER7xiNejTl3cAwSlk") {
                 homepageSubtitle
             }
-            eventsCollection(limit: 1000) {
+            eventsCollection(limit: 4) {
                     items {
                         datum
                         venue
