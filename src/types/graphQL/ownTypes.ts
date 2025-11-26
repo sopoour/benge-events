@@ -9,7 +9,7 @@ export type Homepage = {
 
 export type EventsPage = {
     generalContent: {
-        eventsTitle: string,
+        eventsHeadline: string,
         eventsDescription: string
     }
     eventsCollection: Events []

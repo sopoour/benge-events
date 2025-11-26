@@ -10,11 +10,13 @@ import useSWR from 'swr';
 const UeberUns: FC = () => {
   const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
 
+  console.log(data);
+
   return (
     <Section id="events">
       <>
         <Typography as="h1" fontSize="48px">
-          {data?.generalContent.eventsTitle}
+          {data?.generalContent.eventsHeadline}
         </Typography>
         <MarkdownConfig content={data?.generalContent.eventsDescription as string} />
       </>

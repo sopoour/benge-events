@@ -6,7 +6,7 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
     const data = await fetchGraphQL(
       `query {
             generalContent(id: "2jtBnER7xiNejTl3cAwSlk") {
-                eventsTitle
+                eventsHeadline
                 eventsDescription
             }
             eventsCollection(limit: 1000) {
@@ -25,7 +25,7 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
           }`,
     );
 
-    res.status(200).json(data.data.eventsCollection.items);
+    res.status(200).json(data.data);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
