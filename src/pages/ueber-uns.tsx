@@ -1,6 +1,5 @@
 import Section from '@app/components/layout/Section';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
-import MaxWidthContainer from '@app/components/MaxWidthContainer';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { GeneralContent } from '@app/services/graphql/types';
