@@ -7,7 +7,9 @@ import Sidebar from '../Sidebar';
 import { flexColumn } from '@app/styles/mixins';
 
 const Root = styled.div`
+  position: relative;
   min-height: 100vh;
+  height: 100%;
   ${flexColumn};
   width: 100%;
   background: url('leo_pattern.png');
@@ -18,8 +20,9 @@ const Root = styled.div`
 
   &::before {
     content: '';
+    height: 100%;
     position: absolute;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background: linear-gradient(135deg, #6d5cdb, #fa56a8);
     opacity: 0.8;
@@ -27,13 +30,11 @@ const Root = styled.div`
 `;
 
 const MainLayout = styled.main`
-  position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   ${flexColumn};
   z-index: 2;
-  max-width: 1000px;
-  padding: 48px;
+  overflow: visible !important;
 `;
 
 type Props = {
@@ -42,8 +43,8 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => (
   <Root>
+    <Sidebar>Some content</Sidebar>
     <MainLayout>
-      <Sidebar>Some content</Sidebar>
       <Header />
       {children}
     </MainLayout>

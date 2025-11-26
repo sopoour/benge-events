@@ -67,37 +67,35 @@ const Landing: FC = () => {
   const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
   console.log(data?.eventsCollection[0]);
   return (
-    <BackgroundContainer>
-      <Content>
-        <Image
-          src={Logo.src}
-          alt="Benge Logo"
-          style={{ cursor: 'pointer', top: '5%', position: 'absolute' }}
-          width={Logo.width / 2}
-          height={Logo.height / 2}
-        />
-        {bubbles.map((b, i) => (
-          <Bubble
-            key={i}
-            href={b.href}
-            className="bubble"
-            style={{
-              top: b.top,
-              left: b.left,
-              width: b.size,
-              height: b.size,
-            }}
-          >
-            <Typography fontSize="28px">{b.name}</Typography>
-          </Bubble>
-        ))}
+    <Content>
+      <Image
+        src={Logo.src}
+        alt="Benge Logo"
+        style={{ cursor: 'pointer', top: '5%', position: 'absolute' }}
+        width={Logo.width / 2}
+        height={Logo.height / 2}
+      />
+      {bubbles.map((b, i) => (
+        <Bubble
+          key={i}
+          href={b.href}
+          className="bubble"
+          style={{
+            top: b.top,
+            left: b.left,
+            width: b.size,
+            height: b.size,
+          }}
+        >
+          <Typography fontSize="28px">{b.name}</Typography>
+        </Bubble>
+      ))}
 
-        <Typography fontSize="48px" style={{ backdropFilter: '50px' }}>
-          04. April 2026 im 90mil
-        </Typography>
-        <Footer />
-      </Content>
-    </BackgroundContainer>
+      <Typography fontSize="48px" style={{ backdropFilter: '50px' }}>
+        04. April 2026 im 90mil
+      </Typography>
+      <Footer />
+    </Content>
   );
 };
 

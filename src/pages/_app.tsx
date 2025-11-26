@@ -5,15 +5,11 @@ import { GlobalStyle } from '@app/styles/global';
 import { ThemeProvider } from 'styled-components';
 import theme from '@app/styles/theme';
 import Head from 'next/head';
-import Landing from '@app/components/layout/Landing';
-import { useRouter } from 'next/router';
 
 const App = ({ Component, pageProps }: AppProps) => {
   // TODO: Change description and title
-  const metaDescription = 'Sophias portfolio description';
-  const metaTitle = 'Sophias website';
-  const router = useRouter();
-  const isLandingPage = router.pathname === '/';
+  const metaDescription = 'BENGE - Events';
+  const metaTitle = 'BENGE';
 
   return (
     <>
@@ -33,14 +29,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-
-        {isLandingPage ? (
-          <Landing />
-        ) : (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        )}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </>
   );

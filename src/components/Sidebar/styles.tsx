@@ -31,7 +31,7 @@ export const Backdrop = styled.div<{ $open?: boolean }>`
     `}
 `;
 
-export const Content = styled.header<{ $open?: boolean }>`
+export const Content = styled.aside<{ $open?: boolean }>`
   position: fixed;
   top: 0;
   bottom: 0;
