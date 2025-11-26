@@ -24,8 +24,8 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta key="og:title" property="og:title" content={metaTitle} />
         <meta key="og:type" property="og:type" content="website" />
         <meta key="og:description" property="og:description" content={metaDescription} />
-        <meta key="og:site_name" property="og:site_name" content="Sophia Auer" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta key="og:site_name" property="og:site_name" content="BENGE" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
