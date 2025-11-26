@@ -16,6 +16,7 @@ export const HEADER_HEIGHT = 64;
 const HeaderWrapper = styled.header<{ $show: boolean }>`
   display: ${({ $show }) => ($show ? 'flex' : 'none')};
   position: sticky;
+  top: 0;
   z-index: 5;
   min-height: ${HEADER_HEIGHT}px;
   padding: 8px 24px;
@@ -93,19 +94,6 @@ const Header: React.FC = () => {
   const { open, setOpen } = useSidebar((state) => state);
   const router = useRouter();
   const isHomepage = router.pathname === '/';
-  /* useEffect(() => {
-    gsap.set('#burger-menu', { opacity: 0 });
-    gsap.to('#burger-menu', {
-      duration: 1,
-      opacity: 1,
-      scrollTrigger: {
-        trigger: '#mobile-header',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1,
-      },
-    });
-  }, []); */
 
   return (
     <HeaderWrapper aria-label="header" id="mobile-header" $show={!isHomepage}>
@@ -117,8 +105,8 @@ const Header: React.FC = () => {
         src={Logo.src}
         alt="Benge Logo"
         style={{ cursor: 'pointer' }}
-        width={Logo.width / 3}
-        height={Logo.height / 3}
+        width={Logo.width / 4}
+        height={Logo.height / 4}
         onClick={() => {
           animateScroll.scrollTo(0, { smooth: true, duration: 800 });
           router.pathname !== '/' && router.replace('/');

@@ -9,7 +9,6 @@ import { flexColumn } from '@app/styles/mixins';
 const Root = styled.div`
   position: relative;
   min-height: 100vh;
-  height: 100%;
   ${flexColumn};
   width: 100%;
   background: url('leo_pattern.png');
@@ -32,9 +31,8 @@ const Root = styled.div`
 const MainLayout = styled.main`
   min-height: 100vh;
   width: 100%;
-  ${flexColumn};
+  flex: 1;
   z-index: 2;
-  overflow: visible !important;
 `;
 
 type Props = {
