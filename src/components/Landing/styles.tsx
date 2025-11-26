@@ -2,34 +2,15 @@ import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const BackgroundContainer = styled.section`
-  position: relative;
-  height: 100vh;
-  width: 100%;
-
-  background: url('leo_pattern.png');
-  background-repeat: repeat;
-  background-size: 500px 500px;
-  background-position: top left;
-  z-index: 1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    background: linear-gradient(135deg, #6d5cdb, #fa56a8);
-    opacity: 0.8;
-  }
-`;
-
 export const Content = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
-  margin: auto;
+  gap: 40px;
   align-items: center;
   justify-content: center;
+  padding: 32px 20px;
+  max-width: 1000px;
   ${flexColumn};
   z-index: 2;
 `;
@@ -67,4 +48,10 @@ export const Bubble = styled(Link)`
       inset 0 0 25px rgba(255, 255, 255, 0.5),
       0 0 60px rgba(255, 255, 255, 0.4);
   }
+`;
+
+export const BubbleWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 150px;
 `;

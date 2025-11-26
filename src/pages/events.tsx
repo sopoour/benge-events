@@ -3,7 +3,7 @@ import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { GeneralContent } from '@app/services/graphql/types';
-import { EventsPage } from '@app/types/graphQL/ownTypes';
+import { EventsPage } from '@app/types';
 import { FC } from 'react';
 import useSWR from 'swr';
 
