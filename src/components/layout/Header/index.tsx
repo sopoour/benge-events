@@ -8,6 +8,9 @@ import { flexColumn, flexRow } from '@app/styles/mixins';
 import useSidebar from '@app/hooks/useSidebar';
 import { useRouter } from 'next/router';
 import { animateScroll } from 'react-scroll';
+import Navigation from '../Navigation';
+import { useMedia } from '@app/hooks/useMedia';
+import { Breakpoints } from '@app/styles/media';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,19 +18,24 @@ export const HEADER_HEIGHT = 64;
 
 const HeaderWrapper = styled.header<{ $show: boolean }>`
   display: ${({ $show }) => ($show ? 'flex' : 'none')};
+  flex-direction: row;
   position: sticky;
   top: 0;
   z-index: 5;
   min-height: ${HEADER_HEIGHT}px;
-  padding: 8px 24px;
+  padding: 12px 12px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   opacity: 1;
+  gap: 8px;
   transition: all 300ms ease-in-out;
   transform: none;
-  /* background-color: ${({ theme }) => theme.colors.bg.default}; */
   backdrop-filter: ${({ theme }) => theme.filters.backdrop};
+
+  ${({ theme }) => theme.media('sm')`
+    flex-direction: column
+  `}
 `;
 
 const Line = styled.span<{ $isActive: boolean }>`
@@ -67,26 +75,25 @@ const BurgerMenu = styled.button`
   padding: 8px;
   width: 35px;
   height: 35px;
-  align-self: flex-end;
+  align-self: center;
   align-items: center;
 
   justify-content: center;
   ${flexColumn};
-  opacity: 1;
+  display: flex;
   gap: 3px;
   z-index: 100;
 
-  ${({ theme }) => theme.media('md')`
-    opacity: 0;
+  ${({ theme }) => theme.media('sm')`
+    display: none
   `}
 `;
 
-const Navigation = styled.div`
+const NavigationDesktop = styled(Navigation)`
   display: none;
 
   ${({ theme }) => theme.media('sm')`
-    ${flexRow}
-    gap: 12px;
+    display: flex;
   `}
 `;
 
@@ -94,19 +101,17 @@ const Header: React.FC = () => {
   const { open, setOpen } = useSidebar((state) => state);
   const router = useRouter();
   const isHomepage = router.pathname === '/';
+  const isDesktop = useMedia(Breakpoints.sm);
 
   return (
     <HeaderWrapper aria-label="header" id="mobile-header" $show={!isHomepage}>
-      <Navigation>
-        <div>Item 1</div>
-        <div>Item 2</div>
-      </Navigation>
+      <NavigationDesktop />
       <Image
         src={Logo.src}
         alt="Benge Logo"
         style={{ cursor: 'pointer' }}
-        width={Logo.width / 4}
-        height={Logo.height / 4}
+        width={isDesktop ? Logo.width / 4 : Logo.width / 5}
+        height={isDesktop ? Logo.height / 4 : Logo.height / 5}
         onClick={() => {
           animateScroll.scrollTo(0, { smooth: true, duration: 800 });
           router.pathname !== '/' && router.replace('/');

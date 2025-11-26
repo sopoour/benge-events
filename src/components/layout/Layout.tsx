@@ -5,6 +5,9 @@ import Header from './Header';
 import Footer from './Footer';
 import Sidebar from '../Sidebar';
 import { flexColumn } from '@app/styles/mixins';
+import Navigation from './Navigation';
+import LinkContainer from '../LinkContainer';
+import useSidebar from '@app/hooks/useSidebar';
 
 const Root = styled.div`
   position: relative;
@@ -35,19 +38,29 @@ const MainLayout = styled.main`
   z-index: 2;
 `;
 
+const LinkContainerMobile = styled(LinkContainer)`
+  && {
+    padding-top: 32px;
+  }
+`;
+
 type Props = {
   children: ReactNode;
 };
 
-const Layout: FC<Props> = ({ children }) => (
-  <Root>
-    <Sidebar>Some content</Sidebar>
-    <MainLayout>
+const Layout: FC<Props> = ({ children }) => {
+  const { close } = useSidebar((state) => state);
+  return (
+    <Root>
+      <Sidebar>
+        <Navigation onClick={close} />
+        <LinkContainerMobile />
+      </Sidebar>
       <Header />
-      {children}
-    </MainLayout>
-    <Footer />
-  </Root>
-);
+      <MainLayout>{children}</MainLayout>
+      <Footer />
+    </Root>
+  );
+};
 
 export default Layout;

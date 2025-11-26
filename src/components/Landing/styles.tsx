@@ -2,27 +2,6 @@ import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const BackgroundContainer = styled.section`
-  position: relative;
-  height: 100vh;
-  width: 100%;
-
-  background: url('leo_pattern.png');
-  background-repeat: repeat;
-  background-size: 500px 500px;
-  background-position: top left;
-  z-index: 1;
-
-  &::before {
-    content: '';
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    background: linear-gradient(135deg, #6d5cdb, #fa56a8);
-    opacity: 0.8;
-  }
-`;
-
 export const Content = styled.div`
   position: relative;
   height: 100vh;

@@ -4,7 +4,7 @@ const theme = {
   media: getMedia,
   colors: {
     bg: {
-      default: '#111647',
+      default: '#6d5cdb',
       soft: '#BCC1EB',
     },
     fg: {
@@ -13,7 +13,8 @@ const theme = {
       inactive: 'rgba(255, 255, 255, 0.75)',
     },
     accent: {
-      pink: '#F535AA',
+      pink: '#fa56a8',
+      lightPink: '#D57ED8',
       orange: '#FF4F09',
       green: '#30FF7F',
     },

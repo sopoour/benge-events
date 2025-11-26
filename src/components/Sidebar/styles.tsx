@@ -37,7 +37,7 @@ export const Content = styled.aside<{ $open?: boolean }>`
   bottom: 0;
   height: 100vh;
   background: ${({ theme }) => theme.colors.bg.default};
-  z-index: 10;
+  z-index: 6;
   transition: all 300ms ease-in-out;
   -webkit-transition: all 300ms ease-in-out;
   left: 0;
@@ -48,7 +48,6 @@ export const Content = styled.aside<{ $open?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  justify-content: space-between;
   width: 250px;
   ${({ $open }) =>
     $open &&

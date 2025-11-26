@@ -1,14 +1,13 @@
 import { FC, useEffect } from 'react';
-import { BackgroundContainer, Bubble, Content } from './styles';
+import { Bubble, Content } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
 import Image from 'next/image';
-import Footer from '../Footer';
+import Footer from '@app/components/layout/Footer';
 import useSWR from 'swr';
 import { fetcher } from '@app/hooks/fetch/useFetch';
-import { Events, GeneralContent } from '@app/services/graphql/types';
-import { Homepage } from '@app/types/graphQL/ownTypes';
+import { Homepage } from '@app/types';
 
 const Landing: FC = () => {
   const bubbles = [
