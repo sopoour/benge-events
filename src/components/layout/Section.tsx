@@ -17,7 +17,6 @@ const MaxWidthContainer = styled.section<{ $maxWidth?: number }>`
 
   ${(props) => props.theme.media('sm')`
     padding: 40px ${maxContainerPadding.desktop}px;
-    justify-content: center;
     min-height: 100vh;
   `}
 `;
