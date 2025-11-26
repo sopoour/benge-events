@@ -6,9 +6,11 @@ export const Content = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
-  margin: auto;
+  gap: 40px;
   align-items: center;
   justify-content: center;
+  padding: 32px 20px;
+  max-width: 1000px;
   ${flexColumn};
   z-index: 2;
 `;
@@ -46,4 +48,10 @@ export const Bubble = styled(Link)`
       inset 0 0 25px rgba(255, 255, 255, 0.5),
       0 0 60px rgba(255, 255, 255, 0.4);
   }
+`;
+
+export const BubbleWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 150px;
 `;
