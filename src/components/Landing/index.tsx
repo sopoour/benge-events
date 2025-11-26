@@ -34,7 +34,13 @@ const Landing: FC = () => {
         const delay = rand(0, 3);
 
         // Appear Animation
-        gsap.fromTo(
+        tl.fromTo(
+          '#logo',
+          {
+            scale: 0.8,
+          },
+          { scale: 1 },
+        ).fromTo(
           bubble,
           { scale: 0.5, opacity: 0 },
           {
@@ -45,7 +51,7 @@ const Landing: FC = () => {
             ease: 'power3.out',
             onComplete: () => {
               // Floating Loop
-              tl.to(bubble, {
+              gsap.to(bubble, {
                 y: `+=${floatY}`,
                 x: `+=${floatX}`,
                 duration,
@@ -68,9 +74,10 @@ const Landing: FC = () => {
   return (
     <Content>
       <Image
+        id="logo"
         src={Logo.src}
         alt="Benge Logo"
-        style={{ cursor: 'pointer', top: '5%', position: 'absolute' }}
+        style={{ cursor: 'pointer', top: '5%', position: 'absolute', scale: '0.8' }}
         width={Logo.width / 2}
         height={Logo.height / 2}
       />
