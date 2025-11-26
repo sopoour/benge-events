@@ -10,12 +10,12 @@ const UeberUns: FC = () => {
   const { data, isLoading } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
 
   return (
-    <Section id="about">
+    <Section id="feedback">
       <>
         <Typography as="h1" fontSize="48px">
-          {data?.aboutHeadline}
+          {data?.feedbackHeadline}
         </Typography>
-        <MarkdownConfig content={data?.aboutText as string} />
+        <MarkdownConfig content={data?.feedbackDescription as string} />
       </>
     </Section>
   );

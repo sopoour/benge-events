@@ -1,22 +1,28 @@
 import Typography from '@app/components/Typography/Typography';
 import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
-const FooterWrapper = styled.footer`
+const FooterWrapper = styled.footer<{ $isHomePage: boolean }>`
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: 0;
   max-height: 64px;
   padding: 12px 0;
   gap: 32px;
   background-color: rgba(109, 92, 219, 0.5);
-
+  z-index: 2;
   color: ${({ theme }) => theme.colors.fg.contrast};
+
+  ${({ $isHomePage }) =>
+    $isHomePage &&
+    css`
+      position: absolute;
+      bottom: 0;
+    `}
 `;
 
 const FooterContent = styled.div`
@@ -56,8 +62,10 @@ const Anchor = styled(Link)`
 
 const Footer: FC = () => {
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
+  const isHomepage = router.pathname === '/';
   return (
-    <FooterWrapper>
+    <FooterWrapper $isHomePage={isHomepage}>
       <FooterContent>
         <FooterRowTop>
           <Anchor href={'/ueber-uns'}>Über uns</Anchor>

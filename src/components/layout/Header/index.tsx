@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
 import { css, styled } from 'styled-components';
 import { gsap } from 'gsap';
+import Logo from '@app/assets/logo.png';
+import Image from 'next/image';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { flexColumn, flexRow } from '@app/styles/mixins';
 import useSidebar from '@app/hooks/useSidebar';
+import { useRouter } from 'next/router';
+import { animateScroll } from 'react-scroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const HEADER_HEIGHT = 64;
 
-const HeaderWrapper = styled.div`
-  display: flex;
+const HeaderWrapper = styled.header<{ $show: boolean }>`
+  display: ${({ $show }) => ($show ? 'flex' : 'none')};
   position: sticky;
-  top: -1px;
   z-index: 5;
   min-height: ${HEADER_HEIGHT}px;
   padding: 8px 24px;
@@ -22,13 +25,8 @@ const HeaderWrapper = styled.div`
   opacity: 1;
   transition: all 300ms ease-in-out;
   transform: none;
-  background-color: ${({ theme }) => theme.colors.bg.default};
+  /* background-color: ${({ theme }) => theme.colors.bg.default}; */
   backdrop-filter: ${({ theme }) => theme.filters.backdrop};
-
-  ${({ theme }) => theme.media('sm')`
-    transform: translateY(-100%);
-    opacity: 0;
-  `}
 `;
 
 const Line = styled.span<{ $isActive: boolean }>`
@@ -73,18 +71,19 @@ const BurgerMenu = styled.button`
 
   justify-content: center;
   ${flexColumn};
+  opacity: 1;
   gap: 3px;
   z-index: 100;
 
   ${({ theme }) => theme.media('md')`
-    display: none;
+    opacity: 0;
   `}
 `;
 
 const Navigation = styled.div`
   display: none;
 
-  ${({ theme }) => theme.media('md')`
+  ${({ theme }) => theme.media('sm')`
     ${flexRow}
     gap: 12px;
   `}
@@ -92,6 +91,8 @@ const Navigation = styled.div`
 
 const Header: React.FC = () => {
   const { open, setOpen } = useSidebar((state) => state);
+  const router = useRouter();
+  const isHomepage = router.pathname === '/';
   /* useEffect(() => {
     gsap.set('#burger-menu', { opacity: 0 });
     gsap.to('#burger-menu', {
@@ -107,13 +108,22 @@ const Header: React.FC = () => {
   }, []); */
 
   return (
-    <HeaderWrapper aria-label="Mobile header" id="mobile-header">
-      <div>Logo</div>
+    <HeaderWrapper aria-label="header" id="mobile-header" $show={!isHomepage}>
       <Navigation>
         <div>Item 1</div>
         <div>Item 2</div>
       </Navigation>
-
+      <Image
+        src={Logo.src}
+        alt="Benge Logo"
+        style={{ cursor: 'pointer' }}
+        width={Logo.width / 3}
+        height={Logo.height / 3}
+        onClick={() => {
+          animateScroll.scrollTo(0, { smooth: true, duration: 800 });
+          router.pathname !== '/' && router.replace('/');
+        }}
+      />
       <BurgerMenu onClick={setOpen} id="burger-menu">
         <Line $isActive={open} />
         <Line $isActive={open} />

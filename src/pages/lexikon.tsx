@@ -6,19 +6,19 @@ import { GeneralContent } from '@app/services/graphql/types';
 import { FC } from 'react';
 import useSWR from 'swr';
 
-const UeberUns: FC = () => {
+const Lexikon: FC = () => {
   const { data, isLoading } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
 
   return (
-    <Section id="about">
+    <Section id="lexikon">
       <>
         <Typography as="h1" fontSize="48px">
-          {data?.aboutHeadline}
+          {data?.lexikonHeadline}
         </Typography>
-        <MarkdownConfig content={data?.aboutText as string} />
+        <MarkdownConfig content={data?.lexikonDescription as string} />
       </>
     </Section>
   );
 };
 
-export default UeberUns;
+export default Lexikon;

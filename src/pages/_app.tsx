@@ -5,15 +5,11 @@ import { GlobalStyle } from '@app/styles/global';
 import { ThemeProvider } from 'styled-components';
 import theme from '@app/styles/theme';
 import Head from 'next/head';
-import Landing from '@app/components/layout/Landing';
-import { useRouter } from 'next/router';
 
 const App = ({ Component, pageProps }: AppProps) => {
   // TODO: Change description and title
-  const metaDescription = 'Sophias portfolio description';
-  const metaTitle = 'Sophias website';
-  const router = useRouter();
-  const isLandingPage = router.pathname === '/';
+  const metaDescription = 'BENGE - Events';
+  const metaTitle = 'BENGE';
 
   return (
     <>
@@ -28,19 +24,14 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta key="og:title" property="og:title" content={metaTitle} />
         <meta key="og:type" property="og:type" content="website" />
         <meta key="og:description" property="og:description" content={metaDescription} />
-        <meta key="og:site_name" property="og:site_name" content="Sophia Auer" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta key="og:site_name" property="og:site_name" content="BENGE" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-
-        {isLandingPage ? (
-          <Landing />
-        ) : (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        )}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </>
   );

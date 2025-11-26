@@ -3,19 +3,20 @@ import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { GeneralContent } from '@app/services/graphql/types';
+import { EventsPage } from '@app/types/graphQL/ownTypes';
 import { FC } from 'react';
 import useSWR from 'swr';
 
 const UeberUns: FC = () => {
-  const { data, isLoading } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
+  const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
 
   return (
-    <Section id="about">
+    <Section id="events">
       <>
         <Typography as="h1" fontSize="48px">
-          {data?.aboutHeadline}
+          {data?.generalContent.eventsTitle}
         </Typography>
-        <MarkdownConfig content={data?.aboutText as string} />
+        <MarkdownConfig content={data?.generalContent.eventsDescription as string} />
       </>
     </Section>
   );
