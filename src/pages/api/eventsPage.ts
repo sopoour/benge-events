@@ -5,6 +5,10 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
   try {
     const data = await fetchGraphQL(
       `query {
+            generalContent(id: "2jtBnER7xiNejTl3cAwSlk") {
+                eventsTitle
+                eventsDescription
+            }
             eventsCollection(limit: 1000) {
               items {
                 datum

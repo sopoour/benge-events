@@ -6,15 +6,12 @@ export default async function getGeneralContent(req: NextApiRequest, res: NextAp
     const data = await fetchGraphQL(
       `query {
         generalContent(id: "2jtBnER7xiNejTl3cAwSlk") {
-            homepageSubtitle
             aboutHeadline
             aboutText
             awarenessHeadline
             awarenessDescription
             lexikonHeadline
             lexikonDescription
-            eventsHeadline
-            eventsDescription
             feedbackHeadline
             feedbackDescription
             bewerbungHeadline

@@ -6,3 +6,11 @@ export type Homepage = {
     }
     eventsCollection: Events []
 }
+
+export type EventsPage = {
+    generalContent: {
+        eventsTitle: string,
+        eventsDescription: string
+    }
+    eventsCollection: Events []
+}

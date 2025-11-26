@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function getHomepage(req: NextApiRequest, res: NextApiResponse) {
   try {
     const data = await fetchGraphQL(
-      `query {
+      `query homepage {
             generalContent(id: "2jtBnER7xiNejTl3cAwSlk") {
                 homepageSubtitle
             }
