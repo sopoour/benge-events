@@ -1,4 +1,5 @@
 import Section from '@app/components/layout/Section';
+import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
@@ -8,6 +9,10 @@ import useSWR from 'swr';
 
 const UeberUns: FC = () => {
   const { data, isLoading } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
+
+  if (isLoading) {
+    return <LoadingSkeletonGeneral />;
+  }
 
   return (
     <Section id="awareness">

@@ -25,7 +25,7 @@ type Props = {
   $maxWidth?: number;
   children: ReactElement;
   className?: string;
-  id: string;
+  id?: string;
 } & HTMLAttributes<unknown>;
 
 const Section: FC<Props> = ({ children, className, $maxWidth, id, ...props }) => {

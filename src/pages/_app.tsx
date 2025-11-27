@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import Layout from '@app/components/layout/Layout';
 import { GlobalStyle } from '@app/styles/global';
 import { ThemeProvider } from 'styled-components';
+import 'react-loading-skeleton/dist/skeleton.css';
 import theme from '@app/styles/theme';
 import Head from 'next/head';
 

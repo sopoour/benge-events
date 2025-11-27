@@ -21,6 +21,7 @@ import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import { ISOToDate } from '@app/utils/formatDate';
 import MobileBubbles from './MobileBubbles';
+import LoadingSkeleton from './LoadingSkeleton';
 
 export type Bubbles = {
   name: string;
@@ -135,33 +136,37 @@ const Landing: FC = () => {
         <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} />
       )}
 
-      <EventBox>
-        <Typography fontSize="14px" fontSizeSm="16px">
-          {data?.generalContent.homepageSubtitle}
-        </Typography>
-        <Date>{upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}</Date>
-        <VenueBox>
-          <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
-            hier könnte deine
+      {isLoading ? (
+        <LoadingSkeleton />
+      ) : (
+        <EventBox>
+          <Typography fontSize="14px" fontSizeSm="16px">
+            {data?.generalContent.homepageSubtitle}
           </Typography>
-          <Typography $textalign="center" fontSize="28px" fontSizeSm="32px" fontWeight={900}>
-            VENUE
-          </Typography>
-          <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
-            stehen
-          </Typography>
-        </VenueBox>
-        <EventTable>
-          {eventDetails.map((event) => (
-            <EventCol key={event.title}>
-              <ColTitle>{event.title}</ColTitle>
-              <EventTitle fontSize="14px" fontSizeSm="16px">
-                {event.detail}
-              </EventTitle>
-            </EventCol>
-          ))}
-        </EventTable>
-      </EventBox>
+          <Date>{upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}</Date>
+          <VenueBox>
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
+              hier könnte deine
+            </Typography>
+            <Typography $textalign="center" fontSize="28px" fontSizeSm="32px" fontWeight={900}>
+              VENUE
+            </Typography>
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
+              stehen
+            </Typography>
+          </VenueBox>
+          <EventTable>
+            {eventDetails.map((event) => (
+              <EventCol key={event.title}>
+                <ColTitle>{event.title}</ColTitle>
+                <EventTitle fontSize="14px" fontSizeSm="16px">
+                  {event.detail}
+                </EventTitle>
+              </EventCol>
+            ))}
+          </EventTable>
+        </EventBox>
+      )}
 
       {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} />}
     </Content>
