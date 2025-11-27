@@ -5,7 +5,7 @@ const theme = {
   colors: {
     bg: {
       default: '#6d5cdb',
-      soft: '#BCC1EB',
+      soft: 'rgba(109, 92, 219, 0.5)',
     },
     fg: {
       default: '#FFFFFF',

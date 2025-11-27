@@ -34,7 +34,7 @@ export const ISOToDate = (isoString: string) => {
     day: '2-digit',
     month: 'long',
     year: 'numeric'
-  }).format(new Date(isoString));
+  })?.format(new Date(isoString));
 }
 
 export const ISOToTime = (isoString: string) => {

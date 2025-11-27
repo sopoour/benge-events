@@ -13,7 +13,7 @@ const FooterWrapper = styled.footer<{ $isHomePage: boolean }>`
   max-height: 64px;
   padding: 12px 0;
   gap: 32px;
-  background-color: rgba(109, 92, 219, 0.5);
+  background-color: ${({ theme }) => theme.colors.bg.soft};
   z-index: 2;
   color: ${({ theme }) => theme.colors.fg.contrast};
 
@@ -35,10 +35,32 @@ const FooterContent = styled.div`
   `}
 `;
 
+const Anchor = styled(Link)`
+  color: white;
+  font-weight: 600;
+  &:hover {
+    text-decoration: underline !important;
+    opacity: 0.8;
+  }
+`;
+
 const FooterRowTop = styled.div`
   ${flexRow};
-  gap: 16px;
+  gap: 4px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  ${Anchor} {
+    font-size: 12px;
+  }
+
+  ${({ theme }) => theme.media('sm')`
+    gap: 16px;
+
+    ${Anchor} {
+      font-size: 14px;
+    }
+  `}
 `;
 
 const FooterRowBottom = styled.div`
@@ -48,16 +70,6 @@ const FooterRowBottom = styled.div`
      ${flexRow};
     gap: 8px;
   `}
-`;
-
-const Anchor = styled(Link)`
-  color: white;
-  font-weight: 600;
-
-  &:hover {
-    text-decoration: underline !important;
-    opacity: 0.8;
-  }
 `;
 
 const Footer: FC = () => {
