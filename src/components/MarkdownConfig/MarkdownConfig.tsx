@@ -33,15 +33,15 @@ const MarkdownSettings = styled.div`
   }
 
   h2 {
-    font-size: 36px;
-  }
-
-  h3 {
     font-size: 28px;
   }
 
-  h4 {
+  h3 {
     font-size: 20px;
+  }
+
+  h4 {
+    font-size: 16px;
   }
 
   img {
@@ -54,7 +54,7 @@ const MarkdownSettings = styled.div`
         font-size: 48px;
       }
       h2 {
-        font-size: 48px;
+        font-size: 36px;
       }
       h3 {
         font-size: 28px;
