@@ -3,10 +3,12 @@ import {
   Bubble,
   BubbleWrapper,
   Content,
+  Date,
   EventBox,
   EventCol,
   EventTable,
   EventTitle,
+  SubTitle,
   VenueBox,
 } from './styles';
 import { gsap } from 'gsap';
@@ -19,7 +21,7 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Homepage } from '@app/types';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
-import { ISOToDate, normalizeDate } from '@app/utils/formatDate';
+import { ISOToDate } from '@app/utils/formatDate';
 
 const Landing: FC = () => {
   const isDesktop = useMedia(Breakpoints.sm);
@@ -190,18 +192,18 @@ const Landing: FC = () => {
       )}
 
       <EventBox>
-        <Typography>{data?.generalContent.homepageSubtitle}</Typography>
-        <Typography fontSize="36px" style={{ backdropFilter: '50px' }} $textalign="center">
-          {upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}
+        <Typography fontSize="14px" fontSizeSm="16px">
+          {data?.generalContent.homepageSubtitle}
         </Typography>
+        <Date>{upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}</Date>
         <VenueBox>
-          <Typography $textalign="center" fontSize="18px">
+          <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
             hier könnte deine
           </Typography>
-          <Typography $textalign="center" fontSize="32px" fontWeight={900}>
+          <Typography $textalign="center" fontSize="28px" fontSizeSm="32px" fontWeight={900}>
             VENUE
           </Typography>
-          <Typography $textalign="center" fontSize="18px">
+          <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
             stehen
           </Typography>
         </VenueBox>
@@ -209,7 +211,9 @@ const Landing: FC = () => {
           {eventDetails.map((event) => (
             <EventCol>
               <EventTitle>{event.title}</EventTitle>
-              <Typography style={{ padding: '24px 8px' }}>{event.detail}</Typography>
+              <Typography style={{ padding: '24px 8px' }} fontSize="14px" fontSizeSm="16px">
+                {event.detail}
+              </Typography>
             </EventCol>
           ))}
         </EventTable>

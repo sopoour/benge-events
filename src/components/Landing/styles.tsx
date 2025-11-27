@@ -57,7 +57,7 @@ export const BubbleWrapper = styled.div`
 
 export const EventBox = styled.div`
   ${flexColumn};
-  gap: 16px;
+  gap: 12px;
   background-color: ${({ theme }) => theme.colors.bg.soft};
   padding: 16px;
   border-radius: 10px;
@@ -71,18 +71,26 @@ export const EventBox = styled.div`
   `}
 `;
 
+export const Date = styled(Typography)`
+  font-size: 28px;
+  margin-top: -12px;
+  text-align: center;
+
+  ${({ theme }) => theme.media('sm')`
+    font-size: 36px;
+  `}
+`;
+
 export const VenueBox = styled.span`
   padding: 18px;
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
   border-radius: 100px;
   ${flexColumn};
   justify-content: center;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.bg.default};
   transition: all 0.2s ease;
-  background-blend-mode: screen;
-  backdrop-filter: blur(50px);
   box-shadow:
     inset 0 0 20px rgba(255, 255, 255, 0.4),
     inset 0 0 50px rgba(255, 255, 255, 0.1),
@@ -95,6 +103,11 @@ export const VenueBox = styled.span`
       inset 0 0 25px rgba(255, 255, 255, 0.5),
       0 0 60px rgba(255, 255, 255, 0.4);
   }
+
+  ${({ theme }) => theme.media('sm')`
+    width: 200px;
+    height: 200px;
+  `}
 `;
 
 export const EventCol = styled.span`
@@ -118,7 +131,12 @@ export const EventTitle = styled(Typography)`
   padding: 8px;
   width: 100%;
   text-align: center;
+  font-size: 14px;
   background-color: ${({ theme }) => theme.colors.bg.default};
+
+  ${({ theme }) => theme.media('sm')`
+    font-size: 16px;
+  `}
 `;
 
 export const EventTable = styled.div`
