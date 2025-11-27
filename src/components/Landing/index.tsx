@@ -21,10 +21,21 @@ import { Homepage } from '@app/types';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import { ISOToDate } from '@app/utils/formatDate';
+import MobileBubbles from './MobileBubbles';
+
+export type Bubbles = {
+  name: string;
+  href: string;
+  top: string;
+  left: string;
+  size: number;
+};
+
+const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
 const Landing: FC = () => {
   const isDesktop = useMedia(Breakpoints.sm);
-  const bubbles = [
+  const bubbles: Bubbles[] = [
     { name: 'Über uns', href: '/ueber-uns', top: '3%', left: '12%', size: 250 },
     { name: 'Events', href: '/events', top: '5%', left: '70%', size: 210 },
     { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 280 },
@@ -33,8 +44,6 @@ const Landing: FC = () => {
     { name: 'Awareness', href: '/awareness', top: '60%', left: '70%', size: 250 },
   ];
 
-  const rand = (min: number, max: number) => Math.random() * (max - min) + min;
-
   useEffect(() => {
     let ctx = gsap.context(() => {
       const bubblesDOM = gsap.utils.toArray('.bubble');
@@ -42,7 +51,7 @@ const Landing: FC = () => {
         if (!bubble) return;
 
         const tl = gsap.timeline();
-        const floatY = isDesktop ? rand(10, 50) : rand(10, 30);
+        const floatY = isDesktop ? rand(10, 50) : rand(5, 10);
         const floatX = isDesktop ? rand(-30, 50) : rand(-20, 20);
         const duration = rand(5, 9);
         const delay = rand(0, 3);
@@ -91,6 +100,7 @@ const Landing: FC = () => {
     { title: 'Konzert', detail: upcomingEvent?.konzertTitel },
     { title: 'DJ', detail: upcomingEvent?.djTitel },
   ];
+
   return (
     <Content>
       <Image
@@ -123,23 +133,7 @@ const Landing: FC = () => {
           </Bubble>
         ))
       ) : (
-        <BubbleWrapper>
-          {bubbles.slice(0, 3).map((b, i) => (
-            <Bubble
-              key={i}
-              href={b.href}
-              className="bubble"
-              style={{
-                top: b.top,
-                left: b.left,
-                width: '80px',
-                height: '80px',
-              }}
-            >
-              <Typography fontSize="12px">{b.name}</Typography>
-            </Bubble>
-          ))}
-        </BubbleWrapper>
+        <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} />
       )}
 
       <EventBox>
@@ -160,7 +154,7 @@ const Landing: FC = () => {
         </VenueBox>
         <EventTable>
           {eventDetails.map((event) => (
-            <EventCol>
+            <EventCol key={event.title}>
               <ColTitle>{event.title}</ColTitle>
               <EventTitle fontSize="14px" fontSizeSm="16px">
                 {event.detail}
@@ -170,25 +164,7 @@ const Landing: FC = () => {
         </EventTable>
       </EventBox>
 
-      {!isDesktop && (
-        <BubbleWrapper>
-          {bubbles.slice(-3).map((b, i) => (
-            <Bubble
-              key={i}
-              href={b.href}
-              className="bubble"
-              style={{
-                top: b.top,
-                left: b.left,
-                width: '80px',
-                height: '80px',
-              }}
-            >
-              <Typography fontSize="12px">{b.name}</Typography>
-            </Bubble>
-          ))}
-        </BubbleWrapper>
-      )}
+      {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} />}
     </Content>
   );
 };
