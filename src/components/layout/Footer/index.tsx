@@ -51,14 +51,14 @@ const FooterRowTop = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   ${Anchor} {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   ${({ theme }) => theme.media('sm')`
     gap: 16px;
 
     ${Anchor} {
-      font-size: 14px;
+      font-size: 16px;
     }
   `}
 `;
@@ -89,8 +89,8 @@ const Footer: FC = () => {
           <Anchor href={'/datenschutz'}>Datenschutz</Anchor>
         </FooterRowTop>
         <FooterRowBottom>
-          <Typography fontSize="10px">© {currentYear} BENGE.</Typography>
-          <Typography fontSize="10px">
+          <Typography fontSize="12px">© {currentYear} BENGE.</Typography>
+          <Typography fontSize="12px">
             Entwickelt von{' '}
             <Anchor href="https://www.fioauer.com/" target="_blank">
               Fio Auer
