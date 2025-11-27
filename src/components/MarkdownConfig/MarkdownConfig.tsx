@@ -20,11 +20,11 @@ const MarkdownSettings = styled.div`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.accent.pink};
     text-decoration: none;
 
     &:hover {
       text-decoration: underline !important;
+      font-weight: 600;
     }
   }
 
@@ -34,7 +34,7 @@ const MarkdownSettings = styled.div`
   }
   ${({ theme }) => theme.media('sm')`
       h1 {
-        font-size: 28px;
+        font-size: 48px;
       }
     `}
 
