@@ -1,15 +1,15 @@
-import { Montserrat, Roboto_Mono } from 'next/font/google';
+import { Asap, Balsamiq_Sans, Comfortaa, Fredoka, Jura, Montserrat, Nunito, Quicksand, Roboto_Mono, Signika } from 'next/font/google';
 
 // define your variable fonts
-const montserrat = Montserrat({
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
+const text = Asap({
+  weight: ['400', '500', '600','700'],
+  style: ['normal'],
   subsets: ['latin'],
   fallback: ['sans-serif'],
   display: 'block',
   preload: true,
 });
-const robotoMono = Roboto_Mono({
+const header = Roboto_Mono({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
@@ -17,4 +17,4 @@ const robotoMono = Roboto_Mono({
   preload: true,
 });
 
-export { montserrat, robotoMono };
+export { text, header };

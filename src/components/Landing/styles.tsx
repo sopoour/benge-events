@@ -2,6 +2,7 @@ import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Typography from '../Typography/Typography';
+import { header } from '@app/styles/fonts';
 
 export const Content = styled.div`
   position: relative;
@@ -13,6 +14,10 @@ export const Content = styled.div`
   ${flexColumn};
   z-index: 2;
   gap: 8px;
+
+  p {
+    font-family: ${header.style.fontFamily};
+  }
 `;
 
 export const Bubble = styled(Link)`

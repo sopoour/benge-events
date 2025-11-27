@@ -1,4 +1,4 @@
-import { montserrat } from '@app/styles/fonts';
+import { header } from '@app/styles/fonts';
 import { fastTransition, flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -12,13 +12,13 @@ const NavigationWrapper = styled.nav`
 
   ${({ theme }) => theme.media('sm')`
     ${flexRow}
-     gap: 12px;
+     gap: 16px;
   `}
 `;
 
 const NavigationItem = styled(Link)`
   font-size: 14px;
-  font-family: ${montserrat.style.fontFamily};
+  font-family: ${header.style.fontFamily};
   ${fastTransition}
   font-weight: 600;
   color: ${({ theme }) => theme.colors.fg.default};

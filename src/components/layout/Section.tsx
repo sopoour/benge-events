@@ -9,7 +9,7 @@ const MaxWidthContainer = styled.section<{ $maxWidth?: number }>`
   margin: 0 auto;
   position: relative;
   ${flexColumn};
-  gap: 40px;
+  gap: 24px;
   width: 100%;
   min-height: unset;
   padding: 32px ${maxContainerPadding.mobile}px;
