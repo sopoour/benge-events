@@ -44,10 +44,10 @@ export const Content = styled.aside<{ $open?: boolean }>`
   transform: translate3d(-100%, 0, 0);
   -webkit-transform: translate3d(-100%, 0, 0);
   opacity: 0;
-  padding: 80px 20px;
+  padding: 12px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 40px;
   width: 250px;
   ${({ $open }) =>
     $open &&

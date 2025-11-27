@@ -1,7 +1,6 @@
 import { FC, useEffect } from 'react';
 import {
   Bubble,
-  BubbleWrapper,
   ColTitle,
   Content,
   Date,

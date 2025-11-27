@@ -11,6 +11,7 @@ import { animateScroll } from 'react-scroll';
 import Navigation from '../Navigation';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
+import LinkContainer from '@app/components/LinkContainer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,12 +24,12 @@ const HeaderWrapper = styled.header<{ $show: boolean }>`
   top: 0;
   z-index: 5;
   min-height: ${HEADER_HEIGHT}px;
-  padding: 12px 12px;
+  padding: 12px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   opacity: 1;
-  gap: 8px;
+  gap: 4px;
   transition: all 300ms ease-in-out;
   transform: none;
   backdrop-filter: ${({ theme }) => theme.filters.backdrop};
@@ -97,6 +98,14 @@ const NavigationDesktop = styled(Navigation)`
   `}
 `;
 
+const LinkContainerDesktop = styled(LinkContainer)`
+  display: none;
+
+  ${({ theme }) => theme.media('sm')`
+    display: flex;
+  `}
+`;
+
 const Header: React.FC = () => {
   const { open, setOpen } = useSidebar((state) => state);
   const router = useRouter();
@@ -104,7 +113,7 @@ const Header: React.FC = () => {
   const isDesktop = useMedia(Breakpoints.sm);
 
   return (
-    <HeaderWrapper aria-label="header" id="mobile-header" $show={!isHomepage}>
+    <HeaderWrapper aria-label="header" id="header" $show={!isHomepage}>
       <NavigationDesktop />
       <Image
         src={Logo.src}
@@ -117,6 +126,7 @@ const Header: React.FC = () => {
           router.pathname !== '/' && router.replace('/');
         }}
       />
+      {/* <LinkContainerDesktop /> */}
       <BurgerMenu onClick={setOpen} id="burger-menu">
         <Line $isActive={open} />
         <Line $isActive={open} />

@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from 'react';
-
+import Logo from '@app/assets/logo.png';
+import Image from 'next/image';
 import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
@@ -8,6 +9,7 @@ import { flexColumn } from '@app/styles/mixins';
 import Navigation from './Navigation';
 import LinkContainer from '../LinkContainer';
 import useSidebar from '@app/hooks/useSidebar';
+import { useRouter } from 'next/router';
 
 const Root = styled.div`
   position: relative;
@@ -50,11 +52,22 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   const { close } = useSidebar((state) => state);
+  const router = useRouter();
   return (
     <Root>
       <Sidebar>
+        <Image
+          src={Logo.src}
+          alt="Benge Logo"
+          style={{ cursor: 'pointer', marginLeft: '-10px' }}
+          width={Logo.width / 5}
+          height={Logo.height / 5}
+          onClick={() => {
+            router.pathname !== '/' && router.replace('/');
+          }}
+        />
         <Navigation onClick={close} />
-        <LinkContainerMobile />
+        {/* <LinkContainerMobile /> */}
       </Sidebar>
       <Header />
       <MainLayout>{children}</MainLayout>
