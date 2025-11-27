@@ -4,20 +4,20 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function getHomepage(req: NextApiRequest, res: NextApiResponse) {
   try {
     const data = await fetchGraphQL(
-      `query homepage {
+      `query {
             generalContent(id: "2jtBnER7xiNejTl3cAwSlk") {
-                homepageSubtitle
+              homepageSubtitle
             }
             eventsCollection(limit: 4) {
-                    items {
-                        datum
-                        venue
-                        workshopTitel
-                        konzertTitel
-                        djTitel
-                    }
-                }
-          }`,
+              items {
+                datum
+                venue
+                workshopTitel
+                konzertTitel
+                djTitel
+              }
+            }
+        }`,
     );
 
     res.status(200).json(data.data);

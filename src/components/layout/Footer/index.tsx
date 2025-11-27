@@ -13,7 +13,7 @@ const FooterWrapper = styled.footer<{ $isHomePage: boolean }>`
   max-height: 64px;
   padding: 12px 0;
   gap: 32px;
-  background-color: rgba(109, 92, 219, 0.5);
+  background-color: ${({ theme }) => theme.colors.bg.soft};
   z-index: 2;
   color: ${({ theme }) => theme.colors.fg.contrast};
 

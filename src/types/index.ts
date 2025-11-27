@@ -4,7 +4,9 @@ export type Homepage = {
     generalContent: {
         homepageSubtitle: string
     }
-    eventsCollection: Events []
+    eventsCollection: { 
+        items: Events []
+    }
 }
 
 export type EventsPage = {
@@ -12,7 +14,9 @@ export type EventsPage = {
         eventsHeadline: string,
         eventsDescription: string
     }
-    eventsCollection: Events []
+    eventsCollection: { 
+        items: Events []
+    }
 }
 
 export type IconLink = {

@@ -1,6 +1,7 @@
 import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import styled from 'styled-components';
+import Typography from '../Typography/Typography';
 
 export const Content = styled.div`
   position: relative;
@@ -10,7 +11,6 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
   padding: 32px 20px;
-  max-width: 1000px;
   ${flexColumn};
   z-index: 2;
 `;
@@ -37,7 +37,6 @@ export const Bubble = styled(Link)`
     inset 0 0 20px rgba(255, 255, 255, 0.4),
     inset 0 0 50px rgba(255, 255, 255, 0.1),
     0 0 40px rgba(255, 255, 255, 0.2);
-  background-size: 200% 200%;
   transition: all 0.2s ease;
 
   &:hover {
@@ -53,5 +52,78 @@ export const Bubble = styled(Link)`
 export const BubbleWrapper = styled.div`
   position: relative;
   width: 100%;
-  min-height: 150px;
+  /* min-height: 150px; */
+`;
+
+export const EventBox = styled.div`
+  ${flexColumn};
+  gap: 16px;
+  background-color: ${({ theme }) => theme.colors.bg.soft};
+  padding: 16px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+
+  ${({ theme }) => theme.media('sm')`
+    width: 400px;
+  `}
+`;
+
+export const VenueBox = styled.span`
+  padding: 18px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  ${flexColumn};
+  justify-content: center;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.bg.default};
+  transition: all 0.2s ease;
+  background-blend-mode: screen;
+  backdrop-filter: blur(50px);
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.4),
+    inset 0 0 50px rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    box-shadow:
+      inset 0 0 25px rgba(255, 255, 255, 0.5),
+      0 0 60px rgba(255, 255, 255, 0.4);
+  }
+`;
+
+export const EventCol = styled.span`
+  border-radius: 10px;
+  border: 2px solid ${({ theme }) => theme.colors.bg.default};
+  ${flexColumn};
+  align-items: center;
+  min-height: 100px;
+  gap: 8px;
+  transition: all 0.2s ease;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    box-shadow:
+      inset 0 0 25px rgba(255, 255, 255, 0.5),
+      0 0 60px rgba(255, 255, 255, 0.4);
+  }
+`;
+
+export const EventTitle = styled(Typography)`
+  padding: 8px;
+  width: 100%;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.bg.default};
+`;
+
+export const EventTable = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 `;

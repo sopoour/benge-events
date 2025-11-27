@@ -1,5 +1,14 @@
 import { FC, useEffect } from 'react';
-import { Bubble, BubbleWrapper, Content } from './styles';
+import {
+  Bubble,
+  BubbleWrapper,
+  Content,
+  EventBox,
+  EventCol,
+  EventTable,
+  EventTitle,
+  VenueBox,
+} from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
@@ -10,15 +19,16 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Homepage } from '@app/types';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
+import { ISOToDate, normalizeDate } from '@app/utils/formatDate';
 
 const Landing: FC = () => {
   const isDesktop = useMedia(Breakpoints.sm);
   const bubbles = [
-    { name: 'Über uns', href: '/ueber-uns', top: '3%', left: isDesktop ? '15%' : '10%', size: 250 },
-    { name: 'Events', href: '/events', top: '5%', left: isDesktop ? '75%' : '40%', size: 210 },
+    { name: 'Über uns', href: '/ueber-uns', top: '3%', left: isDesktop ? '12%' : '10%', size: 250 },
+    { name: 'Events', href: '/events', top: '5%', left: isDesktop ? '70%' : '40%', size: 210 },
     { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 280 },
     { name: 'Bewerbung', href: '/bewerbung', top: '28%', left: '75%', size: 300 },
-    { name: 'Feedback', href: '/feedback', top: '60%', left: '20%', size: 220 },
+    { name: 'Feedback', href: '/feedback', top: '60%', left: '14%', size: 220 },
     { name: 'Awareness', href: '/awareness', top: '60%', left: '70%', size: 250 },
   ];
 
@@ -121,7 +131,13 @@ const Landing: FC = () => {
   }, [isDesktop]);
 
   const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
-  console.log(data?.eventsCollection[0]);
+  const upcomingEvent = data?.eventsCollection?.items[0];
+
+  const eventDetails = [
+    { title: 'Workshop', detail: upcomingEvent?.workshopTitel },
+    { title: 'Konzert', detail: upcomingEvent?.konzertTitel },
+    { title: 'DJ', detail: upcomingEvent?.djTitel },
+  ];
   return (
     <Content>
       <Image
@@ -130,7 +146,7 @@ const Landing: FC = () => {
         alt="Benge Logo"
         style={{
           cursor: 'pointer',
-          top: isDesktop ? '5%' : '2%',
+          top: '2%',
           position: 'absolute',
           scale: '0.8',
         }}
@@ -155,7 +171,7 @@ const Landing: FC = () => {
         ))
       ) : (
         <BubbleWrapper>
-          {bubbles.map((b, i) => (
+          {/* {bubbles.map((b, i) => (
             <Bubble
               key={i}
               href={b.href}
@@ -169,14 +185,35 @@ const Landing: FC = () => {
             >
               <Typography fontSize="12px">{b.name}</Typography>
             </Bubble>
-          ))}
+          ))} */}
         </BubbleWrapper>
       )}
 
-      <Typography fontSize="48px" style={{ backdropFilter: '50px' }}>
-        04. April 2026 im 90mil
-      </Typography>
-      <Footer />
+      <EventBox>
+        <Typography>{data?.generalContent.homepageSubtitle}</Typography>
+        <Typography fontSize="36px" style={{ backdropFilter: '50px' }} $textalign="center">
+          {upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}
+        </Typography>
+        <VenueBox>
+          <Typography $textalign="center" fontSize="18px">
+            hier könnte deine
+          </Typography>
+          <Typography $textalign="center" fontSize="32px" fontWeight={900}>
+            VENUE
+          </Typography>
+          <Typography $textalign="center" fontSize="18px">
+            stehen
+          </Typography>
+        </VenueBox>
+        <EventTable>
+          {eventDetails.map((event) => (
+            <EventCol>
+              <EventTitle>{event.title}</EventTitle>
+              <Typography style={{ padding: '24px 8px' }}>{event.detail}</Typography>
+            </EventCol>
+          ))}
+        </EventTable>
+      </EventBox>
     </Content>
   );
 };
