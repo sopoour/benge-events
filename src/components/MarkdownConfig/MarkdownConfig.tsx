@@ -30,22 +30,40 @@ const MarkdownSettings = styled.div`
 
   h1 {
     font-size: 36px;
-    font-family: 'montserrat';
   }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  img {
+    max-height: 450px;
+    width: max-content;
+  }
+
   ${({ theme }) => theme.media('sm')`
       h1 {
         font-size: 48px;
       }
+      h2 {
+        font-size: 48px;
+      }
+      h3 {
+        font-size: 28px;
+      }
+      h4 {
+        font-size: 20px;
+        margin-bottom: -8px;
+      }
     `}
-
-  h2 {
-    font-family: 'montserrat';
-    font-size: 1.17em;
-  }
-
-  img {
-    max-width: 400px;
-  }
 `;
 
 type Props = {

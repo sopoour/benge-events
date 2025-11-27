@@ -54,7 +54,7 @@ const Landing: FC = () => {
         const floatY = isDesktop ? rand(10, 50) : rand(5, 10);
         const floatX = isDesktop ? rand(-30, 50) : rand(-20, 20);
         const duration = rand(5, 9);
-        const delay = rand(0, 3);
+        const delay = rand(0, 0);
 
         // Appear Animation
         tl.fromTo(
