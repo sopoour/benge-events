@@ -7,12 +7,12 @@ export const Content = styled.div`
   position: relative;
   height: 100vh;
   width: 100%;
-  gap: 40px;
   align-items: center;
   justify-content: center;
   padding: 32px 20px;
   ${flexColumn};
   z-index: 2;
+  gap: 8px;
 `;
 
 export const Bubble = styled(Link)`
@@ -50,9 +50,14 @@ export const Bubble = styled(Link)`
 `;
 
 export const BubbleWrapper = styled.div`
-  position: relative;
+  ${flexRow};
+  gap: 20px;
   width: 100%;
-  /* min-height: 150px; */
+  justify-content: center;
+  min-height: 100px;
+  ${Bubble} {
+    position: static;
+  }
 `;
 
 export const EventBox = styled.div`
@@ -115,8 +120,7 @@ export const EventCol = styled.span`
   border: 2px solid ${({ theme }) => theme.colors.bg.default};
   ${flexColumn};
   align-items: center;
-  min-height: 100px;
-  gap: 8px;
+  min-height: 0;
   transition: all 0.2s ease;
   &:hover {
     opacity: 1;
@@ -125,9 +129,13 @@ export const EventCol = styled.span`
       inset 0 0 25px rgba(255, 255, 255, 0.5),
       0 0 60px rgba(255, 255, 255, 0.4);
   }
+
+  ${({ theme }) => theme.media('sm')`
+    min-height: 100px;
+  `}
 `;
 
-export const EventTitle = styled(Typography)`
+export const ColTitle = styled(Typography)`
   padding: 8px;
   width: 100%;
   text-align: center;
@@ -137,6 +145,13 @@ export const EventTitle = styled(Typography)`
   ${({ theme }) => theme.media('sm')`
     font-size: 16px;
   `}
+`;
+
+export const EventTitle = styled(Typography)`
+  padding: 8px 8px;
+  ${({ theme }) => theme.media('sm')`
+    padding: 24px 8px;
+  `};
 `;
 
 export const EventTable = styled.div`

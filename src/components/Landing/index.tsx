@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import {
   Bubble,
   BubbleWrapper,
+  ColTitle,
   Content,
   Date,
   EventBox,
@@ -24,8 +25,8 @@ import { ISOToDate } from '@app/utils/formatDate';
 const Landing: FC = () => {
   const isDesktop = useMedia(Breakpoints.sm);
   const bubbles = [
-    { name: 'Über uns', href: '/ueber-uns', top: '3%', left: isDesktop ? '12%' : '10%', size: 250 },
-    { name: 'Events', href: '/events', top: '5%', left: isDesktop ? '70%' : '40%', size: 210 },
+    { name: 'Über uns', href: '/ueber-uns', top: '3%', left: '12%', size: 250 },
+    { name: 'Events', href: '/events', top: '5%', left: '70%', size: 210 },
     { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 280 },
     { name: 'Bewerbung', href: '/bewerbung', top: '28%', left: '75%', size: 300 },
     { name: 'Feedback', href: '/feedback', top: '60%', left: '14%', size: 220 },
@@ -35,99 +36,51 @@ const Landing: FC = () => {
   const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
   useEffect(() => {
-    if (isDesktop) {
-      let ctx = gsap.context(() => {
-        const bubblesDOM = gsap.utils.toArray('.bubble');
-        bubblesDOM.forEach((bubble) => {
-          if (!bubble) return;
+    let ctx = gsap.context(() => {
+      const bubblesDOM = gsap.utils.toArray('.bubble');
+      bubblesDOM.forEach((bubble) => {
+        if (!bubble) return;
 
-          const tl = gsap.timeline();
-          const floatY = rand(10, 50);
-          const floatX = rand(-30, 50);
-          const duration = rand(5, 9);
-          const delay = rand(0, 3);
+        const tl = gsap.timeline();
+        const floatY = isDesktop ? rand(10, 50) : rand(10, 30);
+        const floatX = isDesktop ? rand(-30, 50) : rand(-20, 20);
+        const duration = rand(5, 9);
+        const delay = rand(0, 3);
 
-          // Appear Animation
-          tl.fromTo(
-            '#logo',
-            {
-              scale: 0.8,
+        // Appear Animation
+        tl.fromTo(
+          '#logo',
+          {
+            scale: 0.8,
+          },
+          { scale: 1 },
+        ).fromTo(
+          bubble,
+          { scale: 0.5, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 2,
+            delay,
+            ease: 'power3.out',
+            onComplete: () => {
+              // Floating Loop
+              gsap.to(bubble, {
+                y: `+=${floatY}`,
+                x: `+=${floatX}`,
+                duration,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay,
+              });
             },
-            { scale: 1 },
-          ).fromTo(
-            bubble,
-            { scale: 0.5, opacity: 0 },
-            {
-              scale: 1,
-              opacity: 1,
-              duration: 2,
-              delay,
-              ease: 'power3.out',
-              onComplete: () => {
-                // Floating Loop
-                gsap.to(bubble, {
-                  y: `+=${floatY}`,
-                  x: `+=${floatX}`,
-                  duration,
-                  repeat: -1,
-                  yoyo: true,
-                  ease: 'sine.inOut',
-                  delay,
-                });
-              },
-            },
-          );
-        });
+          },
+        );
       });
+    });
 
-      return () => ctx.revert(); // cleanup
-    } else {
-      let ctx = gsap.context(() => {
-        const bubblesDOM = gsap.utils.toArray('.bubble');
-        bubblesDOM.forEach((bubble) => {
-          if (!bubble) return;
-
-          const tl = gsap.timeline();
-          const floatY = rand(10, 30);
-          const floatX = rand(-20, 20);
-          const duration = rand(5, 9);
-          const delay = rand(0, 3);
-
-          // Appear Animation
-          tl.fromTo(
-            '#logo',
-            {
-              scale: 0.8,
-            },
-            { scale: 1 },
-          ).fromTo(
-            bubble,
-            { scale: 0.5, opacity: 0 },
-            {
-              scale: 1,
-              opacity: 1,
-              duration: 2,
-              delay,
-              ease: 'power3.out',
-              onComplete: () => {
-                // Floating Loop
-                gsap.to(bubble, {
-                  y: `+=${floatY}`,
-                  x: `+=${floatX}`,
-                  duration,
-                  repeat: -1,
-                  yoyo: true,
-                  ease: 'sine.inOut',
-                  delay,
-                });
-              },
-            },
-          );
-        });
-      });
-
-      return () => ctx.revert(); // cleanup
-    }
+    return () => ctx.revert(); // cleanup
   }, [isDesktop]);
 
   const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
@@ -150,8 +103,8 @@ const Landing: FC = () => {
           position: 'absolute',
           scale: '0.8',
         }}
-        width={isDesktop ? Logo.width / 2 : Logo.width / 3}
-        height={isDesktop ? Logo.height / 2 : Logo.height / 3}
+        width={isDesktop ? Logo.width / 2 : Logo.width / 4}
+        height={isDesktop ? Logo.height / 2 : Logo.height / 4}
       />
       {isDesktop ? (
         bubbles.map((b, i) => (
@@ -171,7 +124,7 @@ const Landing: FC = () => {
         ))
       ) : (
         <BubbleWrapper>
-          {/* {bubbles.map((b, i) => (
+          {bubbles.slice(0, 3).map((b, i) => (
             <Bubble
               key={i}
               href={b.href}
@@ -185,7 +138,7 @@ const Landing: FC = () => {
             >
               <Typography fontSize="12px">{b.name}</Typography>
             </Bubble>
-          ))} */}
+          ))}
         </BubbleWrapper>
       )}
 
@@ -208,14 +161,34 @@ const Landing: FC = () => {
         <EventTable>
           {eventDetails.map((event) => (
             <EventCol>
-              <EventTitle>{event.title}</EventTitle>
-              <Typography style={{ padding: '24px 8px' }} fontSize="14px" fontSizeSm="16px">
+              <ColTitle>{event.title}</ColTitle>
+              <EventTitle fontSize="14px" fontSizeSm="16px">
                 {event.detail}
-              </Typography>
+              </EventTitle>
             </EventCol>
           ))}
         </EventTable>
       </EventBox>
+
+      {!isDesktop && (
+        <BubbleWrapper>
+          {bubbles.slice(-3).map((b, i) => (
+            <Bubble
+              key={i}
+              href={b.href}
+              className="bubble"
+              style={{
+                top: b.top,
+                left: b.left,
+                width: '80px',
+                height: '80px',
+              }}
+            >
+              <Typography fontSize="12px">{b.name}</Typography>
+            </Bubble>
+          ))}
+        </BubbleWrapper>
+      )}
     </Content>
   );
 };
