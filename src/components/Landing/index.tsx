@@ -8,14 +8,12 @@ import {
   EventCol,
   EventTable,
   EventTitle,
-  SubTitle,
   VenueBox,
 } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
 import Image from 'next/image';
-import Footer from '@app/components/layout/Footer';
 import useSWR from 'swr';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Homepage } from '@app/types';

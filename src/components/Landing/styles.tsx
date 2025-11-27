@@ -64,10 +64,10 @@ export const EventBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 40px;
 
   ${({ theme }) => theme.media('sm')`
     width: 400px;
+    margin-top: 40px;
   `}
 `;
 
