@@ -33,7 +33,7 @@ export type Bubbles = {
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
 const Landing: FC = () => {
-  const isDesktop = useMedia(Breakpoints.sm);
+  const isDesktop = useMedia(Breakpoints.md);
   const bubbles: Bubbles[] = [
     { name: 'Über uns', href: '/ueber-uns', top: '3%', left: '12%', size: 250 },
     { name: 'Events', href: '/events', top: '5%', left: '70%', size: 210 },

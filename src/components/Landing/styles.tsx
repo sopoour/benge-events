@@ -81,7 +81,7 @@ export const Date = styled(Typography)`
   margin-top: -12px;
   text-align: center;
 
-  ${({ theme }) => theme.media('sm')`
+  ${({ theme }) => theme.media('md')`
     font-size: 36px;
   `}
 `;
@@ -109,7 +109,7 @@ export const VenueBox = styled.span`
       0 0 60px rgba(255, 255, 255, 0.4);
   }
 
-  ${({ theme }) => theme.media('sm')`
+  ${({ theme }) => theme.media('md')`
     width: 200px;
     height: 200px;
   `}
@@ -130,7 +130,7 @@ export const EventCol = styled.span`
       0 0 60px rgba(255, 255, 255, 0.4);
   }
 
-  ${({ theme }) => theme.media('sm')`
+  ${({ theme }) => theme.media('md')`
     min-height: 100px;
   `}
 `;
@@ -142,14 +142,14 @@ export const ColTitle = styled(Typography)`
   font-size: 14px;
   background-color: ${({ theme }) => theme.colors.bg.default};
 
-  ${({ theme }) => theme.media('sm')`
+  ${({ theme }) => theme.media('md')`
     font-size: 16px;
   `}
 `;
 
 export const EventTitle = styled(Typography)`
   padding: 8px 8px;
-  ${({ theme }) => theme.media('sm')`
+  ${({ theme }) => theme.media('md')`
     padding: 24px 8px;
   `};
 `;
