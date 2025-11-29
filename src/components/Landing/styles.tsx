@@ -87,7 +87,7 @@ export const Date = styled(Typography)`
   text-align: center;
 
   ${({ theme }) => theme.media('md')`
-    font-size: 36px;
+    font-size: 40px;
   `}
 `;
 
@@ -114,7 +114,7 @@ export const VenueBox = styled.span`
       0 0 60px rgba(255, 255, 255, 0.4);
   }
 
-  ${({ theme }) => theme.media('md')`
+  ${({ theme }) => theme.media('sm')`
     width: 200px;
     height: 200px;
   `}
@@ -144,11 +144,11 @@ export const ColTitle = styled(Typography)`
   padding: 8px;
   width: 100%;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   background-color: ${({ theme }) => theme.colors.bg.default};
 
   ${({ theme }) => theme.media('md')`
-    font-size: 16px;
+    font-size: 18px;
   `}
 `;
 

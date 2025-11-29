@@ -17,10 +17,8 @@ const NavigationWrapper = styled.nav`
 `;
 
 const NavigationItem = styled(Link)`
-  font-size: 14px;
   font-family: ${header.style.fontFamily};
   ${fastTransition}
-  font-weight: 600;
   color: ${({ theme }) => theme.colors.fg.default};
 
   &:not(.active) {
@@ -34,12 +32,7 @@ const NavigationItem = styled(Link)`
   }
 
   ${({ theme }) => theme.media('sm')`
-    font-size: 14px;
-    
-  `}
-
-  ${({ theme }) => theme.media('md')`
-    font-size: 16px;
+    font-size: 18px;
     
   `}
 `;

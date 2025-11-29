@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import theme from './theme';
-import { text } from './fonts';
+import { header, text } from './fonts';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -37,6 +37,10 @@ img {
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     image-rendering: auto;
   }
+}
+
+h1 {
+  font-family: ${header.style.fontFamily};
 }
 
 button,

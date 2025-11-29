@@ -9,7 +9,8 @@ import { header } from '@app/styles/fonts';
 const MarkdownSettings = styled.div`
   p {
     text-align: justify;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.5;
   }
   color: ${({ theme }) => theme.colors.fg.default};
 
@@ -43,11 +44,11 @@ const MarkdownSettings = styled.div`
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   h3 {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   h4 {
@@ -55,13 +56,14 @@ const MarkdownSettings = styled.div`
   }
 
   img {
-    max-height: 450px;
-    width: max-content;
+    max-height: 100%;
+    width: 80%;
   }
 
   #ueber-uns-foto {
     display: flex;
     flex-direction: column;
+    gap: 0;
   }
 
   ${({ theme }) => theme.media('sm')`
@@ -83,6 +85,15 @@ const MarkdownSettings = styled.div`
         flex-direction: row;
         gap:40px;
         align-items: center;
+      }
+
+      img {
+        max-height: 450px;
+        width: max-content;
+      }
+
+       p {
+        font-size: 18px;
       }
     `}
 `;

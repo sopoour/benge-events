@@ -129,7 +129,7 @@ const Landing: FC = () => {
               height: b.size,
             }}
           >
-            <Typography fontSize="28px">{b.name}</Typography>
+            <Typography fontSize="32px">{b.name}</Typography>
           </Bubble>
         ))
       ) : (
@@ -140,18 +140,18 @@ const Landing: FC = () => {
         <LoadingSkeleton />
       ) : (
         <EventBox>
-          <Typography fontSize="14px" fontSizeSm="16px">
+          <Typography fontSize="16px" fontSizeSm="18px">
             {data?.generalContent.homepageSubtitle}
           </Typography>
           <Date>{upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}</Date>
           <VenueBox>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px">
               hier könnte deine
             </Typography>
-            <Typography $textalign="center" fontSize="28px" fontSizeSm="32px" fontWeight={900}>
+            <Typography $textalign="center" fontSize="28px" fontSizeSm="36px" fontWeight={900}>
               VENUE
             </Typography>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="18px">
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px">
               stehen
             </Typography>
           </VenueBox>

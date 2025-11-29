@@ -1,4 +1,4 @@
-import { Asap, Balsamiq_Sans, Comfortaa, Fredoka, Jura, Montserrat, Nunito, Quicksand, Roboto_Mono, Signika } from 'next/font/google';
+import { Asap,  Jura,  Roboto_Mono, Ubuntu_Mono } from 'next/font/google';
 
 // define your variable fonts
 const text = Asap({
@@ -9,9 +9,9 @@ const text = Asap({
   display: 'block',
   preload: true,
 });
-const header = Roboto_Mono({
+const header = Ubuntu_Mono({
   weight: ['400', '700'],
-  style: ['normal', 'italic'],
+  style: ['normal', ],
   subsets: ['latin'],
   fallback: ['monospace'],
   preload: true,

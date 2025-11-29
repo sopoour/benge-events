@@ -21,7 +21,7 @@ const MobileBubbles: FC<Props> = ({ slicedBubbles }) => (
           height: '80px',
         }}
       >
-        <Typography fontSize="12px">{b.name}</Typography>
+        <Typography fontSize="14px">{b.name}</Typography>
       </Bubble>
     ))}
   </BubbleWrapper>
