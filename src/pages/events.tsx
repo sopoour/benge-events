@@ -8,7 +8,7 @@ import { EventsPage } from '@app/types';
 import { FC } from 'react';
 import useSWR from 'swr';
 
-const UeberUns: FC = () => {
+const Events: FC = () => {
   const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
 
   if (isLoading) {
@@ -27,4 +27,4 @@ const UeberUns: FC = () => {
   );
 };
 
-export default UeberUns;
+export default Events;
