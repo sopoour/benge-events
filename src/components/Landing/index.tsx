@@ -145,13 +145,13 @@ const Landing: FC = () => {
           </Typography>
           <Date>{upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}</Date>
           <VenueBox>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px">
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
               hier könnte deine
             </Typography>
             <Typography $textalign="center" fontSize="28px" fontSizeSm="36px" fontWeight={900}>
               VENUE
             </Typography>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px">
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
               stehen
             </Typography>
           </VenueBox>

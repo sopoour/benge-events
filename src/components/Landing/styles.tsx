@@ -82,12 +82,12 @@ export const EventBox = styled.div`
 `;
 
 export const Date = styled(Typography)`
-  font-size: 28px;
+  font-size: 32px;
   margin-top: -12px;
   text-align: center;
 
   ${({ theme }) => theme.media('md')`
-    font-size: 40px;
+    font-size: 44px;
   `}
 `;
 
