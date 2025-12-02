@@ -1,18 +1,105 @@
-import { fastTransition, flexColumn } from '@app/styles/mixins';
-import styled from 'styled-components';
+import { fastTransition, flexColumn, slowTransition } from '@app/styles/mixins';
+import styled, { css } from 'styled-components';
 import Typography from '../Typography/Typography';
-import { text } from '@app/styles/fonts';
+import { header, text } from '@app/styles/fonts';
 import Link from 'next/link';
+import MarkdownConfig from '../MarkdownConfig/MarkdownConfig';
 
-export const EventBoxContent = styled.div`
+export const EventButton = styled(Link)`
+  width: 80%;
+  border-radius: 10px;
+  border: 2px solid ${({ theme }) => theme.colors.bg.default};
+  padding: 8px 16px;
+  text-align: center;
+  background-color: white;
+  color: ${({ theme }) => theme.colors.fg.contrast};
+  font-weight: 700;
+  ${fastTransition};
+  font-family: ${header.style.fontFamily};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.bg.default};
+    color: ${({ theme }) => theme.colors.fg.default};
+  }
+`;
+
+export const OverviewContainer = styled.div`
+  opacity: 1;
+  width: 100%;
+  height: 100%;
   ${flexColumn};
   gap: 12px;
-  background-color: ${({ theme }) => theme.colors.bg.soft};
-  padding: 16px;
-  border-radius: 10px;
   justify-content: space-between;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.bg.soft};
+  padding: 20px 16px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 0;
+  ${slowTransition};
+`;
+
+export const DetailsContainer = styled.div`
+  padding: 20px;
   width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  ${slowTransition};
+  background-color: ${({ theme }) => theme.colors.bg.default};
+  ${flexColumn};
+  gap: 0;
+  justify-content: space-between;
+  align-items: center;
+
+  ${EventButton} {
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.fg.inactive};
+      color: ${({ theme }) => theme.colors.fg.contrast};
+    }
+  }
+`;
+
+export const Details = styled.div`
+  ${flexColumn};
+  gap: 0;
+`;
+
+export const MarkDownEvent = styled(MarkdownConfig)`
+  && {
+    p {
+      font-size: 14px;
+    }
+  }
+`;
+
+const viewedStyle = css`
+  transform: rotateY(180deg);
+
+  ${OverviewContainer} {
+    opacity: 0;
+    transform: rotateY(180deg);
+    z-index: -1;
+  }
+
+  ${DetailsContainer} {
+    opacity: 1;
+    transform: rotateY(180deg);
+    z-index: 0;
+  }
+`;
+
+export const EventBoxContent = styled.div<{ $viewDetails?: boolean }>`
+  position: relative;
+  width: 100%;
+  ${slowTransition};
+  ${flexColumn};
+  justify-content: space-between;
+  ${({ $viewDetails }) => $viewDetails && viewedStyle};
 
   ${({ theme }) => theme.media('sm')`
     width: 100%;
@@ -31,8 +118,8 @@ export const Date = styled(Typography)`
 
 export const VenueBox = styled.span<{ $tba?: boolean }>`
   padding: 18px;
-  width: ${({ $tba }) => ($tba ? '170px' : '120px')};
-  height: ${({ $tba }) => ($tba ? '170px' : '120px')};
+  width: ${({ $tba }) => ($tba ? '150px' : '120px')};
+  height: ${({ $tba }) => ($tba ? '150px' : '120px')};
   border-radius: 100px;
   ${flexColumn};
   justify-content: center;
@@ -105,21 +192,4 @@ export const EventTable = styled.div`
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-`;
-
-export const EventButton = styled(Link)`
-  width: 80%;
-  border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.colors.bg.default};
-  padding: 8px 16px;
-  text-align: center;
-  background-color: white;
-  color: ${({ theme }) => theme.colors.fg.contrast};
-  font-weight: 700;
-  ${fastTransition};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.bg.default};
-    color: ${({ theme }) => theme.colors.fg.default};
-  }
 `;

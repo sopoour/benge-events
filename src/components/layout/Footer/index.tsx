@@ -20,8 +20,10 @@ const FooterWrapper = styled.footer<{ $isHomePage: boolean }>`
   ${({ $isHomePage }) =>
     $isHomePage &&
     css`
-      position: absolute;
-      bottom: 0;
+      ${({ theme }) => theme.media('sm')`
+        position: absolute;
+         bottom: 0;
+  `}
     `}
 `;
 

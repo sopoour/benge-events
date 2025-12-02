@@ -92,7 +92,7 @@ const Landing: FC = () => {
         style={{
           cursor: 'pointer',
           top: '2%',
-          position: 'absolute',
+          position: isDesktop ? 'absolute' : 'static',
           scale: '0.8',
         }}
         width={isDesktop ? Logo.width / 2 : Logo.width / 4}
@@ -122,6 +122,7 @@ const Landing: FC = () => {
         subTitle={data?.generalContent.homepageSubtitle}
         loadingSubTitle
         loading={isLoading}
+        showDescription={false}
       />
       {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} />}
     </Content>

@@ -1,14 +1,12 @@
 import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import styled from 'styled-components';
-import Typography from '../Typography/Typography';
 import { header } from '@app/styles/fonts';
 import EventBox from '../EventBox';
-import { EventTitle } from '../EventBox/styles';
 
 export const Content = styled.div`
   position: relative;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -20,6 +18,10 @@ export const Content = styled.div`
   p {
     font-family: ${header.style.fontFamily};
   }
+
+  ${({ theme }) => theme.media('sm')`
+   height: 10vh;
+  `}
 `;
 
 export const Bubble = styled(Link)`
@@ -61,6 +63,7 @@ export const BubbleWrapper = styled.div`
   gap: 20px;
   width: 100%;
   justify-content: center;
+  align-items: center;
   min-height: 100px;
   ${Bubble} {
     position: static;
@@ -68,12 +71,8 @@ export const BubbleWrapper = styled.div`
 `;
 
 export const EventBoxLanding = styled(EventBox)`
-  ${EventTitle} {
-    font-family: ${header.style.fontFamily} !important;
-    font-weight: 700;
-  }
   ${({ theme }) => theme.media('sm')`
    margin-top: 40px;
-   width: 400px;
+   width: 450px !important;
   `}
 `;
