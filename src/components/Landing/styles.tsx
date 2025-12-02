@@ -20,7 +20,7 @@ export const Content = styled.div`
   }
 
   ${({ theme }) => theme.media('sm')`
-   height: 10vh;
+   height: 100vh;
   `}
 `;
 

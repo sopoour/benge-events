@@ -20,11 +20,12 @@ const EventSection = styled.div`
 const EventBoxContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 60px;
+  gap: 32px;
   width: 100%;
 
   ${({ theme }) => theme.media('sm')`
   grid-template-columns: 1fr 1fr;
+  gap: 60px;
   `}
 `;
 
