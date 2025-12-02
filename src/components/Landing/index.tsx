@@ -1,15 +1,5 @@
 import { FC, useEffect } from 'react';
-import {
-  Bubble,
-  ColTitle,
-  Content,
-  Date,
-  EventBox,
-  EventCol,
-  EventTable,
-  EventTitle,
-  VenueBox,
-} from './styles';
+import { Bubble, Content } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
@@ -19,9 +9,8 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Homepage } from '@app/types';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
-import { ISOToDate } from '@app/utils/formatDate';
 import MobileBubbles from './MobileBubbles';
-import LoadingSkeleton from './LoadingSkeleton';
+import EventBox from '../EventBox';
 
 export type Bubbles = {
   name: string;
@@ -135,39 +124,12 @@ const Landing: FC = () => {
       ) : (
         <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} />
       )}
-
-      {isLoading ? (
-        <LoadingSkeleton />
-      ) : (
-        <EventBox>
-          <Typography fontSize="16px" fontSizeSm="18px">
-            {data?.generalContent.homepageSubtitle}
-          </Typography>
-          <Date>{upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}</Date>
-          <VenueBox>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-              hier könnte deine
-            </Typography>
-            <Typography $textalign="center" fontSize="28px" fontSizeSm="36px" fontWeight={900}>
-              VENUE
-            </Typography>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-              stehen
-            </Typography>
-          </VenueBox>
-          <EventTable>
-            {eventDetails.map((event) => (
-              <EventCol key={event.title}>
-                <ColTitle>{event.title}</ColTitle>
-                <EventTitle fontSize="14px" fontSizeSm="16px">
-                  {event.detail}
-                </EventTitle>
-              </EventCol>
-            ))}
-          </EventTable>
-        </EventBox>
-      )}
-
+      <EventBox
+        event={upcomingEvent}
+        subTitle={data?.generalContent.homepageSubtitle}
+        loadingSubTitle
+        loading={isLoading}
+      />
       {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} />}
     </Content>
   );

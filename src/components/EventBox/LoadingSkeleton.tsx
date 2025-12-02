@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ColTitle, EventBox, EventCol, EventTable, EventTitle, VenueBox } from './styles';
+import { ColTitle, EventBoxContent, EventCol, EventTable, EventTitle, VenueBox } from './styles';
 import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
 
@@ -12,9 +12,13 @@ const SkeletonStyle = styled(Skeleton)`
 
 const eventTitles = ['Workshop', 'Konzert', 'DJ'];
 
-const LoadingSkeleton: FC = () => (
-  <EventBox>
-    <SkeletonStyle height={15} width={200} />
+type Props = {
+  hasSubTitle?: boolean;
+};
+
+const LoadingSkeleton: FC<Props> = ({ hasSubTitle }) => (
+  <EventBoxContent>
+    {hasSubTitle && <SkeletonStyle height={15} width={150} />}
     <SkeletonStyle height={30} width={300} />
     <VenueBox style={{ gap: '8px' }}>
       <SkeletonStyle height={15} width="60%" />
@@ -32,7 +36,7 @@ const LoadingSkeleton: FC = () => (
         </EventCol>
       ))}
     </EventTable>
-  </EventBox>
+  </EventBoxContent>
 );
 
 export default LoadingSkeleton;
