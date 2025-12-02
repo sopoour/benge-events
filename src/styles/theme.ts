@@ -9,7 +9,7 @@ const theme = {
     },
     fg: {
       default: '#FFFFFF',
-      contrast: '#000000',
+      contrast: '#6d5cdb',
       inactive: 'rgba(255, 255, 255, 0.75)',
     },
     accent: {

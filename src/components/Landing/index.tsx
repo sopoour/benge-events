@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { Bubble, Content } from './styles';
+import { Bubble, Content, EventBoxLanding } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
@@ -10,7 +10,6 @@ import { Homepage } from '@app/types';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import MobileBubbles from './MobileBubbles';
-import EventBox from '../EventBox';
 
 export type Bubbles = {
   name: string;
@@ -84,12 +83,6 @@ const Landing: FC = () => {
   const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
   const upcomingEvent = data?.eventsCollection?.items[0];
 
-  const eventDetails = [
-    { title: 'Workshop', detail: upcomingEvent?.workshopTitel },
-    { title: 'Konzert', detail: upcomingEvent?.konzertTitel },
-    { title: 'DJ', detail: upcomingEvent?.djTitel },
-  ];
-
   return (
     <Content>
       <Image
@@ -124,7 +117,7 @@ const Landing: FC = () => {
       ) : (
         <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} />
       )}
-      <EventBox
+      <EventBoxLanding
         event={upcomingEvent}
         subTitle={data?.generalContent.homepageSubtitle}
         loadingSubTitle

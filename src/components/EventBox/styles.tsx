@@ -1,6 +1,8 @@
-import { flexColumn } from '@app/styles/mixins';
+import { fastTransition, flexColumn } from '@app/styles/mixins';
 import styled from 'styled-components';
 import Typography from '../Typography/Typography';
+import { text } from '@app/styles/fonts';
+import Link from 'next/link';
 
 export const EventBoxContent = styled.div`
   ${flexColumn};
@@ -8,13 +10,12 @@ export const EventBoxContent = styled.div`
   background-color: ${({ theme }) => theme.colors.bg.soft};
   padding: 16px;
   border-radius: 10px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 
   ${({ theme }) => theme.media('sm')`
-    width: 400px;
-    margin-top: 40px;
+    width: 100%;
   `}
 `;
 
@@ -28,10 +29,10 @@ export const Date = styled(Typography)`
   `}
 `;
 
-export const VenueBox = styled.span`
+export const VenueBox = styled.span<{ $tba?: boolean }>`
   padding: 18px;
-  width: 170px;
-  height: 170px;
+  width: ${({ $tba }) => ($tba ? '170px' : '120px')};
+  height: ${({ $tba }) => ($tba ? '170px' : '120px')};
   border-radius: 100px;
   ${flexColumn};
   justify-content: center;
@@ -51,9 +52,9 @@ export const VenueBox = styled.span`
       0 0 60px rgba(255, 255, 255, 0.4);
   }
 
-  ${({ theme }) => theme.media('sm')`
-    width: 200px;
-    height: 200px;
+  ${({ theme, $tba }) => theme.media('sm')`
+    width: ${$tba ? '200px' : '170px'};
+    height:  ${$tba ? '200px' : '170px'};
   `}
 `;
 
@@ -91,6 +92,9 @@ export const ColTitle = styled(Typography)`
 
 export const EventTitle = styled(Typography)`
   padding: 8px 8px;
+  text-align: center;
+  font-family: ${text.style.fontFamily} !important;
+  font-weight: 500;
   ${({ theme }) => theme.media('md')`
     padding: 24px 8px;
   `};
@@ -101,4 +105,21 @@ export const EventTable = styled.div`
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
+`;
+
+export const EventButton = styled(Link)`
+  width: 80%;
+  border-radius: 10px;
+  border: 2px solid ${({ theme }) => theme.colors.bg.default};
+  padding: 8px 16px;
+  text-align: center;
+  background-color: white;
+  color: ${({ theme }) => theme.colors.fg.contrast};
+  font-weight: 700;
+  ${fastTransition};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.bg.default};
+    color: ${({ theme }) => theme.colors.fg.default};
+  }
 `;

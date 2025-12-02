@@ -8,6 +8,7 @@ import {
   EventTitle,
   VenueBox,
   Date,
+  EventButton,
 } from './styles';
 import { Events } from '@app/services/graphql/types';
 import { ISOToDate } from '@app/utils/formatDate';
@@ -18,9 +19,10 @@ type Props = {
   loadingSubTitle?: boolean;
   event?: Events;
   loading?: boolean;
+  className?: string;
 };
 
-const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle }) => {
+const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, className }) => {
   const eventDetails = [
     { title: 'Workshop', detail: event?.workshopTitel },
     { title: 'Konzert', detail: event?.konzertTitel },
@@ -32,23 +34,31 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle }) => {
   }
 
   return (
-    <EventBoxContent>
+    <EventBoxContent className={className}>
       {subTitle && (
         <Typography fontSize="16px" fontSizeSm="18px">
           {subTitle}
         </Typography>
       )}
       <Date>{event?.datum ? ISOToDate(event?.datum) : ''}</Date>
-      <VenueBox>
-        <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-          hier könnte deine
-        </Typography>
-        <Typography $textalign="center" fontSize="28px" fontSizeSm="36px" fontWeight={900}>
-          VENUE
-        </Typography>
-        <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-          stehen
-        </Typography>
+      <VenueBox $tba /* ={event?.venue?.includes('tba')} */>
+        {event?.venue?.includes('tba') ? (
+          <>
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
+              hier könnte deine
+            </Typography>
+            <Typography $textalign="center" fontSize="28px" fontSizeSm="36px" fontWeight={900}>
+              VENUE
+            </Typography>
+            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
+              stehen
+            </Typography>
+          </>
+        ) : (
+          <Typography $textalign="center" fontSize="20px" fontSizeSm="28px" fontWeight={900}>
+            {event?.venue}
+          </Typography>
+        )}
       </VenueBox>
       <EventTable>
         {eventDetails.map((event) => (
@@ -60,6 +70,11 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle }) => {
           </EventCol>
         ))}
       </EventTable>
+      {event?.ticketLink && (
+        <EventButton href={event?.ticketLink} target="_blank">
+          Ticket reservieren
+        </EventButton>
+      )}
     </EventBoxContent>
   );
 };
