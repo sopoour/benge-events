@@ -7,7 +7,7 @@ import { GeneralContent } from '@app/services/graphql/types';
 import { FC } from 'react';
 import useSWR from 'swr';
 
-const UeberUns: FC = () => {
+const Bewerbung: FC = () => {
   const { data, isLoading } = useSWR<GeneralContent | null>('/api/generalContent', fetcher);
 
   if (isLoading) {
@@ -26,4 +26,4 @@ const UeberUns: FC = () => {
   );
 };
 
-export default UeberUns;
+export default Bewerbung;

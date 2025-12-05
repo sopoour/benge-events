@@ -20,7 +20,7 @@ const MarkdownConfigAdjust = styled(MarkdownConfig)`
     `}
 `;
 
-const UeberUns: FC = () => {
+const Impressum: FC = () => {
   const { data, isLoading } = useSWR<LegalPages | null>('/api/legalPages', fetcher);
 
   if (isLoading) {
@@ -34,4 +34,4 @@ const UeberUns: FC = () => {
   );
 };
 
-export default UeberUns;
+export default Impressum;

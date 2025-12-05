@@ -1,15 +1,5 @@
 import { FC, useEffect } from 'react';
-import {
-  Bubble,
-  ColTitle,
-  Content,
-  Date,
-  EventBox,
-  EventCol,
-  EventTable,
-  EventTitle,
-  VenueBox,
-} from './styles';
+import { Bubble, Content, EventBoxLanding } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
@@ -19,9 +9,7 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Homepage } from '@app/types';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
-import { ISOToDate } from '@app/utils/formatDate';
 import MobileBubbles from './MobileBubbles';
-import LoadingSkeleton from './LoadingSkeleton';
 
 export type Bubbles = {
   name: string;
@@ -95,12 +83,6 @@ const Landing: FC = () => {
   const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
   const upcomingEvent = data?.eventsCollection?.items[0];
 
-  const eventDetails = [
-    { title: 'Workshop', detail: upcomingEvent?.workshopTitel },
-    { title: 'Konzert', detail: upcomingEvent?.konzertTitel },
-    { title: 'DJ', detail: upcomingEvent?.djTitel },
-  ];
-
   return (
     <Content>
       <Image
@@ -110,7 +92,7 @@ const Landing: FC = () => {
         style={{
           cursor: 'pointer',
           top: '2%',
-          position: 'absolute',
+          position: isDesktop ? 'absolute' : 'static',
           scale: '0.8',
         }}
         width={isDesktop ? Logo.width / 2 : Logo.width / 4}
@@ -135,39 +117,13 @@ const Landing: FC = () => {
       ) : (
         <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} />
       )}
-
-      {isLoading ? (
-        <LoadingSkeleton />
-      ) : (
-        <EventBox>
-          <Typography fontSize="16px" fontSizeSm="18px">
-            {data?.generalContent.homepageSubtitle}
-          </Typography>
-          <Date>{upcomingEvent?.datum ? ISOToDate(upcomingEvent?.datum) : ''}</Date>
-          <VenueBox>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-              hier könnte deine
-            </Typography>
-            <Typography $textalign="center" fontSize="28px" fontSizeSm="36px" fontWeight={900}>
-              VENUE
-            </Typography>
-            <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-              stehen
-            </Typography>
-          </VenueBox>
-          <EventTable>
-            {eventDetails.map((event) => (
-              <EventCol key={event.title}>
-                <ColTitle>{event.title}</ColTitle>
-                <EventTitle fontSize="14px" fontSizeSm="16px">
-                  {event.detail}
-                </EventTitle>
-              </EventCol>
-            ))}
-          </EventTable>
-        </EventBox>
-      )}
-
+      <EventBoxLanding
+        event={upcomingEvent}
+        subTitle={data?.generalContent.homepageSubtitle}
+        loadingSubTitle
+        loading={isLoading}
+        showDescription={false}
+      />
       {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} />}
     </Content>
   );
