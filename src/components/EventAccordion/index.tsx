@@ -90,7 +90,11 @@ const EventAccordion: FC<Props> = ({
           {hasDetailsHeader && isDesktop && (
             <Details>
               {eventDetails.map((event) => (
-                <Typography fontSize="16px" fontSizeSm="18px">
+                <Typography
+                  key={event.title + 'pastEventsDetails'}
+                  fontSize="16px"
+                  fontSizeSm="18px"
+                >
                   {event.title}: {event.detail}
                 </Typography>
               ))}
