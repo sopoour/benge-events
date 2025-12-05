@@ -34,7 +34,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   padding: 12px 16px;
   width: 100%;
-  gap: 8px;
+  gap: 12px;
 
   :hover {
     cursor: pointer;

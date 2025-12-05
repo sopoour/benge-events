@@ -30,6 +30,10 @@ const EventBoxContainer = styled.div`
   `}
 `;
 
+const EventAccordionPast = styled(EventAccordion)`
+  display: flex !important;
+`;
+
 const Events: FC = () => {
   const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
   const today = new Date();
@@ -74,15 +78,13 @@ const Events: FC = () => {
             <Typography as="h2" fontSizeSm="40px" fontSize="32px">
               Vergangene Events
             </Typography>
-            <EventBoxContainer>
+            <EventBoxContainer style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {pastEvents?.map((event) => (
-                <EventBox key={event.datum + 'past'} event={event} loading={isLoading} />
-              ))}
-              {pastEvents?.map((event) => (
-                <EventAccordion
-                  key={event.datum + '-past' + '-mobile'}
+                <EventAccordionPast
+                  key={event.datum + 'past'}
                   event={event}
                   loading={isLoading}
+                  hasDetailsHeader
                 />
               ))}
             </EventBoxContainer>

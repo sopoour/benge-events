@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import Typography from '../Typography/Typography';
 import { ISOToDate } from '@app/utils/formatDate';
 import { Details, EventButton, MarkDownEvent } from '../EventBox/styles';
+import { useMedia } from '@app/hooks/useMedia';
+import { Breakpoints } from '@app/styles/media';
 
 const MobileAccordion = styled(Accordion)`
   display: flex;
@@ -15,13 +17,18 @@ const MobileAccordion = styled(Accordion)`
   `}
 `;
 
-const Header = styled.div`
+const Header = styled.div<{ $hasDetailsHeader?: boolean }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 12px;
   justify-content: space-between;
   align-content: center;
   align-items: center;
   width: 100%;
+
+  ${({ theme, $hasDetailsHeader }) => theme.media('sm')`
+    grid-template-columns: ${$hasDetailsHeader ? '1fr 1fr 1fr' : '1fr 1fr'} ;
+    `}
 `;
 
 export const DetailsContainer = styled.div`
@@ -46,15 +53,23 @@ type Props = {
   event?: Events;
   loading?: boolean;
   showDescription?: boolean;
+  hasDetailsHeader?: boolean;
 };
 
-const EventAccordion: FC<Props> = ({ event, className, loading, showDescription = true }) => {
+const EventAccordion: FC<Props> = ({
+  event,
+  className,
+  loading,
+  showDescription = true,
+  hasDetailsHeader,
+}) => {
   const eventDetails = [
     { title: 'Workshop', detail: event?.workshopTitel, description: event?.workshopBeschreibung },
     { title: 'Konzert', detail: event?.konzertTitel, description: event?.konzertBeschreibung },
     { title: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
   ];
   const [open, setOpen] = useState<boolean>(false);
+  const isDesktop = useMedia(Breakpoints.sm);
 
   return (
     <MobileAccordion
@@ -65,11 +80,22 @@ const EventAccordion: FC<Props> = ({ event, className, loading, showDescription 
       hasRuler
       setOpen={setOpen}
       header={
-        <Header>
-          <Typography>{event?.datum ? ISOToDate(event?.datum) : ''}</Typography>
-          <Typography>
+        <Header $hasDetailsHeader={hasDetailsHeader}>
+          <Typography fontSize="16px" fontSizeSm="20px">
+            {event?.datum ? ISOToDate(event?.datum) : ''}
+          </Typography>
+          <Typography fontSize="16px" fontSizeSm="20px">
             {event?.venue?.includes('tba') ? 'hier könnte deine VENUE stehen' : event?.venue}
           </Typography>
+          {hasDetailsHeader && isDesktop && (
+            <Details>
+              {eventDetails.map((event) => (
+                <Typography fontSize="16px" fontSizeSm="18px">
+                  {event.title}: {event.detail}
+                </Typography>
+              ))}
+            </Details>
+          )}
         </Header>
       }
     >

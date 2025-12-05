@@ -17,8 +17,6 @@ import {
 import { Events } from '@app/services/graphql/types';
 import { ISOToDate } from '@app/utils/formatDate';
 import LoadingSkeleton from './elements/LoadingSkeleton';
-import { useMedia } from '@app/hooks/useMedia';
-import { Breakpoints } from '@app/styles/media';
 import useClickOutside from '@app/hooks/useClickOutside';
 
 type Props = {
@@ -39,7 +37,6 @@ const EventBox: FC<Props> = ({
   showDescription = true,
 }) => {
   const [view, setView] = useState<boolean>(false);
-  const isDesktop = useMedia(Breakpoints.xs);
   const ref = useRef<HTMLButtonElement>(null);
   useClickOutside(ref, () => setView(false));
 
