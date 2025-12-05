@@ -10,6 +10,7 @@ import { Homepage } from '@app/types';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import MobileBubbles from './MobileBubbles';
+import { normalizeDate } from '@app/utils/formatDate';
 
 export type Bubbles = {
   name: string;
@@ -79,9 +80,11 @@ const Landing: FC = () => {
 
     return () => ctx.revert(); // cleanup
   }, [isDesktop]);
-
+  const today = new Date();
   const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
-  const upcomingEvent = data?.eventsCollection?.items[0];
+  const upcomingEvent = data?.eventsCollection?.items
+    ?.filter((event) => normalizeDate(event.datum) >= today)
+    ?.sort((a, b) => normalizeDate(a.datum).getTime() - normalizeDate(b.datum).getTime())[0];
 
   return (
     <Content>
