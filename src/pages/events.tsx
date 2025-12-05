@@ -11,6 +11,8 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import EventAccordion from '@app/components/EventAccordion';
+import LoadingSkeleton from '@app/components/EventBox/elements/LoadingSkeleton';
+import Skeleton from 'react-loading-skeleton';
 
 const EventSection = styled.div`
   ${flexColumn};
@@ -34,6 +36,11 @@ const EventAccordionPast = styled(EventAccordion)`
   display: flex !important;
 `;
 
+const SkeletonContent = styled.div`
+  ${flexColumn};
+  gap: 16px;
+`;
+
 const Events: FC = () => {
   const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
   const today = new Date();
@@ -47,19 +54,31 @@ const Events: FC = () => {
     ?.filter((event) => normalizeDate(event.datum) < today)
     ?.sort((a, b) => normalizeDate(b.datum).getTime() - normalizeDate(a.datum).getTime());
 
+  if (isLoading) {
+    return (
+      <Section>
+        <>
+          <Skeleton height={40} width={300} style={{ margin: '28px 0' }} />
+          <SkeletonContent>
+            <Skeleton height={20} width="80%" />
+            <Skeleton height={20} width="100%" />
+          </SkeletonContent>
+          <EventBoxContainer>
+            <LoadingSkeleton />
+            <LoadingSkeleton />
+          </EventBoxContainer>
+        </>
+      </Section>
+    );
+  }
+
   return (
     <Section id="events">
       <>
-        {isLoading ? (
-          <LoadingSkeletonGeneral />
-        ) : (
-          <>
-            <Typography as="h1" fontSize="48px">
-              {data?.generalContent.eventsHeadline}
-            </Typography>
-            <MarkdownConfig content={data?.generalContent.eventsDescription as string} />
-          </>
-        )}
+        <Typography as="h1" fontSize="48px">
+          {data?.generalContent.eventsHeadline}
+        </Typography>
+        <MarkdownConfig content={data?.generalContent.eventsDescription as string} />
         <EventSection>
           <Typography as="h2" fontSizeSm="40px" fontSize="32px">
             Kommende Events

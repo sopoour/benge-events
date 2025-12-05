@@ -57,6 +57,7 @@ const LoadingSkeleton: FC<Props> = ({ hasSubTitle }) => (
           </EventCol>
         ))}
       </EventTable>
+      <SkeletonStyle height={30} width={200} />
     </OverviewContainer>
   </EventBoxSkeleton>
 );
