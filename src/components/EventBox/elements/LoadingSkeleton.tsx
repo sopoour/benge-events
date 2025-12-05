@@ -7,11 +7,9 @@ import {
   EventTitle,
   OverviewContainer,
   VenueBox,
-} from './styles';
+} from '../styles';
 import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
-import { EventBoxLanding } from '../Landing/styles';
-import EventBox from '.';
 import { header } from '@app/styles/fonts';
 
 const SkeletonStyle = styled(Skeleton)`

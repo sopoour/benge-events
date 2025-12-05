@@ -6,7 +6,7 @@ import Link from 'next/link';
 import MarkdownConfig from '../MarkdownConfig/MarkdownConfig';
 
 export const EventButton = styled(Link)`
-  width: 80%;
+  width: 100%;
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.colors.bg.default};
   padding: 8px 16px;
@@ -21,6 +21,10 @@ export const EventButton = styled(Link)`
     background-color: ${({ theme }) => theme.colors.bg.default};
     color: ${({ theme }) => theme.colors.fg.default};
   }
+
+  ${({ theme }) => theme.media('sm')`
+    width: 80%;
+  `}
 `;
 
 export const OverviewContainer = styled.div`
@@ -97,12 +101,13 @@ export const EventBoxContent = styled.div<{ $viewDetails?: boolean }>`
   position: relative;
   width: 100%;
   ${slowTransition};
-  ${flexColumn};
+  display: none;
   justify-content: space-between;
   ${({ $viewDetails }) => $viewDetails && viewedStyle};
 
   ${({ theme }) => theme.media('sm')`
     width: 100%;
+    ${flexColumn};
   `}
 `;
 

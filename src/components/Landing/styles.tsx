@@ -71,8 +71,10 @@ export const BubbleWrapper = styled.div`
 `;
 
 export const EventBoxLanding = styled(EventBox)`
+  display: flex;
   ${({ theme }) => theme.media('sm')`
    margin-top: 40px;
    width: 450px !important;
+  
   `}
 `;

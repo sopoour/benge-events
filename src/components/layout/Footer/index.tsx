@@ -91,8 +91,10 @@ const Footer: FC = () => {
           <Anchor href={'/datenschutz'}>Datenschutz</Anchor>
         </FooterRowTop>
         <FooterRowBottom>
-          <Typography fontSize="12px">© {currentYear} BENGE.</Typography>
-          <Typography fontSize="12px">
+          <Typography fontSize="12px" fontSizeSm="14px">
+            © {currentYear} BENGE.
+          </Typography>
+          <Typography fontSize="12px" fontSizeSm="14px">
             Entwickelt von{' '}
             <Anchor href="https://www.fioauer.com/" target="_blank">
               Fio Auer

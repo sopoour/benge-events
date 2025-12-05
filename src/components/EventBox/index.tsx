@@ -16,7 +16,7 @@ import {
 } from './styles';
 import { Events } from '@app/services/graphql/types';
 import { ISOToDate } from '@app/utils/formatDate';
-import LoadingSkeleton from './LoadingSkeleton';
+import LoadingSkeleton from './elements/LoadingSkeleton';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import useClickOutside from '@app/hooks/useClickOutside';
@@ -62,24 +62,6 @@ const EventBox: FC<Props> = ({
       $viewDetails={view}
       ref={ref}
     >
-      <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
-        <Details onClick={showDescriptionContent}>
-          {eventDetails.map((event) => (
-            <>
-              <Typography fontSize="18px">
-                {event.title}: {event.detail}
-              </Typography>
-              {event.description && <MarkDownEvent content={event.description} />}
-            </>
-          ))}
-        </Details>
-
-        {event?.ticketLink && (
-          <EventButton href={event?.ticketLink} target="_blank">
-            Ticket reservieren
-          </EventButton>
-        )}
-      </DetailsContainer>
       <OverviewContainer>
         {subTitle && (
           <Typography fontSize="16px" fontSizeSm="18px">
@@ -122,6 +104,24 @@ const EventBox: FC<Props> = ({
           </EventButton>
         )}
       </OverviewContainer>
+      <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
+        <Details onClick={showDescriptionContent}>
+          {eventDetails.map((event) => (
+            <>
+              <Typography fontSize="18px">
+                {event.title}: {event.detail}
+              </Typography>
+              {event.description && <MarkDownEvent content={event.description} />}
+            </>
+          ))}
+        </Details>
+
+        {event?.ticketLink && (
+          <EventButton href={event?.ticketLink} target="_blank">
+            Ticket reservieren
+          </EventButton>
+        )}
+      </DetailsContainer>
     </EventBoxContent>
   );
 };

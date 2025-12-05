@@ -10,6 +10,7 @@ import { normalizeDate } from '@app/utils/formatDate';
 import { FC } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
+import EventAccordion from '@app/components/EventAccordion';
 
 const EventSection = styled.div`
   ${flexColumn};
@@ -20,7 +21,7 @@ const EventSection = styled.div`
 const EventBoxContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 16px;
   width: 100%;
 
   ${({ theme }) => theme.media('sm')`
@@ -61,6 +62,7 @@ const Events: FC = () => {
           </Typography>
           <EventBoxContainer>
             {upcomingEvents?.map((event) => <EventBox event={event} loading={isLoading} />)}
+            {upcomingEvents?.map((event) => <EventAccordion event={event} loading={isLoading} />)}
           </EventBoxContainer>
         </EventSection>
         {pastEvents && pastEvents?.length > 0 && (
@@ -70,6 +72,7 @@ const Events: FC = () => {
             </Typography>
             <EventBoxContainer>
               {pastEvents?.map((event) => <EventBox event={event} loading={isLoading} />)}
+              {pastEvents?.map((event) => <EventAccordion event={event} loading={isLoading} />)}
             </EventBoxContainer>
           </EventSection>
         )}
