@@ -53,11 +53,12 @@ const LoadingSkeleton: FC<Props> = ({ hasSubTitle }) => (
             <ColTitle>{eventTitle}</ColTitle>
             <EventTitle>
               <SkeletonStyle height={15} width={80} />
+              <SkeletonStyle height={15} width={80} />
             </EventTitle>
           </EventCol>
         ))}
       </EventTable>
-      <SkeletonStyle height={30} width={200} />
+      {/* <SkeletonStyle height={30} width={200} /> */}
     </OverviewContainer>
   </EventBoxSkeleton>
 );
