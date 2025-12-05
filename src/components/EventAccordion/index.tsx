@@ -17,7 +17,7 @@ const MobileAccordion = styled(Accordion)`
   `}
 `;
 
-const Header = styled.div<{ $hasDetailsHeader?: boolean }>`
+export const Header = styled.div<{ $hasDetailsHeader?: boolean }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;

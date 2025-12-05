@@ -1,10 +1,9 @@
 import EventBox from '@app/components/EventBox';
 import Section from '@app/components/layout/Section';
-import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
-import { flexColumn, flexRow } from '@app/styles/mixins';
+import { flexColumn } from '@app/styles/mixins';
 import { EventsPage } from '@app/types';
 import { normalizeDate } from '@app/utils/formatDate';
 import { FC } from 'react';
@@ -13,6 +12,9 @@ import useSWR from 'swr';
 import EventAccordion from '@app/components/EventAccordion';
 import LoadingSkeleton from '@app/components/EventBox/elements/LoadingSkeleton';
 import Skeleton from 'react-loading-skeleton';
+import { useMedia } from '@app/hooks/useMedia';
+import { Breakpoints } from '@app/styles/media';
+import LoadingSkeletonMobile from '@app/components/EventAccordion/LoadingSkeleton';
 
 const EventSection = styled.div`
   ${flexColumn};
@@ -44,6 +46,8 @@ const SkeletonContent = styled.div`
 const Events: FC = () => {
   const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
   const today = new Date();
+  const isDesktop = useMedia(Breakpoints.sm);
+
   today.setHours(0, 0, 0, 0); // Strip time from today
 
   const upcomingEvents = data?.eventsCollection.items
@@ -62,11 +66,20 @@ const Events: FC = () => {
           <SkeletonContent>
             <Skeleton height={20} width="80%" />
             <Skeleton height={20} width="100%" />
+            <Skeleton height={30} width="75%" style={{ marginTop: '24px' }} />
           </SkeletonContent>
-          <EventBoxContainer>
-            <LoadingSkeleton />
-            <LoadingSkeleton />
-          </EventBoxContainer>
+          {isDesktop ? (
+            <EventBoxContainer>
+              <LoadingSkeleton />
+              <LoadingSkeleton />
+            </EventBoxContainer>
+          ) : (
+            <EventBoxContainer>
+              <LoadingSkeletonMobile />
+              <LoadingSkeletonMobile />
+              <LoadingSkeletonMobile />
+            </EventBoxContainer>
+          )}
         </>
       </Section>
     );
