@@ -61,8 +61,12 @@ const Events: FC = () => {
             Kommende Events
           </Typography>
           <EventBoxContainer>
-            {upcomingEvents?.map((event) => <EventBox event={event} loading={isLoading} />)}
-            {upcomingEvents?.map((event) => <EventAccordion event={event} loading={isLoading} />)}
+            {upcomingEvents?.map((event) => (
+              <EventBox key={event.datum} event={event} loading={isLoading} />
+            ))}
+            {upcomingEvents?.map((event) => (
+              <EventAccordion key={event.datum + 'mobile'} loading={isLoading} />
+            ))}
           </EventBoxContainer>
         </EventSection>
         {pastEvents && pastEvents?.length > 0 && (
@@ -71,8 +75,16 @@ const Events: FC = () => {
               Vergangene Events
             </Typography>
             <EventBoxContainer>
-              {pastEvents?.map((event) => <EventBox event={event} loading={isLoading} />)}
-              {pastEvents?.map((event) => <EventAccordion event={event} loading={isLoading} />)}
+              {pastEvents?.map((event) => (
+                <EventBox key={event.datum + 'past'} event={event} loading={isLoading} />
+              ))}
+              {pastEvents?.map((event) => (
+                <EventAccordion
+                  key={event.datum + '-past' + '-mobile'}
+                  event={event}
+                  loading={isLoading}
+                />
+              ))}
             </EventBoxContainer>
           </EventSection>
         )}
