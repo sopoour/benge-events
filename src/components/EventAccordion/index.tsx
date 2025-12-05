@@ -16,7 +16,8 @@ const MobileAccordion = styled(Accordion)`
 `;
 
 const Header = styled.div`
-  ${flexRow}
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   align-content: center;
   align-items: center;

@@ -65,7 +65,7 @@ const Events: FC = () => {
               <EventBox key={event.datum} event={event} loading={isLoading} />
             ))}
             {upcomingEvents?.map((event) => (
-              <EventAccordion key={event.datum + 'mobile'} loading={isLoading} />
+              <EventAccordion key={event.datum + 'mobile'} event={event} loading={isLoading} />
             ))}
           </EventBoxContainer>
         </EventSection>
