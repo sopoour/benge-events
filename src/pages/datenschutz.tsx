@@ -8,16 +8,24 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 
 const MarkdownConfigAdjust = styled(MarkdownConfig)`
-  h2 {
-    font-size: 18px;
-  }
+  && {
+    h1 {
+      font-size: 32px;
+    }
+    h2 {
+      font-size: 18px;
+    }
 
-  ${({ theme }) => theme.media('sm')`
+    ${({ theme }) => theme.media('sm')`
      
       h2 {
         font-size: 20px;
       }
+      h1 {
+        font-size: 36px;
+      }
     `}
+  }
 `;
 
 const Datenschutz: FC = () => {
