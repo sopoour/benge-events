@@ -1,6 +1,6 @@
 import Accordion from '@app/components/Accordion/Accordion';
 import { Events } from '@app/services/graphql/types';
-import { flexColumn, flexRow, slowTransition } from '@app/styles/mixins';
+import { flexColumn, slowTransition } from '@app/styles/mixins';
 import { FC, useState } from 'react';
 import styled from 'styled-components';
 import Typography from '../Typography/Typography';

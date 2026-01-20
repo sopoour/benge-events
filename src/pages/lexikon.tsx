@@ -1,4 +1,3 @@
-import Accordion from '@app/components/Accordion/Accordion';
 import Section from '@app/components/layout/Section';
 import LexikonAccordion from '@app/components/LexikonAccordion';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
@@ -6,11 +5,8 @@ import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import { Lexikon as LexikonData } from '@app/services/graphql/types';
-import { text } from '@app/styles/fonts';
-import { flexColumn } from '@app/styles/mixins';
 import { LexikonPage } from '@app/types';
-import { FC, useState } from 'react';
-import styled from 'styled-components';
+import { FC } from 'react';
 import useSWR from 'swr';
 
 export type GroupedLexikonData = {
