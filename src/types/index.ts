@@ -1,4 +1,4 @@
-import { Events } from "@app/services/graphql/types"
+import { Events, Lexikon } from "@app/services/graphql/types"
 
 export type Homepage = {
     generalContent: {
@@ -16,6 +16,16 @@ export type EventsPage = {
     }
     eventsCollection: { 
         items: Events []
+    }
+}
+
+export type LexikonPage = {
+    generalContent: {
+        lexikonHeadline: string,
+        lexikonDescription: string
+    }
+    lexikonCollection: { 
+        items: Lexikon []
     }
 }
 
