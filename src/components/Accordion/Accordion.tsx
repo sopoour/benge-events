@@ -35,7 +35,6 @@ const Accordion: React.FC<Props> = ({
     onClick={() => !open && setOpen && setOpen((prevState) => !prevState)}
     $open={open}
     className={className}
-    /* aria-expanded={open} */
   >
     <HeaderContainer onClick={() => open && setOpen && setOpen((prevState) => !prevState)}>
       {header}
