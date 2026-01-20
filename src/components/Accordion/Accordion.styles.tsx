@@ -2,7 +2,7 @@ import { slowTransition } from '@app/styles/mixins';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 
-export const AccordionContainer = styled.div<{ $open?: boolean }>`
+export const AccordionContainer = styled.button<{ $open?: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -67,6 +67,9 @@ export const SmallChevron = styled(FaChevronDown)<{ $isOpen?: boolean }>`
   && {
     transform: ${(props) => (props.$isOpen ? 'rotate(-180deg)' : 'rotate(0deg)')};
     transition: all 0.4s ease;
+    > path {
+      fill: white;
+    }
   }
 `;
 
@@ -74,5 +77,8 @@ export const LargeChevron = styled(FaChevronRight)<{ $isOpen?: boolean }>`
   && {
     transform: ${(props) => (props.$isOpen ? 'rotate(-90deg)' : 'rotate(90deg)')};
     transition: all 0.4s ease;
+    > path {
+      fill: white;
+    }
   }
 `;
