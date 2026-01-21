@@ -4,9 +4,11 @@ import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
+import useLang from '@app/hooks/useLang';
 import { Lexikon as LexikonData } from '@app/services/graphql/types';
 import { LexikonPage } from '@app/types';
-import { FC } from 'react';
+import { useRouter } from 'next/router';
+import { FC, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 export type GroupedLexikonData = {
@@ -15,7 +17,9 @@ export type GroupedLexikonData = {
 };
 
 const Lexikon: FC = () => {
-  const { data, isLoading } = useSWR<LexikonPage | null>('/api/lexikon', fetcher);
+  const lang = useLang();
+
+  const { data, isLoading } = useSWR<LexikonPage | null>(`/api/lexikon?lang=${lang}`, fetcher);
 
   const groupedData: GroupedLexikonData[] = data?.lexikonCollection.items.reduce(
     (acc: any, { kategorie, titel, beschreibung }) => {

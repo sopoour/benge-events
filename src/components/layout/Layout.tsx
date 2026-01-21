@@ -10,6 +10,7 @@ import Navigation from './Navigation';
 import LinkContainer from '../LinkContainer';
 import useSidebar from '@app/hooks/useSidebar';
 import { useRouter } from 'next/router';
+import LangToggle from '../LangToggle';
 
 const Root = styled.div`
   position: relative;
@@ -67,6 +68,7 @@ const Layout: FC<Props> = ({ children }) => {
           }}
         />
         <Navigation onClick={close} />
+        <LangToggle />
         {/* <LinkContainerMobile /> */}
       </Sidebar>
       <Header />

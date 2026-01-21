@@ -8,6 +8,7 @@ import { ISOToDate } from '@app/utils/formatDate';
 import { Details, EventButton, MarkDownEvent } from '../EventBox/styles';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
+import useLang from '@app/hooks/useLang';
 
 const MobileAccordion = styled(Accordion)`
   display: flex;
@@ -63,10 +64,21 @@ const EventAccordion: FC<Props> = ({
   showDescription = true,
   hasDetailsHeader,
 }) => {
+  const lang = useLang();
   const eventDetails = [
-    { title: 'Workshop', detail: event?.workshopTitel, description: event?.workshopBeschreibung },
-    { title: 'Konzert', detail: event?.konzertTitel, description: event?.konzertBeschreibung },
-    { title: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
+    {
+      title: 'Workshop',
+      titleEn: 'Workshop',
+      detail: event?.workshopTitel,
+      description: event?.workshopBeschreibung,
+    },
+    {
+      title: 'Konzert',
+      titleEn: 'Concert',
+      detail: event?.konzertTitel,
+      description: event?.konzertBeschreibung,
+    },
+    { title: 'DJ', titleEn: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
   ];
   const [open, setOpen] = useState<boolean>(false);
   const isDesktop = useMedia(Breakpoints.sm);
@@ -85,7 +97,11 @@ const EventAccordion: FC<Props> = ({
             {event?.datum ? ISOToDate(event?.datum) : ''}
           </Typography>
           <Typography fontSize="16px" fontSizeSm="20px">
-            {event?.venue?.includes('tba') ? 'hier könnte deine VENUE stehen' : event?.venue}
+            {event?.venue?.includes('tba')
+              ? lang === 'en'
+                ? 'Your VENUE could be here'
+                : 'hier könnte deine VENUE stehen'
+              : event?.venue}
           </Typography>
           {hasDetailsHeader && isDesktop && (
             <Details>
@@ -95,7 +111,7 @@ const EventAccordion: FC<Props> = ({
                   fontSize="16px"
                   fontSizeSm="18px"
                 >
-                  {event.title}: {event.detail}
+                  {lang === 'en' ? event.titleEn : event.title}: {event.detail}
                 </Typography>
               ))}
             </Details>
@@ -108,7 +124,7 @@ const EventAccordion: FC<Props> = ({
           {eventDetails.map((event) => (
             <>
               <Typography fontSize="16px" fontSizeSm="18px">
-                {event.title}: {event.detail}
+                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
               </Typography>
               {event.description && <MarkDownEvent content={event.description} />}
             </>
@@ -117,7 +133,7 @@ const EventAccordion: FC<Props> = ({
 
         {event?.ticketLink && (
           <EventButton href={event?.ticketLink} target="_blank">
-            Ticket reservieren
+            {lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
           </EventButton>
         )}
       </DetailsContainer>

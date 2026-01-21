@@ -1,15 +1,17 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import Layout from '@app/components/layout/Layout';
+import '@mantine/core/styles.css';
 import { GlobalStyle } from '@app/styles/global';
 import { ThemeProvider } from 'styled-components';
 import 'react-loading-skeleton/dist/skeleton.css';
 import theme from '@app/styles/theme';
 import Head from 'next/head';
+import { MantineProvider } from '@mantine/core';
 
 const App = ({ Component, pageProps }: AppProps) => {
   // TODO: Change description and title
-  const metaDescription = 'BENGE - Events';
+  const metaDescription = 'BENGE - FLINTA Events';
   const metaTitle = 'BENGE';
 
   return (
@@ -29,10 +31,12 @@ const App = ({ Component, pageProps }: AppProps) => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <MantineProvider withGlobalClasses withCssVariables forceColorScheme="light">
+          <GlobalStyle />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </MantineProvider>
       </ThemeProvider>
     </>
   );

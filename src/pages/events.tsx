@@ -15,6 +15,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import LoadingSkeletonMobile from '@app/components/EventAccordion/LoadingSkeleton';
+import useLang from '@app/hooks/useLang';
 
 const EventSection = styled.div`
   ${flexColumn};
@@ -44,7 +45,8 @@ const SkeletonContent = styled.div`
 `;
 
 const Events: FC = () => {
-  const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
+  const lang = useLang();
+  const { data, isLoading } = useSWR<EventsPage | null>(`/api/eventsPage?lang=${lang}`, fetcher);
   const today = new Date();
   const isDesktop = useMedia(Breakpoints.sm);
 
@@ -94,7 +96,7 @@ const Events: FC = () => {
         <MarkdownConfig content={data?.generalContent.eventsDescription as string} />
         <EventSection>
           <Typography as="h2" fontSizeSm="40px" fontSize="32px">
-            Kommende Events
+            {lang === 'en' ? 'Upcoming Events' : 'Kommende Events'}
           </Typography>
           <EventBoxContainer>
             {upcomingEvents?.map((event) => (
@@ -108,7 +110,7 @@ const Events: FC = () => {
         {pastEvents && pastEvents?.length > 0 && (
           <EventSection>
             <Typography as="h2" fontSizeSm="40px" fontSize="32px">
-              Vergangene Events
+              {lang === 'en' ? 'Past Events' : 'Vergangene Events'}
             </Typography>
             <EventBoxContainer style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {pastEvents?.map((event) => (

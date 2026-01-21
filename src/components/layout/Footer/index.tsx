@@ -1,4 +1,5 @@
 import Typography from '@app/components/Typography/Typography';
+import useLang from '@app/hooks/useLang';
 import { flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -75,6 +76,7 @@ const FooterRowBottom = styled.div`
 `;
 
 const Footer: FC = () => {
+  const lang = useLang();
   const currentYear = new Date().getFullYear();
   const router = useRouter();
   const isHomepage = router.pathname === '/';
@@ -82,20 +84,24 @@ const Footer: FC = () => {
     <FooterWrapper $isHomePage={isHomepage}>
       <FooterContent>
         <FooterRowTop>
-          <Anchor href={'/ueber-uns'}>Über uns</Anchor>
+          <Anchor href={`'/ueber-uns'${lang === 'en' ? '?lang=en' : ''}`}>
+            {lang === 'en' ? 'About' : 'Über uns'}
+          </Anchor>
           <Typography> | </Typography>
-          <Anchor href={'/awareness'}>Awareness</Anchor>
+          <Anchor href={`'/awareness'${lang === 'en' ? '?lang=en' : ''}`}>Awareness</Anchor>
           <Typography> | </Typography>
-          <Anchor href={'/impressum'}>Impressum</Anchor>
+          <Anchor href={`'/impressum'${lang === 'en' ? '?lang=en' : ''}`}>Impressum</Anchor>
           <Typography> | </Typography>
-          <Anchor href={'/datenschutz'}>Datenschutz</Anchor>
+          <Anchor href={`'/datenschutz'${lang === 'en' ? '?lang=en' : ''}`}>
+            {lang === 'en' ? 'Data Privacy' : 'Datenschutz'}
+          </Anchor>
         </FooterRowTop>
         <FooterRowBottom>
           <Typography fontSize="12px" fontSizeSm="14px">
             © {currentYear} BENGE.
           </Typography>
           <Typography fontSize="12px" fontSizeSm="14px">
-            Entwickelt von{' '}
+            {lang === 'en' ? 'Developed by' : 'Entwickelt von'}{' '}
             <Anchor href="https://www.fioauer.com/" target="_blank">
               Fio Auer
             </Anchor>{' '}

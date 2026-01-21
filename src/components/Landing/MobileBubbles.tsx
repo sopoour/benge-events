@@ -5,9 +5,10 @@ import Typography from '../Typography/Typography';
 
 type Props = {
   slicedBubbles: Bubbles[];
+  lang: string;
 };
 
-const MobileBubbles: FC<Props> = ({ slicedBubbles }) => (
+const MobileBubbles: FC<Props> = ({ slicedBubbles, lang }) => (
   <BubbleWrapper>
     {slicedBubbles.map((b, i) => (
       <Bubble
@@ -17,11 +18,11 @@ const MobileBubbles: FC<Props> = ({ slicedBubbles }) => (
         style={{
           top: b.top,
           left: b.left,
-          width: '80px',
-          height: '80px',
+          width: '85px',
+          height: '85px',
         }}
       >
-        <Typography fontSize="14px">{b.name}</Typography>
+        <Typography fontSize="14px">{lang === 'en' ? b.nameEn : b.name}</Typography>
       </Bubble>
     ))}
   </BubbleWrapper>
