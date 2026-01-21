@@ -10,7 +10,7 @@ export default async function getHomepage(req: NextApiRequest, res: NextApiRespo
             generalContent(id: "2jtBnER7xiNejTl3cAwSlk", locale: $locale) {
               homepageSubtitle
             }
-            eventsCollection(limit: 4, locale: $locale) {
+            eventsCollection(limit: 10, locale: $locale) {
               items {
                 datum
                 venue
