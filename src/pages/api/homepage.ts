@@ -6,7 +6,7 @@ export default async function getHomepage(req: NextApiRequest, res: NextApiRespo
   try {
     const locale = getLocaleFromRequest(req);
     const data = await fetchGraphQL(
-      `query {
+      `query homePage($locale: String!) {
             generalContent(id: "2jtBnER7xiNejTl3cAwSlk", locale: $locale) {
               homepageSubtitle
             }

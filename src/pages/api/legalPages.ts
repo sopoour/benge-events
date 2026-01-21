@@ -6,7 +6,7 @@ export default async function legalPages(req: NextApiRequest, res: NextApiRespon
   try {
     const locale = getLocaleFromRequest(req);
     const data = await fetchGraphQL(
-      `query {
+      `query legalPages($locale: String!) {
         legalPages(id: "3gTLFQAIVT2W2uxreQXieK", locale: $locale) {
             impressum
             datenschutz

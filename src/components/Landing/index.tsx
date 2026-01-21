@@ -94,7 +94,7 @@ const Landing: FC = () => {
     return () => ctx.revert(); // cleanup
   }, [isDesktop]);
   const today = new Date();
-  const { data, isLoading } = useSWR<Homepage | null>('/api/homepage', fetcher);
+  const { data, isLoading } = useSWR<Homepage | null>(`/api/homepage?lang=${lang}`, fetcher);
   const upcomingEvent = data?.eventsCollection?.items
     ?.filter((event) => normalizeDate(event.datum) >= today)
     ?.sort((a, b) => normalizeDate(a.datum).getTime() - normalizeDate(b.datum).getTime())[0];
@@ -119,7 +119,7 @@ const Landing: FC = () => {
         bubbles.map((b, i) => (
           <Bubble
             key={i}
-            href={b.href}
+            href={`${b.href}${lang === 'en' ? '?lang=en' : ''}`}
             className="bubble"
             style={{
               top: b.top,

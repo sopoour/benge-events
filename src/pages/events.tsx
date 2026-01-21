@@ -15,6 +15,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import LoadingSkeletonMobile from '@app/components/EventAccordion/LoadingSkeleton';
+import useLang from '@app/hooks/useLang';
 
 const EventSection = styled.div`
   ${flexColumn};
@@ -44,7 +45,8 @@ const SkeletonContent = styled.div`
 `;
 
 const Events: FC = () => {
-  const { data, isLoading } = useSWR<EventsPage | null>('/api/eventsPage', fetcher);
+  const lang = useLang();
+  const { data, isLoading } = useSWR<EventsPage | null>(`/api/eventsPage?lang=${lang}`, fetcher);
   const today = new Date();
   const isDesktop = useMedia(Breakpoints.sm);
 

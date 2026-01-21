@@ -6,7 +6,7 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
   try {
     const locale = getLocaleFromRequest(req);
     const data = await fetchGraphQL(
-      `query {
+      `query eventsPage($locale: String!) {
             generalContent(id: "2jtBnER7xiNejTl3cAwSlk", locale: $locale) {
                 eventsHeadline
                 eventsDescription

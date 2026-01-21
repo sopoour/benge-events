@@ -11,8 +11,7 @@ export default async function getLexikon(
     const locale = getLocaleFromRequest(req);
 
     const data = await fetchGraphQL(
-      `
-      query lexikon($locale: String!) {
+      `query lexikon($locale: String!) {
         generalContent(id: "2jtBnER7xiNejTl3cAwSlk", locale: $locale) {
           lexikonHeadline
           lexikonDescription

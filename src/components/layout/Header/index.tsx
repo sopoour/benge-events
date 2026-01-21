@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { css, styled } from 'styled-components';
 import { gsap } from 'gsap';
 import Logo from '@app/assets/logo.png';
 import Image from 'next/image';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { flexColumn, flexRow } from '@app/styles/mixins';
+import { flexColumn } from '@app/styles/mixins';
 import useSidebar from '@app/hooks/useSidebar';
 import { useRouter } from 'next/router';
 import { animateScroll } from 'react-scroll';
@@ -12,10 +12,8 @@ import Navigation from '../Navigation';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import LinkContainer from '@app/components/LinkContainer';
-import { Switch } from '@mantine/core';
-import UkFlag from '@app/assets/UkFlag';
-import DeFlag from '@app/assets/DeFlag';
 import LangToggle from '@app/components/LangToggle';
+import useLang from '@app/hooks/useLang';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -123,6 +121,7 @@ const LinkContainerDesktop = styled(LinkContainer)`
 const Header: React.FC = () => {
   const { open, setOpen } = useSidebar((state) => state);
   const router = useRouter();
+  const lang = useLang();
   const isHomepage = router.pathname === '/';
   const isDesktop = useMedia(Breakpoints.sm);
 
@@ -142,7 +141,7 @@ const Header: React.FC = () => {
         height={isDesktop ? Logo.height / 4 : Logo.height / 5}
         onClick={() => {
           animateScroll.scrollTo(0, { smooth: true, duration: 800 });
-          router.pathname !== '/' && router.replace('/');
+          router.pathname !== '/' && router.replace(lang === 'en' ? '/?lang=en' : '/');
         }}
       />
       {/* <LinkContainerDesktop /> */}

@@ -2,6 +2,7 @@ import Section from '@app/components/layout/Section';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import { fetcher } from '@app/hooks/fetch/useFetch';
+import useLang from '@app/hooks/useLang';
 import { LegalPages } from '@app/services/graphql/types';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -29,7 +30,8 @@ const MarkdownConfigAdjust = styled(MarkdownConfig)`
 `;
 
 const Datenschutz: FC = () => {
-  const { data, isLoading } = useSWR<LegalPages | null>('/api/legalPages', fetcher);
+  const lang = useLang();
+  const { data, isLoading } = useSWR<LegalPages | null>(`/api/legalPages?lang=${lang}`, fetcher);
 
   if (isLoading) {
     return <LoadingSkeletonGeneral />;
