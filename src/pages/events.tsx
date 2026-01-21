@@ -96,7 +96,7 @@ const Events: FC = () => {
         <MarkdownConfig content={data?.generalContent.eventsDescription as string} />
         <EventSection>
           <Typography as="h2" fontSizeSm="40px" fontSize="32px">
-            Kommende Events
+            {lang === 'en' ? 'Upcoming Events' : 'Kommende Events'}
           </Typography>
           <EventBoxContainer>
             {upcomingEvents?.map((event) => (
@@ -110,7 +110,7 @@ const Events: FC = () => {
         {pastEvents && pastEvents?.length > 0 && (
           <EventSection>
             <Typography as="h2" fontSizeSm="40px" fontSize="32px">
-              Vergangene Events
+              {lang === 'en' ? 'Past Events' : 'Vergangene Events'}
             </Typography>
             <EventBoxContainer style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {pastEvents?.map((event) => (

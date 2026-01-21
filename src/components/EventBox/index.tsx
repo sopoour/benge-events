@@ -18,6 +18,7 @@ import { Events } from '@app/services/graphql/types';
 import { ISOToDate } from '@app/utils/formatDate';
 import LoadingSkeleton from './elements/LoadingSkeleton';
 import useClickOutside from '@app/hooks/useClickOutside';
+import useLang from '@app/hooks/useLang';
 
 type Props = {
   subTitle?: string;
@@ -40,10 +41,22 @@ const EventBox: FC<Props> = ({
   const ref = useRef<HTMLButtonElement>(null);
   useClickOutside(ref, () => setView(false));
 
+  const lang = useLang();
+
   const eventDetails = [
-    { title: 'Workshop', detail: event?.workshopTitel, description: event?.workshopBeschreibung },
-    { title: 'Konzert', detail: event?.konzertTitel, description: event?.konzertBeschreibung },
-    { title: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
+    {
+      title: 'Workshop',
+      titleEn: 'Workshop',
+      detail: event?.workshopTitel,
+      description: event?.workshopBeschreibung,
+    },
+    {
+      title: 'Konzert',
+      titleEn: 'Concert',
+      detail: event?.konzertTitel,
+      description: event?.konzertBeschreibung,
+    },
+    { title: 'DJ', titleEn: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
   ];
 
   const showDescriptionContent = () => showDescription && setView((prev) => !prev);
@@ -70,13 +83,13 @@ const EventBox: FC<Props> = ({
           {event?.venue?.includes('tba') ? (
             <>
               <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-                hier könnte deine
+                {lang === 'en' ? 'Your' : 'hier könnte deine'}
               </Typography>
               <Typography $textalign="center" fontSize="24px" fontSizeSm="36px" fontWeight={900}>
                 VENUE
               </Typography>
               <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
-                stehen
+                {lang === 'en' ? 'could be here' : 'stehen'}
               </Typography>
             </>
           ) : (
@@ -88,7 +101,7 @@ const EventBox: FC<Props> = ({
         <EventTable>
           {eventDetails.map((event) => (
             <EventCol key={event.title} onClick={showDescriptionContent}>
-              <ColTitle>{event.title}</ColTitle>
+              <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
               <EventTitle fontSize="14px" fontSizeSm="16px">
                 {event.detail}
               </EventTitle>
@@ -97,7 +110,7 @@ const EventBox: FC<Props> = ({
         </EventTable>
         {event?.ticketLink && (
           <EventButton href={event?.ticketLink} target="_blank">
-            Ticket reservieren
+            {lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
           </EventButton>
         )}
       </OverviewContainer>
@@ -106,7 +119,7 @@ const EventBox: FC<Props> = ({
           {eventDetails.map((event) => (
             <>
               <Typography fontSize="18px">
-                {event.title}: {event.detail}
+                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
               </Typography>
               {event.description && <MarkDownEvent content={event.description} />}
             </>
@@ -115,7 +128,7 @@ const EventBox: FC<Props> = ({
 
         {event?.ticketLink && (
           <EventButton href={event?.ticketLink} target="_blank">
-            Ticket reservieren
+            {lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
           </EventButton>
         )}
       </DetailsContainer>

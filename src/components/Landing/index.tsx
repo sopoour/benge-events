@@ -132,7 +132,7 @@ const Landing: FC = () => {
           </Bubble>
         ))
       ) : (
-        <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} />
+        <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} lang={lang} />
       )}
       <EventBoxLanding
         event={upcomingEvent}
@@ -141,7 +141,7 @@ const Landing: FC = () => {
         loading={isLoading}
         showDescription={false}
       />
-      {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} />}
+      {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} lang={lang} />}
     </Content>
   );
 };
