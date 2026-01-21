@@ -32,7 +32,7 @@ const Lexikon: FC = () => {
 
       group.elements.push({ titel, beschreibung });
 
-      return acc as GroupedLexikonData;
+      return acc;
     },
     [],
   );

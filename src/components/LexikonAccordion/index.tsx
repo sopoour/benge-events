@@ -4,7 +4,8 @@ import Typography from '../Typography/Typography';
 import { GroupedLexikonData } from '@app/pages/lexikon';
 import styled from 'styled-components';
 import { flexColumn } from '@app/styles/mixins';
-import { text } from '@app/styles/fonts';
+import MarkdownConfig from '../MarkdownConfig/MarkdownConfig';
+import { Lexikon } from '@app/services/graphql/types';
 
 const LexikonWrapper = styled.div`
   ${flexColumn};
@@ -16,6 +17,15 @@ const LexikonEintrag = styled.div`
   gap: 8px;
 `;
 
+const AdjMarkdownConfig = styled(MarkdownConfig)`
+  p,
+  a {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+  }
+`;
+
 type Props = {
   lexikonGrouped: GroupedLexikonData;
 };
@@ -23,6 +33,9 @@ type Props = {
 const LexikonAccordion: FC<Props> = ({ lexikonGrouped }) => {
   const [open, setOpen] = useState<boolean>(false);
 
+  const sortedLexikon = lexikonGrouped.elements?.sort((a: Lexikon, b: Lexikon) =>
+    b.titel ? (a.titel?.localeCompare(b.titel) as number) : 0,
+  );
   return (
     <Accordion
       header={
@@ -36,14 +49,12 @@ const LexikonAccordion: FC<Props> = ({ lexikonGrouped }) => {
       open={open}
     >
       <LexikonWrapper>
-        {lexikonGrouped.elements.map((lexikonEintrag) => (
+        {sortedLexikon.map((lexikonEintrag) => (
           <LexikonEintrag key={lexikonEintrag.titel}>
             <Typography fontSize="18px" as="h3">
               {lexikonEintrag.titel}
             </Typography>
-            <Typography type={text.style.fontFamily} fontSize="14px" fontWeight={400}>
-              {lexikonEintrag.beschreibung}
-            </Typography>
+            <AdjMarkdownConfig content={lexikonEintrag.beschreibung as string} />
           </LexikonEintrag>
         ))}
       </LexikonWrapper>
