@@ -6,7 +6,11 @@ import { Switch } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 
-const LangToggle: FC = () => {
+type Props = {
+  className?: string;
+};
+
+const LangToggle: FC<Props> = ({ className }) => {
   const { close } = useSidebar((state) => state);
   const router = useRouter();
   const { pathname, query } = router;
@@ -44,16 +48,18 @@ const LangToggle: FC = () => {
   }, [lang]);
 
   return (
-    <Switch
-      size="md"
-      color="#dee2e6"
-      onLabel={<UkFlag aria-label="English" />}
-      offLabel={<DeFlag aria-label="German" />}
-      aria-label="Language Switch"
-      onChange={changeLang}
-      checked={checked}
-      onClick={close}
-    />
+    <span id="langToggle" className={className}>
+      <Switch
+        size="md"
+        color="#dee2e6"
+        onLabel={<UkFlag aria-label="English" />}
+        offLabel={<DeFlag aria-label="German" />}
+        aria-label="Language Switch"
+        onChange={changeLang}
+        checked={checked}
+        onClick={close}
+      />
+    </span>
   );
 };
 

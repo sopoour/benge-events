@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { header } from '@app/styles/fonts';
 import EventBox from '../EventBox';
+import LangToggle from '../LangToggle';
 
 export const Content = styled.div`
   position: relative;
@@ -77,4 +78,11 @@ export const EventBoxLanding = styled(EventBox)`
    width: 450px !important;
   
   `}
+`;
+
+export const LangToggleLanding = styled(LangToggle)`
+  position: absolute;
+  right: 1%;
+  top: 2%;
+  opacity: 0;
 `;

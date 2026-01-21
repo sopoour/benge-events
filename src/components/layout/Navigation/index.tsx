@@ -1,10 +1,18 @@
+import useLang from '@app/hooks/useLang';
 import { header } from '@app/styles/fonts';
 import { fastTransition, flexColumn, flexRow } from '@app/styles/mixins';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { styled } from 'styled-components';
 
-const items = ['Über uns', 'Bewerbung', 'Events', 'Awareness', 'Lexikon', 'Feedback'];
+export const navItems = [
+  { name: 'Über uns', nameEn: 'About', href: '/ueber-uns' },
+  { name: 'Bewerbung', nameEn: 'Application', href: '/bewerbung' },
+  { name: 'Events', nameEn: 'Events', href: '/events' },
+  { name: 'Awareness', nameEn: 'Awareness', href: '/awareness' },
+  { name: 'Lexikon', nameEn: 'Dictionary', href: '/lexikon' },
+  { name: 'Feedback', nameEn: 'Feedback', href: '/feedback' },
+];
 
 const NavigationWrapper = styled.nav`
   ${flexColumn};
@@ -42,21 +50,24 @@ type Props = {
   onClick?: () => void;
 };
 
-const Navigation: FC<Props> = ({ className, onClick }) => (
-  <NavigationWrapper className={className}>
-    {items.map((item, index) => {
-      const navItemName = item.toLowerCase().replace(/\s+/g, '-');
-      return (
-        <NavigationItem
-          key={item + index}
-          href={`/${navItemName === 'über-uns' ? 'ueber-uns' : navItemName}`}
-          onClick={onClick}
-        >
-          {item}
-        </NavigationItem>
-      );
-    })}
-  </NavigationWrapper>
-);
+const Navigation: FC<Props> = ({ className, onClick }) => {
+  const lang = useLang();
+  return (
+    <NavigationWrapper className={className}>
+      {navItems.map((item, index) => {
+        const navItemName = item.name.toLowerCase().replace(/\s+/g, '-');
+        return (
+          <NavigationItem
+            key={item.name + index}
+            href={`/${navItemName === 'über-uns' ? 'ueber-uns' : navItemName}${lang === 'en' ? '?lang=en' : ''}`}
+            onClick={onClick}
+          >
+            {lang === 'en' ? item.nameEn : item.name}
+          </NavigationItem>
+        );
+      })}
+    </NavigationWrapper>
+  );
+};
 
 export default Navigation;

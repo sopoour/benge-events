@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { Bubble, Content, EventBoxLanding } from './styles';
+import { Bubble, Content, EventBoxLanding, LangToggleLanding } from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
@@ -11,28 +11,33 @@ import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import MobileBubbles from './MobileBubbles';
 import { normalizeDate } from '@app/utils/formatDate';
+import { navItems } from '../layout/Navigation';
+import useLang from '@app/hooks/useLang';
 
 export type Bubbles = {
   name: string;
+  nameEn: string;
   href: string;
   top: string;
   left: string;
   size: number;
 };
 
+const addedInfo = [
+  { top: '3%', left: '12%', size: 250 },
+  { top: '5%', left: '70%', size: 210 },
+  { top: '30%', left: '4%', size: 280 },
+  { top: '28%', left: '75%', size: 300 },
+  { top: '60%', left: '14%', size: 220 },
+  { top: '60%', left: '70%', size: 250 },
+];
+const bubbles: Bubbles[] = navItems.map((item, i) => ({ ...item, ...addedInfo[i] }));
+
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
 const Landing: FC = () => {
   const isDesktop = useMedia(Breakpoints.md);
-  const bubbles: Bubbles[] = [
-    { name: 'Über uns', href: '/ueber-uns', top: '3%', left: '12%', size: 250 },
-    { name: 'Events', href: '/events', top: '5%', left: '70%', size: 210 },
-    { name: 'Lexikon', href: '/lexikon', top: '30%', left: '4%', size: 280 },
-    { name: 'Bewerbung', href: '/bewerbung', top: '28%', left: '75%', size: 300 },
-    { name: 'Feedback', href: '/feedback', top: '60%', left: '14%', size: 220 },
-    { name: 'Awareness', href: '/awareness', top: '60%', left: '70%', size: 250 },
-  ];
-
+  const lang = useLang();
   useEffect(() => {
     let ctx = gsap.context(() => {
       const bubblesDOM = gsap.utils.toArray('.bubble');
@@ -52,29 +57,37 @@ const Landing: FC = () => {
             scale: 0.8,
           },
           { scale: 1 },
-        ).fromTo(
-          bubble,
-          { scale: 0.5, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 2,
-            delay,
-            ease: 'power3.out',
-            onComplete: () => {
-              // Floating Loop
-              gsap.to(bubble, {
-                y: `+=${floatY}`,
-                x: `+=${floatX}`,
-                duration,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                delay,
-              });
+        )
+          .fromTo(
+            '#langToggle',
+            {
+              opacity: 0,
             },
-          },
-        );
+            { opacity: 1 },
+          )
+          .fromTo(
+            bubble,
+            { scale: 0.5, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 2,
+              delay,
+              ease: 'power3.out',
+              onComplete: () => {
+                // Floating Loop
+                gsap.to(bubble, {
+                  y: `+=${floatY}`,
+                  x: `+=${floatX}`,
+                  duration,
+                  repeat: -1,
+                  yoyo: true,
+                  ease: 'sine.inOut',
+                  delay,
+                });
+              },
+            },
+          );
       });
     });
 
@@ -101,6 +114,7 @@ const Landing: FC = () => {
         width={isDesktop ? Logo.width / 2 : Logo.width / 4}
         height={isDesktop ? Logo.height / 2 : Logo.height / 4}
       />
+      <LangToggleLanding />
       {isDesktop ? (
         bubbles.map((b, i) => (
           <Bubble
@@ -114,7 +128,7 @@ const Landing: FC = () => {
               height: b.size,
             }}
           >
-            <Typography fontSize="32px">{b.name}</Typography>
+            <Typography fontSize="32px">{lang === 'en' ? b.nameEn : b.name}</Typography>
           </Bubble>
         ))
       ) : (
