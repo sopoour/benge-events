@@ -61,11 +61,10 @@ export const Bubble = styled(Link)`
   &:focus {
     outline: 3px solid ${({ theme }) => theme.colors.fg.contrast};
     outline-offset: 4px;
-    border-radius: 50%;
+    border-radius: 50% !important;
   }
   &:focus:not(:focus-visible) {
     outline: 0;
-    box-shadow: none;
     border-radius: 0;
   }
 `;

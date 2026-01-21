@@ -66,6 +66,17 @@ const MarkdownSettings = styled.div`
     gap: 0;
   }
 
+  #about-photo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    > p {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+
   ${({ theme }) => theme.media('sm')`
       h1 {
         font-size: 48px;
