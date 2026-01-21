@@ -12,6 +12,10 @@ import Navigation from '../Navigation';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import LinkContainer from '@app/components/LinkContainer';
+import { Switch } from '@mantine/core';
+import UkFlag from '@app/assets/UkFlag';
+import DeFlag from '@app/assets/DeFlag';
+import LangToggle from '@app/components/LangToggle';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,6 +102,16 @@ const NavigationDesktop = styled(Navigation)`
   `}
 `;
 
+const TopNavigation = styled.span`
+  display: none;
+
+  ${({ theme }) => theme.media('sm')`
+  width: 100%;
+    display: flex;
+     justify-content: space-between;
+  `}
+`;
+
 const LinkContainerDesktop = styled(LinkContainer)`
   display: none;
 
@@ -114,7 +128,12 @@ const Header: React.FC = () => {
 
   return (
     <HeaderWrapper aria-label="header" id="header" $show={!isHomepage}>
-      <NavigationDesktop />
+      <TopNavigation>
+        <span></span>
+        <NavigationDesktop />
+        <LangToggle />
+      </TopNavigation>
+
       <Image
         src={Logo.src}
         alt="Benge Logo"
