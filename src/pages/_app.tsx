@@ -2,7 +2,6 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import Layout from '@app/components/layout/Layout';
 import '@mantine/core/styles.css';
-import '/node_modules/flag-icons/css/flag-icons.min.css';
 import { GlobalStyle } from '@app/styles/global';
 import { ThemeProvider } from 'styled-components';
 import 'react-loading-skeleton/dist/skeleton.css';
