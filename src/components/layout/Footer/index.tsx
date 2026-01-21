@@ -84,16 +84,16 @@ const Footer: FC = () => {
     <FooterWrapper $isHomePage={isHomepage}>
       <FooterContent>
         <FooterRowTop>
-          <Anchor href={`'/ueber-uns'${lang === 'en' ? '?lang=en' : ''}`}>
+          <Anchor href={`/ueber-uns${lang === 'en' ? '?lang=en' : ''}`}>
             {lang === 'en' ? 'About' : 'Über uns'}
           </Anchor>
           <Typography> | </Typography>
-          <Anchor href={`'/awareness'${lang === 'en' ? '?lang=en' : ''}`}>Awareness</Anchor>
+          <Anchor href={`/awareness${lang === 'en' ? '?lang=en' : ''}`}>Awareness</Anchor>
           <Typography> | </Typography>
-          <Anchor href={`'/impressum'${lang === 'en' ? '?lang=en' : ''}`}>Impressum</Anchor>
+          <Anchor href={`/impressum${lang === 'en' ? '?lang=en' : ''}`}>Impressum</Anchor>
           <Typography> | </Typography>
-          <Anchor href={`'/datenschutz'${lang === 'en' ? '?lang=en' : ''}`}>
-            {lang === 'en' ? 'Data Privacy' : 'Datenschutz'}
+          <Anchor href={`/datenschutz${lang === 'en' ? '?lang=en' : ''}`}>
+            {lang === 'en' ? 'Privacy Policy' : 'Datenschutz'}
           </Anchor>
         </FooterRowTop>
         <FooterRowBottom>
@@ -104,7 +104,7 @@ const Footer: FC = () => {
             {lang === 'en' ? 'Developed by' : 'Entwickelt von'}{' '}
             <Anchor href="https://www.fioauer.com/" target="_blank">
               Fio Auer
-            </Anchor>{' '}
+            </Anchor>
           </Typography>
         </FooterRowBottom>
       </FooterContent>

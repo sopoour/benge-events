@@ -55,8 +55,15 @@ a {
   text-decoration: none;
   font-size: inherit;
   outline: none;
-  :focus {
-    outline: 3px solid ${theme.colors.accent.pink}
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.fg.contrast};
+    outline-offset: 4px;
+    border-radius: 10px;
+  }
+  &:focus:not(:focus-visible) {
+    outline: 0;
+    box-shadow: none;
+    border-radius: 0;
   }
 }
 button {
@@ -74,7 +81,7 @@ p {
   font-family: ${text.style.fontFamily};
 
   :focus {
-    outline: 3px solid ${theme.colors.accent.pink}
+    outline: 3px solid ${theme.colors.fg.contrast}
   }
 }
 

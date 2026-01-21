@@ -115,25 +115,28 @@ const Landing: FC = () => {
         height={isDesktop ? Logo.height / 2 : Logo.height / 4}
       />
       <LangToggleLanding />
-      {isDesktop ? (
-        bubbles.map((b, i) => (
-          <Bubble
-            key={i}
-            href={`${b.href}${lang === 'en' ? '?lang=en' : ''}`}
-            className="bubble"
-            style={{
-              top: b.top,
-              left: b.left,
-              width: b.size,
-              height: b.size,
-            }}
-          >
-            <Typography fontSize="32px">{lang === 'en' ? b.nameEn : b.name}</Typography>
-          </Bubble>
-        ))
-      ) : (
-        <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} lang={lang} />
-      )}
+      <nav>
+        {isDesktop ? (
+          bubbles.map((b, i) => (
+            <Bubble
+              key={i}
+              href={`${b.href}${lang === 'en' ? '?lang=en' : ''}`}
+              className="bubble"
+              style={{
+                top: b.top,
+                left: b.left,
+                width: b.size,
+                height: b.size,
+              }}
+            >
+              <Typography fontSize="32px">{lang === 'en' ? b.nameEn : b.name}</Typography>
+            </Bubble>
+          ))
+        ) : (
+          <MobileBubbles slicedBubbles={bubbles.slice(0, 3)} lang={lang} />
+        )}
+      </nav>
+
       <EventBoxLanding
         event={upcomingEvent}
         subTitle={data?.generalContent.homepageSubtitle}

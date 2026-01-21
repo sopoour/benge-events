@@ -48,18 +48,21 @@ const LangToggle: FC<Props> = ({ className }) => {
   }, [lang]);
 
   return (
-    <span id="langToggle" className={className}>
+    <button
+      id="langToggle"
+      className={className}
+      aria-label={`Current language: ${lang === 'en' ? 'English' : 'German'}, Select your language`}
+    >
       <Switch
         size="md"
         color="#dee2e6"
-        onLabel={<UkFlag aria-label="English" />}
-        offLabel={<DeFlag aria-label="German" />}
-        aria-label="Language Switch"
+        onLabel={<UkFlag />}
+        offLabel={<DeFlag />}
         onChange={changeLang}
         checked={checked}
         onClick={close}
       />
-    </span>
+    </button>
   );
 };
 

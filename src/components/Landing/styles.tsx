@@ -57,6 +57,17 @@ export const Bubble = styled(Link)`
       inset 0 0 25px rgba(255, 255, 255, 0.5),
       0 0 60px rgba(255, 255, 255, 0.4);
   }
+
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.fg.contrast};
+    outline-offset: 4px;
+    border-radius: 50%;
+  }
+  &:focus:not(:focus-visible) {
+    outline: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
 `;
 
 export const BubbleWrapper = styled.div`
