@@ -1,15 +1,17 @@
 import { fetchGraphQL } from '@app/lib/api';
+import { getLocaleFromRequest } from '@app/lib/getLocalFromRequest';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function getEvents(req: NextApiRequest, res: NextApiResponse) {
   try {
+    const locale = getLocaleFromRequest(req);
     const data = await fetchGraphQL(
       `query {
-            generalContent(id: "2jtBnER7xiNejTl3cAwSlk") {
+            generalContent(id: "2jtBnER7xiNejTl3cAwSlk", locale: $locale) {
                 eventsHeadline
                 eventsDescription
             }
-            eventsCollection(limit: 1000) {
+            eventsCollection(limit: 1000, locale: $locale) {
               items {
                 datum
                 venue
@@ -23,6 +25,7 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
               }
             }
           }`,
+          { locale }
     );
 
     res.status(200).json(data.data);
