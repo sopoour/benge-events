@@ -63,7 +63,6 @@ a {
   &:focus:not(:focus-visible) {
     outline: 0;
     box-shadow: none;
-    border-radius: 0;
   }
 }
 button {

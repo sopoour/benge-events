@@ -1,3 +1,4 @@
+import LoadingSkeleton from '@app/components/EventAccordion/LoadingSkeleton';
 import Section from '@app/components/layout/Section';
 import LexikonAccordion from '@app/components/LexikonAccordion';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
@@ -9,6 +10,7 @@ import { Lexikon as LexikonData } from '@app/services/graphql/types';
 import { LexikonPage } from '@app/types';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import useSWR from 'swr';
 
 export type GroupedLexikonData = {
@@ -38,7 +40,24 @@ const Lexikon: FC = () => {
   );
 
   if (isLoading) {
-    return <LoadingSkeletonGeneral />;
+    return (
+      <Section>
+        <>
+          <Skeleton height={40} width={300} style={{ margin: '28px 0' }} />
+          <span style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Skeleton height={20} width="80%" />
+            <Skeleton height={20} width="100%" />
+          </span>
+          <span style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <LoadingSkeleton hasSubTitle={false} />
+            <LoadingSkeleton hasSubTitle={false} />
+            <LoadingSkeleton hasSubTitle={false} />
+            <LoadingSkeleton hasSubTitle={false} />
+            <LoadingSkeleton hasSubTitle={false} />
+          </span>
+        </>
+      </Section>
+    );
   }
 
   return (

@@ -17,13 +17,13 @@ type Props = {
   hasSubTitle?: boolean;
 };
 
-const LoadingSkeleton: FC<Props> = ({ hasSubTitle }) => (
+const LoadingSkeleton: FC<Props> = ({ hasSubTitle = true }) => (
   <Accordion
     open={false}
     header={
       <Header>
-        <SkeletonStyle height={30} width={100} />
-        <SkeletonStyle height={30} width={100} />
+        <SkeletonStyle height={30} width={200} />
+        {hasSubTitle && <SkeletonStyle height={30} width={100} />}
       </Header>
     }
   >
