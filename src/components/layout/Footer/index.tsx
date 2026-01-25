@@ -49,7 +49,7 @@ const Anchor = styled(Link)`
 
 const FooterRowTop = styled.div`
   ${flexRow};
-  gap: 4px;
+  gap: 0px;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;

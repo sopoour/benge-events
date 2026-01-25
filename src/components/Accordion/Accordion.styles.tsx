@@ -50,6 +50,7 @@ export const HorizontalRuler = styled.hr`
 export const BodyContainer = styled.div<{ $hasAnimation: boolean }>`
   animation: ${(props) => (props.$hasAnimation ? 'spring 0.4s ease' : 'none')};
   padding: 0 16px;
+  width: 100%;
   background-color: rgba(109, 92, 219, 0.3);
   @keyframes spring {
     from {

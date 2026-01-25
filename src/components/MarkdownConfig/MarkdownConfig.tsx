@@ -24,10 +24,10 @@ const MarkdownSettings = styled.div`
 
   a {
     text-decoration: none;
+    font-weight: 600;
 
     &:hover {
       text-decoration: underline !important;
-      font-weight: 600;
     }
   }
 
@@ -115,12 +115,19 @@ type Props = {
 };
 
 const MarkdownConfig: FC<Props> = ({ content, className }) => {
+  const LinkRenderer = (props: any) => (
+    <a href={props.href} target="_blank" aria-label={`Link to ${props.href}`}>
+      {props.children}
+    </a>
+  );
+
   return (
     <MarkdownSettings className={className}>
       <Markdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeSlug, rehypeRaw]}
         skipHtml={false}
+        components={{ a: LinkRenderer }}
       >
         {content}
       </Markdown>

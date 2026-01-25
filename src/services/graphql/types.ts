@@ -296,6 +296,7 @@ export type Events = Entry & _Node & {
   konzertBeschreibung?: Maybe<Scalars['String']['output']>;
   konzertTitel?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<EventsLinkingCollections>;
+  optionaleNotiz?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   ticketLink?: Maybe<Scalars['String']['output']>;
   venue?: Maybe<Scalars['String']['output']>;
@@ -342,6 +343,13 @@ export type EventsKonzertTitelArgs = {
 /** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsOptionaleNotizArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -421,6 +429,13 @@ export type EventsFilter = {
   konzertTitel_not?: InputMaybe<Scalars['String']['input']>;
   konzertTitel_not_contains?: InputMaybe<Scalars['String']['input']>;
   konzertTitel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  optionaleNotiz?: InputMaybe<Scalars['String']['input']>;
+  optionaleNotiz_contains?: InputMaybe<Scalars['String']['input']>;
+  optionaleNotiz_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  optionaleNotiz_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  optionaleNotiz_not?: InputMaybe<Scalars['String']['input']>;
+  optionaleNotiz_not_contains?: InputMaybe<Scalars['String']['input']>;
+  optionaleNotiz_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
   ticketLink?: InputMaybe<Scalars['String']['input']>;
   ticketLink_contains?: InputMaybe<Scalars['String']['input']>;
@@ -473,6 +488,8 @@ export enum EventsOrder {
   DjTitelDesc = 'djTitel_DESC',
   KonzertTitelAsc = 'konzertTitel_ASC',
   KonzertTitelDesc = 'konzertTitel_DESC',
+  OptionaleNotizAsc = 'optionaleNotiz_ASC',
+  OptionaleNotizDesc = 'optionaleNotiz_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',

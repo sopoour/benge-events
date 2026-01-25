@@ -89,7 +89,6 @@ const EventAccordion: FC<Props> = ({
       open={open}
       hasChevron
       hasAnimation
-      hasRuler
       setOpen={setOpen}
       header={
         <Header $hasDetailsHeader={hasDetailsHeader}>
@@ -121,6 +120,15 @@ const EventAccordion: FC<Props> = ({
     >
       <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
         <Details>
+          {event?.optionaleNotiz && (
+            <Typography
+              fontSize="16px"
+              fontSizeSm="18px"
+              style={{ marginBottom: '16px', fontStyle: 'italic' }}
+            >
+              {event?.optionaleNotiz}
+            </Typography>
+          )}
           {eventDetails.map((event) => (
             <>
               <Typography fontSize="16px" fontSizeSm="18px">

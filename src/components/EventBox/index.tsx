@@ -79,7 +79,12 @@ const EventBox: FC<Props> = ({
           </Typography>
         )}
         <Date>{event?.datum ? ISOToDate(event?.datum) : ''}</Date>
-        <VenueBox $tba /* ={event?.venue?.includes('tba')} */ onClick={showDescriptionContent}>
+        {event?.optionaleNotiz && (
+          <Typography fontSize="16px" fontSizeSm="18px" style={{ marginTop: '-12px' }}>
+            {event?.optionaleNotiz}
+          </Typography>
+        )}
+        <VenueBox $tba={event?.venue?.includes('tba')} onClick={showDescriptionContent}>
           {event?.venue?.includes('tba') ? (
             <>
               <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
@@ -99,8 +104,8 @@ const EventBox: FC<Props> = ({
           )}
         </VenueBox>
         <EventTable>
-          {eventDetails.map((event) => (
-            <EventCol key={event.title} onClick={showDescriptionContent}>
+          {eventDetails.map((event, index) => (
+            <EventCol key={event.title + index} onClick={showDescriptionContent}>
               <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
               <EventTitle fontSize="14px" fontSizeSm="16px">
                 {event.detail}
@@ -116,13 +121,13 @@ const EventBox: FC<Props> = ({
       </OverviewContainer>
       <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
         <Details onClick={showDescriptionContent}>
-          {eventDetails.map((event) => (
-            <>
+          {eventDetails.map((event, index) => (
+            <span key={event.title + 'detailsContainer' + index}>
               <Typography fontSize="18px">
                 {lang === 'en' ? event.titleEn : event.title}: {event.detail}
               </Typography>
               {event.description && <MarkDownEvent content={event.description} />}
-            </>
+            </span>
           ))}
         </Details>
 

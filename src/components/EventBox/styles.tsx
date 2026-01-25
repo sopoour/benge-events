@@ -44,7 +44,7 @@ export const OverviewContainer = styled.div`
 `;
 
 export const DetailsContainer = styled.div`
-  padding: 20px;
+  padding: 32px;
   width: 100%;
   height: 100%;
   z-index: -1;
@@ -58,7 +58,6 @@ export const DetailsContainer = styled.div`
   ${flexColumn};
   gap: 0;
   justify-content: space-between;
-  align-items: center;
 
   ${EventButton} {
     &:hover {
@@ -76,7 +75,7 @@ export const Details = styled.div`
 export const MarkDownEvent = styled(MarkdownConfig)`
   && {
     p {
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 `;
@@ -123,8 +122,8 @@ export const Date = styled(Typography)`
 
 export const VenueBox = styled.span<{ $tba?: boolean }>`
   padding: 18px;
-  width: ${({ $tba }) => ($tba ? '150px' : '120px')};
-  height: ${({ $tba }) => ($tba ? '150px' : '120px')};
+  width: ${({ $tba }) => ($tba ? '150px' : '130px')};
+  height: ${({ $tba }) => ($tba ? '150px' : '130px')};
   border-radius: 100px;
   ${flexColumn};
   justify-content: center;
@@ -136,6 +135,9 @@ export const VenueBox = styled.span<{ $tba?: boolean }>`
     inset 0 0 50px rgba(255, 255, 255, 0.1),
     0 0 40px rgba(255, 255, 255, 0.2);
 
+  > p {
+    line-height: 1.25;
+  }
   &:hover {
     opacity: 1;
     cursor: pointer;
@@ -145,8 +147,8 @@ export const VenueBox = styled.span<{ $tba?: boolean }>`
   }
 
   ${({ theme, $tba }) => theme.media('sm')`
-    width: ${$tba ? '200px' : '170px'};
-    height:  ${$tba ? '200px' : '170px'};
+    width: ${$tba ? '200px' : '175px'};
+    height:  ${$tba ? '200px' : '175px'};
   `}
 `;
 
