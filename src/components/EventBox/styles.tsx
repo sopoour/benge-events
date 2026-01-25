@@ -194,9 +194,9 @@ export const EventTitle = styled(Typography)`
   `};
 `;
 
-export const EventTable = styled.div`
+export const EventTable = styled.div<{ gridNumber: number }>`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ gridNumber }) => `repeat(${gridNumber}, 1fr)`};
   gap: 8px;
 `;

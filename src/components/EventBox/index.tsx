@@ -103,14 +103,18 @@ const EventBox: FC<Props> = ({
             </Typography>
           )}
         </VenueBox>
-        <EventTable>
+        <EventTable gridNumber={eventDetails.filter((item) => item.detail).length}>
           {eventDetails.map((event, index) => (
-            <EventCol key={event.title + index} onClick={showDescriptionContent}>
-              <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
-              <EventTitle fontSize="14px" fontSizeSm="16px">
-                {event.detail}
-              </EventTitle>
-            </EventCol>
+            <>
+              {event.detail && (
+                <EventCol key={event.title + index} onClick={showDescriptionContent}>
+                  <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
+                  <EventTitle fontSize="14px" fontSizeSm="16px">
+                    {event.detail}
+                  </EventTitle>
+                </EventCol>
+              )}
+            </>
           ))}
         </EventTable>
         {event?.ticketLink && (
