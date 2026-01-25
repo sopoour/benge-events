@@ -105,13 +105,17 @@ const EventAccordion: FC<Props> = ({
           {hasDetailsHeader && isDesktop && (
             <Details>
               {eventDetails.map((event) => (
-                <Typography
-                  key={event.title + 'pastEventsDetails'}
-                  fontSize="16px"
-                  fontSizeSm="18px"
-                >
-                  {lang === 'en' ? event.titleEn : event.title}: {event.detail}
-                </Typography>
+                <>
+                  {event.detail && (
+                    <Typography
+                      key={event.title + 'pastEventsDetails'}
+                      fontSize="16px"
+                      fontSizeSm="18px"
+                    >
+                      {lang === 'en' ? event.titleEn : event.title}: {event.detail}
+                    </Typography>
+                  )}
+                </>
               ))}
             </Details>
           )}
@@ -131,10 +135,14 @@ const EventAccordion: FC<Props> = ({
           )}
           {eventDetails.map((event) => (
             <>
-              <Typography fontSize="16px" fontSizeSm="18px">
-                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
-              </Typography>
-              {event.description && <MarkDownEvent content={event.description} />}
+              {event.detail && (
+                <>
+                  <Typography fontSize="16px" fontSizeSm="18px">
+                    {lang === 'en' ? event.titleEn : event.title}: {event.detail}
+                  </Typography>
+                  {event.description && <MarkDownEvent content={event.description} />}
+                </>
+              )}
             </>
           ))}
         </Details>
