@@ -33,9 +33,6 @@ type Props = {
 const LexikonAccordion: FC<Props> = ({ lexikonGrouped }) => {
   const [open, setOpen] = useState<boolean>(false);
 
-  const sortedLexikon = lexikonGrouped.elements?.sort((a: Lexikon, b: Lexikon) =>
-    b.titel ? (a.titel?.localeCompare(b.titel) as number) : 0,
-  );
   return (
     <Accordion
       header={
@@ -49,7 +46,7 @@ const LexikonAccordion: FC<Props> = ({ lexikonGrouped }) => {
       open={open}
     >
       <LexikonWrapper>
-        {sortedLexikon.map((lexikonEintrag) => (
+        {lexikonGrouped?.elements.map((lexikonEintrag) => (
           <LexikonEintrag key={lexikonEintrag.titel}>
             <Typography fontSize="18px" as="h3">
               {lexikonEintrag.titel}

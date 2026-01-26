@@ -21,6 +21,7 @@ export default async function getLexikon(
             kategorie
             titel
             beschreibung
+            orderNumber
           }
         }
       }

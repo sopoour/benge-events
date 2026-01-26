@@ -993,6 +993,7 @@ export type Lexikon = Entry & _Node & {
   contentfulMetadata: ContentfulMetadata;
   kategorie?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<LexikonLinkingCollections>;
+  orderNumber?: Maybe<Scalars['Int']['output']>;
   sys: Sys;
   titel?: Maybe<Scalars['String']['output']>;
 };
@@ -1015,6 +1016,13 @@ export type LexikonKategorieArgs = {
 /** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
 export type LexikonLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
+export type LexikonOrderNumberArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1050,6 +1058,15 @@ export type LexikonFilter = {
   kategorie_not?: InputMaybe<Scalars['String']['input']>;
   kategorie_not_contains?: InputMaybe<Scalars['String']['input']>;
   kategorie_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  orderNumber?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  orderNumber_gt?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_gte?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  orderNumber_lt?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_lte?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_not?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   sys?: InputMaybe<SysFilter>;
   titel?: InputMaybe<Scalars['String']['input']>;
   titel_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1077,6 +1094,8 @@ export type LexikonLinkingCollectionsEntryCollectionArgs = {
 export enum LexikonOrder {
   KategorieAsc = 'kategorie_ASC',
   KategorieDesc = 'kategorie_DESC',
+  OrderNumberAsc = 'orderNumber_ASC',
+  OrderNumberDesc = 'orderNumber_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
