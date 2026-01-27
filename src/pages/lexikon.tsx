@@ -61,8 +61,6 @@ const Lexikon: FC = () => {
     ],
   }));
 
-  console.log(groupedData);
-
   if (isLoading) {
     return (
       <Section>
@@ -71,8 +69,11 @@ const Lexikon: FC = () => {
           <span style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <Skeleton height={20} width="80%" />
             <Skeleton height={20} width="100%" />
+            <Skeleton height={20} width="95%" />
+            <Skeleton height={20} width="80%" />
+            <Skeleton height={20} width="95%" />
           </span>
-          <span style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <span style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <LoadingSkeleton hasSubTitle={false} />
             <LoadingSkeleton hasSubTitle={false} />
             <LoadingSkeleton hasSubTitle={false} />
