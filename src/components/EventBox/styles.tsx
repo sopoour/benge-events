@@ -91,7 +91,7 @@ export const Date = styled(Typography)`
   `}
 `;
 
-export const VenueBox = styled.span<{ $tba?: boolean }>`
+export const VenueBox = styled(Link)<{ $tba?: boolean }>`
   padding: 18px;
   width: ${({ $tba }) => ($tba ? '150px' : '130px')};
   height: ${({ $tba }) => ($tba ? '150px' : '130px')};
@@ -117,13 +117,19 @@ export const VenueBox = styled.span<{ $tba?: boolean }>`
       0 0 60px rgba(255, 255, 255, 0.4);
   }
 
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.fg.contrast};
+    outline-offset: 4px;
+    border-radius: 50% !important;
+  }
+
   ${({ theme, $tba }) => theme.media('sm')`
     width: ${$tba ? '200px' : '175px'};
     height:  ${$tba ? '200px' : '175px'};
   `}
 `;
 
-export const EventCol = styled.span`
+export const EventCol = styled(Link)`
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.colors.bg.default};
   ${flexColumn};

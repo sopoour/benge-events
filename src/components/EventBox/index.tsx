@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useMemo, useRef, useState } from 'react';
 import Typography from '../Typography/Typography';
 import {
   ColTitle,
@@ -60,7 +60,10 @@ const EventBox: FC<Props> = ({
     { title: 'DJ', titleEn: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
   ];
 
-  const showDescriptionContent = () => showDescription && setView((prev) => !prev);
+  const showDescriptionContent = useMemo(
+    () => (!loading ? `/events/${event?.datum.split('T')[0]}` : ''),
+    [event, loading],
+  );
 
   if (loading) {
     return <LoadingSkeleton hasSubTitle={loadingSubTitle} />;
@@ -85,7 +88,11 @@ const EventBox: FC<Props> = ({
             {event?.optionaleNotiz}
           </Typography>
         )}
-        <VenueBox $tba={event?.venue?.includes('tba')} onClick={showDescriptionContent}>
+        <VenueBox
+          $tba={event?.venue?.includes('tba')}
+          href={showDescriptionContent}
+          target="_blank"
+        >
           {event?.venue?.includes('tba') ? (
             <>
               <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
@@ -108,7 +115,7 @@ const EventBox: FC<Props> = ({
           {eventDetails.map((event, index) => (
             <>
               {event.detail && (
-                <EventCol key={event.title + index} onClick={showDescriptionContent}>
+                <EventCol key={event.title + index} href={showDescriptionContent} target="_blank">
                   <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
                   <EventTitle fontSize="14px" fontSizeSm="16px">
                     {event.detail}
@@ -127,7 +134,7 @@ const EventBox: FC<Props> = ({
           />
         )}
       </OverviewContainer>
-      <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
+      {/*  <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
         <Details onClick={showDescriptionContent}>
           {eventDetails.map((event, index) => (
             <span key={event.title + 'detailsContainer' + index}>
@@ -146,7 +153,7 @@ const EventBox: FC<Props> = ({
             text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
           />
         )}
-      </DetailsContainer>
+      </DetailsContainer> */}
     </EventBoxContent>
   );
 };
