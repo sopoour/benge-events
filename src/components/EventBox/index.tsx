@@ -19,6 +19,7 @@ import { ISOToDate } from '@app/utils/formatDate';
 import LoadingSkeleton from './elements/LoadingSkeleton';
 import useClickOutside from '@app/hooks/useClickOutside';
 import useLang from '@app/hooks/useLang';
+import LinkButton from '../Button';
 
 type Props = {
   subTitle?: string;
@@ -118,9 +119,11 @@ const EventBox: FC<Props> = ({
           ))}
         </EventTable>
         {event?.ticketLink && (
-          <EventButton href={event?.ticketLink} target="_blank">
-            {lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-          </EventButton>
+          <LinkButton
+            href={event?.ticketLink}
+            newTab
+            text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
+          />
         )}
       </OverviewContainer>
       <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
