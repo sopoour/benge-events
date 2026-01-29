@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { header } from '@app/styles/fonts';
 import EventBox from '../EventBox';
 import LangToggle from '../LangToggle';
+import LinkContainer from '../LinkContainer';
 
 export const Content = styled.div`
   position: relative;
@@ -92,7 +93,14 @@ export const EventBoxLanding = styled(EventBox)`
 
 export const LangToggleLanding = styled(LangToggle)`
   position: absolute;
-  right: 1%;
+  right: 2%;
+  top: 2%;
+  opacity: 0;
+`;
+
+export const LinkContainerLanding = styled(LinkContainer)`
+  position: absolute;
+  left: 2%;
   top: 2%;
   opacity: 0;
 `;

@@ -1,5 +1,11 @@
 import { FC, useEffect } from 'react';
-import { Bubble, Content, EventBoxLanding, LangToggleLanding } from './styles';
+import {
+  Bubble,
+  Content,
+  EventBoxLanding,
+  LangToggleLanding,
+  LinkContainerLanding,
+} from './styles';
 import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
@@ -66,6 +72,13 @@ const Landing: FC = () => {
             { opacity: 1 },
           )
           .fromTo(
+            '#linkContainerLanding',
+            {
+              opacity: 0,
+            },
+            { opacity: 1 },
+          )
+          .fromTo(
             bubble,
             { scale: 0.5, opacity: 0 },
             {
@@ -101,6 +114,7 @@ const Landing: FC = () => {
 
   return (
     <Content>
+      <LinkContainerLanding />
       <Image
         id="logo"
         src={Logo.src}
