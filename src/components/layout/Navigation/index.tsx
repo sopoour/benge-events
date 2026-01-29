@@ -35,7 +35,7 @@ const NavigationItem = styled(Link)`
 
   &:hover,
   &.active {
-    color: ${({ theme }) => theme.colors.accent.pink};
+    color: ${({ theme }) => theme.colors.fg.inactive};
     transform: scale(1.05);
   }
 

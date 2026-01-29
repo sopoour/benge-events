@@ -11,7 +11,7 @@ const CopyEmail = styled(Typography)`
   cursor: pointer;
   font-weight: 500;
   &:hover {
-    color: ${({ theme }) => theme.colors.fg.contrast};
+    color: ${({ theme }) => theme.colors.fg.inactive};
   }
 `;
 

@@ -1,7 +1,6 @@
 import EmailCopy from '@app/components/EmailCopy/EmailCopy';
 import Section from '@app/components/layout/Section';
 import Button from '@app/components/Button';
-import LinkContainer from '@app/components/LinkContainer';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
@@ -10,11 +9,12 @@ import useLang from '@app/hooks/useLang';
 import { GeneralContent } from '@app/services/graphql/types';
 import { text } from '@app/styles/fonts';
 import { flexColumn, flexRow } from '@app/styles/mixins';
-import { Checkbox, Flex, Group, Textarea, TextInput } from '@mantine/core';
+import { Checkbox, Group, Textarea, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { FC, useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
+import theme from '@app/styles/theme';
 
 const FormContainer = styled.form`
   display: flex;
@@ -22,33 +22,30 @@ const FormContainer = styled.form`
   gap: 16px;
   padding: 32px;
   border-radius: 10px;
-  background: ${({ theme }) => theme.colors.bg.default};
+  background: ${({ theme }) => theme.colors.bg.soft};
+  width: 100%;
+  margin: 0 auto;
 
   label {
     margin-bottom: 8px;
     color: ${({ theme }) => theme.colors.fg.default};
   }
-`;
-
-const ContactContainer = styled.div`
-  ${flexColumn};
-  gap: 64px;
-  align-items: center;
 
   ${({ theme }) => theme.media('sm')`
-    ${flexRow};
-    
+    width: 55%;
   `}
 `;
 
-const ContactLinkContainer = styled(LinkContainer)`
-  svg {
-    &:hover {
-      path {
-        fill: ${({ theme }) => theme.colors.fg.contrast} !important;
-      }
-    }
-  }
+const EmailContact = styled.span`
+  ${flexColumn};
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+
+  ${({ theme }) => theme.media('xs')`
+    ${flexRow};
+  `}
 `;
 
 const Feedback: FC = () => {
@@ -153,62 +150,63 @@ const Feedback: FC = () => {
           {data?.feedbackHeadline}
         </Typography>
         <MarkdownConfig content={data?.feedbackDescription as string} />
-        <ContactContainer>
-          <FormContainer onSubmit={form.onSubmit(handleSubmit)}>
-            <TextInput
-              label="Name"
-              placeholder={labels().namePlaceholder}
-              {...form.getInputProps('name')}
-              withAsterisk
-              size="md"
-              radius="md"
-              key={form.key('name')}
+        <FormContainer onSubmit={form.onSubmit(handleSubmit)}>
+          <TextInput
+            label="Name"
+            placeholder={labels().namePlaceholder}
+            {...form.getInputProps('name')}
+            withAsterisk
+            size="md"
+            radius="md"
+            key={form.key('name')}
+          />
+          <TextInput
+            label={labels().email}
+            placeholder={labels().emailPlaceholder}
+            {...form.getInputProps('email')}
+            withAsterisk
+            size="md"
+            radius="md"
+            key={form.key('email')}
+          />
+          <Textarea
+            label={labels().message}
+            placeholder={labels().messagePlaceholder}
+            minRows={4}
+            autosize
+            {...form.getInputProps('message')}
+            withAsterisk
+            size="md"
+            radius="md"
+          />
+          <Checkbox
+            style={{ maxWidth: '400px' }}
+            label={labels().checkbox}
+            color={theme.colors.bg.default}
+            {...form.getInputProps('gdpr', { type: 'checkbox' })}
+          />
+          <Group mt="md">
+            <Button
+              isSubmitButton
+              text={lang === 'en' ? 'Send' : 'Senden'}
+              hoverColor={theme.colors.bg.default}
             />
-            <TextInput
-              label={labels().email}
-              placeholder={labels().emailPlaceholder}
-              {...form.getInputProps('email')}
-              withAsterisk
-              size="md"
-              radius="md"
-              key={form.key('email')}
-            />
-            <Textarea
-              label={labels().message}
-              placeholder={labels().messagePlaceholder}
-              minRows={4}
-              autosize
-              {...form.getInputProps('message')}
-              withAsterisk
-              size="md"
-              radius="md"
-            />
-            <Checkbox
-              style={{ maxWidth: '400px' }}
-              label={labels().checkbox}
-              {...form.getInputProps('gdpr', { type: 'checkbox' })}
-            />
-            <Group mt="md">
-              <Button fullWidth isSubmitButton text={lang === 'en' ? 'Send' : 'Senden'} />
-            </Group>
-
-            {status === 'sent' && (
-              <Typography type={text.style.fontFamily}>{labels().sent}</Typography>
-            )}
-            {status === 'error' && (
-              <Typography type={text.style.fontFamily} color="red">
-                {labels().error}
-              </Typography>
-            )}
-          </FormContainer>
-          <Flex gap={'16px'} direction={'column'} align={{ base: 'center', sm: 'flex-start' }}>
-            <Typography fontSize="24px" fontWeight={600} as="h3">
-              {labels().sideNote}
+          </Group>
+          {status === 'sent' && (
+            <Typography type={text.style.fontFamily}>{labels().sent}</Typography>
+          )}
+          {status === 'error' && (
+            <Typography type={text.style.fontFamily} color="red">
+              {labels().error}
+            </Typography>
+          )}
+          <EmailContact>
+            <Typography fontWeight={600} as="h3" fontSize="18px">
+              {labels().sideNote}:
             </Typography>
             <EmailCopy email="susi.nguimba@gmail.com" />
-            <ContactLinkContainer />
-          </Flex>
-        </ContactContainer>
+          </EmailContact>
+        </FormContainer>
       </>
     </Section>
   );

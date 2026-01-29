@@ -8,7 +8,6 @@ import {
   EventTitle,
   VenueBox,
   Date,
-  EventButton,
   DetailsContainer,
   OverviewContainer,
   MarkDownEvent,
@@ -19,7 +18,8 @@ import { ISOToDate } from '@app/utils/formatDate';
 import LoadingSkeleton from './elements/LoadingSkeleton';
 import useClickOutside from '@app/hooks/useClickOutside';
 import useLang from '@app/hooks/useLang';
-import LinkButton from '../Button';
+import Button from '../Button';
+import theme from '@app/styles/theme';
 
 type Props = {
   subTitle?: string;
@@ -119,9 +119,10 @@ const EventBox: FC<Props> = ({
           ))}
         </EventTable>
         {event?.ticketLink && (
-          <LinkButton
+          <Button
             href={event?.ticketLink}
             newTab
+            hoverColor={theme.colors.bg.default}
             text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
           />
         )}
@@ -139,9 +140,11 @@ const EventBox: FC<Props> = ({
         </Details>
 
         {event?.ticketLink && (
-          <EventButton href={event?.ticketLink} target="_blank">
-            {lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-          </EventButton>
+          <Button
+            href={event?.ticketLink}
+            newTab
+            text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
+          />
         )}
       </DetailsContainer>
     </EventBoxContent>
