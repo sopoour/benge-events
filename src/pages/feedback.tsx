@@ -17,8 +17,7 @@ import useSWR from 'swr';
 import theme from '@app/styles/theme';
 
 const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn};
   gap: 16px;
   padding: 32px;
   border-radius: 10px;
@@ -32,6 +31,10 @@ const FormContainer = styled.form`
   }
 
   ${({ theme }) => theme.media('sm')`
+    width: 65%;
+  `}
+
+  ${({ theme }) => theme.media('md')`
     width: 55%;
   `}
 `;
@@ -180,7 +183,6 @@ const Feedback: FC = () => {
             radius="md"
           />
           <Checkbox
-            style={{ maxWidth: '400px' }}
             label={labels().checkbox}
             color={theme.colors.bg.default}
             {...form.getInputProps('gdpr', { type: 'checkbox' })}
@@ -193,10 +195,23 @@ const Feedback: FC = () => {
             />
           </Group>
           {status === 'sent' && (
-            <Typography type={text.style.fontFamily}>{labels().sent}</Typography>
+            <Typography
+              type={text.style.fontFamily}
+              $textalign="center"
+              style={{ fontStyle: 'italic' }}
+              fontWeight={500}
+            >
+              {labels().sent}
+            </Typography>
           )}
           {status === 'error' && (
-            <Typography type={text.style.fontFamily} color="red">
+            <Typography
+              type={text.style.fontFamily}
+              color="red"
+              $textalign="center"
+              style={{ fontStyle: 'italic' }}
+              fontWeight={500}
+            >
               {labels().error}
             </Typography>
           )}

@@ -14,8 +14,8 @@ export default async function contact(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const data = await resend.emails.send({
-      from: 'Deine Website <kontakt@xn--buchstabensuppe-hrspiel-olc.de>',
-      to: 'kontakt@xn--buchstabensuppe-hrspiel-olc.de',
+      from: 'Deine Website <onboarding@resend.dev>',
+      to: 'susi.nguimba@gmail.com',
       subject: `Neue Nachricht von ${name}`,
       replyTo: email,
       text: `Du hast eine neue Nachricht erhalten:\n\nName: ${name}\nE-mail: ${email}\n\nNachricht:\n${message}`,
