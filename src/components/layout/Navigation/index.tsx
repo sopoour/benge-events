@@ -26,7 +26,8 @@ const NavigationWrapper = styled.nav`
 
 const NavigationItem = styled(Link)`
   font-family: ${header.style.fontFamily};
-  ${fastTransition}
+  ${fastTransition};
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.fg.default};
 
   &:not(.active) {

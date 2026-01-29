@@ -24,7 +24,7 @@ const getSize = (size: Size) => {
 
 const Container = styled.span<{ hoverColour?: string; size: Size }>`
   ${flexRow};
-  gap: 32px;
+  gap: 16px;
   svg {
     width: ${({ size }) => getSize(size)};
     height: ${({ size }) => getSize(size)};
@@ -36,7 +36,7 @@ const Container = styled.span<{ hoverColour?: string; size: Size }>`
       cursor: pointer;
       transform: scale(1.1);
       path {
-        fill: ${({ hoverColour, theme }) => hoverColour ?? theme.colors.accent.pink};
+        fill: ${({ hoverColour, theme }) => hoverColour ?? theme.colors.fg.inactive};
       }
     }
 
@@ -105,7 +105,13 @@ const LinkContainer: FC<Props> = ({
       {links?.map(
         (item) =>
           item.link && (
-            <Link href={item.link} key={item.id} target="_blank" aria-label={item.id}>
+            <Link
+              href={item.link}
+              key={item.id}
+              target="_blank"
+              aria-label={item.id}
+              style={{ alignItems: 'center', display: 'flex' }}
+            >
               {item.icon}
             </Link>
           ),
