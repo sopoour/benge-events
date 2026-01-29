@@ -3,7 +3,7 @@ import { FC, useMemo } from 'react';
 import { css, styled } from 'styled-components';
 import Link from 'next/link';
 import { IconLink } from '@app/types';
-import { FaEnvelope, FaInstagram, FaLink, FaMusic, FaSpotify, FaYoutube } from 'react-icons/fa';
+import { FaEnvelope, FaInstagram, FaLink, FaRegEnvelope } from 'react-icons/fa';
 
 type Size = 'small' | 'medium' | 'big';
 
@@ -24,7 +24,7 @@ const getSize = (size: Size) => {
 
 const Container = styled.span<{ hoverColour?: string; size: Size }>`
   ${flexRow};
-  gap: 32px;
+  gap: 16px;
   svg {
     width: ${({ size }) => getSize(size)};
     height: ${({ size }) => getSize(size)};
@@ -36,7 +36,7 @@ const Container = styled.span<{ hoverColour?: string; size: Size }>`
       cursor: pointer;
       transform: scale(1.1);
       path {
-        fill: ${({ hoverColour, theme }) => hoverColour ?? theme.colors.accent.pink};
+        fill: ${({ hoverColour, theme }) => hoverColour ?? theme.colors.fg.inactive};
       }
     }
 
@@ -77,7 +77,7 @@ const LinkContainer: FC<Props> = ({
           case 'email':
             return {
               id: 'email',
-              icon: <FaEnvelope />,
+              icon: <FaRegEnvelope />,
               link: icon.link || 'mailto:susi.nguimba@gmail.com',
             };
           case 'instagram':
@@ -89,7 +89,7 @@ const LinkContainer: FC<Props> = ({
           case 'link':
             return { id: icon.id ?? 'external link', icon: <FaLink />, link: icon.link };
           default:
-            return { id: 'email', icon: <FaEnvelope />, link: 'mailto:contact@g-emma.com' };
+            return { id: 'email', icon: <FaRegEnvelope />, link: 'mailto:contact@g-emma.com' };
         }
       }),
     [iconLinks],
@@ -105,7 +105,13 @@ const LinkContainer: FC<Props> = ({
       {links?.map(
         (item) =>
           item.link && (
-            <Link href={item.link} key={item.id} target="_blank" aria-label={item.id}>
+            <Link
+              href={item.link}
+              key={item.id}
+              target="_blank"
+              aria-label={item.id}
+              style={{ alignItems: 'center', display: 'flex' }}
+            >
               {item.icon}
             </Link>
           ),

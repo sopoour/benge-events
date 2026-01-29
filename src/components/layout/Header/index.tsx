@@ -26,7 +26,7 @@ const HeaderWrapper = styled.header<{ $show: boolean }>`
   top: 0;
   z-index: 5;
   min-height: ${HEADER_HEIGHT}px;
-  padding: 12px;
+  padding: 12px 16px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -128,7 +128,7 @@ const Header: React.FC = () => {
   return (
     <HeaderWrapper aria-label="header" id="header" $show={!isHomepage}>
       <TopNavigation>
-        <span></span>
+        <LinkContainerDesktop />
         <NavigationDesktop />
         <LangToggle />
       </TopNavigation>
@@ -144,7 +144,7 @@ const Header: React.FC = () => {
           router.pathname !== '/' && router.replace(lang === 'en' ? '/?lang=en' : '/');
         }}
       />
-      {/* <LinkContainerDesktop /> */}
+
       <BurgerMenu onClick={setOpen} id="burger-menu">
         <Line $isActive={open} />
         <Line $isActive={open} />

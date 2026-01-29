@@ -43,7 +43,7 @@ const MainLayout = styled.main`
 
 const LinkContainerMobile = styled(LinkContainer)`
   && {
-    padding-top: 32px;
+    margin-top: 32px;
   }
 `;
 
@@ -68,8 +68,8 @@ const Layout: FC<Props> = ({ children }) => {
           }}
         />
         <Navigation onClick={close} />
+        <LinkContainerMobile />
         <LangToggle />
-        {/* <LinkContainerMobile /> */}
       </Sidebar>
       <Header />
       <MainLayout>{children}</MainLayout>
