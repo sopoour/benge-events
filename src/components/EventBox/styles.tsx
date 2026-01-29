@@ -5,28 +5,6 @@ import { header, text } from '@app/styles/fonts';
 import Link from 'next/link';
 import MarkdownConfig from '../MarkdownConfig/MarkdownConfig';
 
-export const EventButton = styled(Link)`
-  width: 100%;
-  border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.colors.bg.default};
-  padding: 8px 16px;
-  text-align: center;
-  background-color: white;
-  color: ${({ theme }) => theme.colors.fg.contrast};
-  font-weight: 700;
-  ${fastTransition};
-  font-family: ${header.style.fontFamily};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.bg.default};
-    color: ${({ theme }) => theme.colors.fg.default};
-  }
-
-  ${({ theme }) => theme.media('sm')`
-    width: 80%;
-  `}
-`;
-
 export const OverviewContainer = styled.div`
   opacity: 1;
   width: 100%;
@@ -58,13 +36,6 @@ export const DetailsContainer = styled.div`
   ${flexColumn};
   gap: 0;
   justify-content: space-between;
-
-  ${EventButton} {
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.fg.inactive};
-      color: ${({ theme }) => theme.colors.fg.contrast};
-    }
-  }
 `;
 
 export const Details = styled.div`

@@ -78,13 +78,13 @@ const LinkContainer: FC<Props> = ({
             return {
               id: 'email',
               icon: <FaEnvelope />,
-              link: icon.link || 'mailto:kontakt@buchstabensuppe-hörspiel.de',
+              link: icon.link || 'mailto:susi.nguimba@gmail.com',
             };
           case 'instagram':
             return {
               id: 'instagram',
               icon: <FaInstagram />,
-              link: 'https://www.instagram.com/buuchstabensuppe/',
+              link: 'https://www.instagram.com/benge_events/',
             };
           case 'link':
             return { id: icon.id ?? 'external link', icon: <FaLink />, link: icon.link };

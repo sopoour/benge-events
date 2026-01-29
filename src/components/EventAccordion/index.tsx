@@ -5,10 +5,11 @@ import { FC, useState } from 'react';
 import styled from 'styled-components';
 import Typography from '../Typography/Typography';
 import { ISOToDate } from '@app/utils/formatDate';
-import { Details, EventButton, MarkDownEvent } from '../EventBox/styles';
+import { Details, MarkDownEvent } from '../EventBox/styles';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import useLang from '@app/hooks/useLang';
+import Button from '../Button';
 
 const MobileAccordion = styled(Accordion)`
   display: flex;
@@ -40,13 +41,6 @@ export const DetailsContainer = styled.div`
   ${flexColumn};
   gap: 0;
   justify-content: space-between;
-
-  ${EventButton} {
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.fg.inactive};
-      color: ${({ theme }) => theme.colors.fg.contrast};
-    }
-  }
 `;
 
 type Props = {
@@ -148,9 +142,11 @@ const EventAccordion: FC<Props> = ({
         </Details>
 
         {event?.ticketLink && (
-          <EventButton href={event?.ticketLink} target="_blank">
-            {lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-          </EventButton>
+          <Button
+            href={event?.ticketLink}
+            newTab
+            text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
+          />
         )}
       </DetailsContainer>
     </MobileAccordion>
