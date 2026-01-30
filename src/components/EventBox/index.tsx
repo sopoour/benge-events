@@ -16,6 +16,7 @@ import LoadingSkeleton from './elements/LoadingSkeleton';
 import useLang from '@app/hooks/useLang';
 import Button from '../Button';
 import theme from '@app/styles/theme';
+import eventDetailsArray from '@app/utils/eventdetails';
 
 type Props = {
   subTitle?: string;
@@ -28,21 +29,7 @@ type Props = {
 const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, className }) => {
   const lang = useLang();
 
-  const eventDetails = [
-    {
-      title: 'Workshop',
-      titleEn: 'Workshop',
-      detail: event?.workshopTitel,
-      description: event?.workshopBeschreibung,
-    },
-    {
-      title: 'Konzert',
-      titleEn: 'Concert',
-      detail: event?.konzertTitel,
-      description: event?.konzertBeschreibung,
-    },
-    { title: 'DJ', titleEn: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
-  ];
+  const eventDetails = eventDetailsArray(event);
 
   const showDescriptionContent = useMemo(
     () =>
