@@ -1,9 +1,8 @@
-import { fastTransition, flexColumn, slowTransition } from '@app/styles/mixins';
-import styled, { css } from 'styled-components';
+import { flexColumn, slowTransition } from '@app/styles/mixins';
+import styled from 'styled-components';
 import Typography from '../Typography/Typography';
-import { header, text } from '@app/styles/fonts';
+import { text } from '@app/styles/fonts';
 import Link from 'next/link';
-import MarkdownConfig from '../MarkdownConfig/MarkdownConfig';
 
 export const OverviewContainer = styled.div`
   opacity: 1;
@@ -21,59 +20,12 @@ export const OverviewContainer = styled.div`
   ${slowTransition};
 `;
 
-export const DetailsContainer = styled.div`
-  padding: 32px;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-radius: 10px;
-  ${slowTransition};
-  background-color: ${({ theme }) => theme.colors.bg.default};
-  ${flexColumn};
-  gap: 0;
-  justify-content: space-between;
-`;
-
-export const Details = styled.div`
-  ${flexColumn};
-  gap: 0;
-`;
-
-export const MarkDownEvent = styled(MarkdownConfig)`
-  && {
-    p {
-      font-size: 16px;
-    }
-  }
-`;
-
-const viewedStyle = css`
-  transform: rotateY(180deg);
-
-  ${OverviewContainer} {
-    opacity: 0;
-    transform: rotateY(180deg);
-    z-index: -1;
-  }
-
-  ${DetailsContainer} {
-    opacity: 1;
-    transform: rotateY(180deg);
-    z-index: 0;
-  }
-`;
-
 export const EventBoxContent = styled.div<{ $viewDetails?: boolean }>`
   position: relative;
   width: 100%;
   ${slowTransition};
   display: none;
   justify-content: space-between;
-  ${({ $viewDetails }) => $viewDetails && viewedStyle};
 
   ${({ theme }) => theme.media('sm')`
     width: 100%;
@@ -118,8 +70,7 @@ export const VenueBox = styled(Link)<{ $tba?: boolean }>`
   }
 
   &:focus {
-    outline: 3px solid ${({ theme }) => theme.colors.fg.contrast};
-    outline-offset: 4px;
+    outline: 3px solid ${({ theme }) => theme.colors.accent.pink};
     border-radius: 50% !important;
   }
 
@@ -147,6 +98,10 @@ export const EventCol = styled(Link)`
   ${({ theme }) => theme.media('md')`
     min-height: 100px;
   `}
+
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent.pink};
+  }
 `;
 
 export const ColTitle = styled(Typography)`
@@ -171,9 +126,9 @@ export const EventTitle = styled(Typography)`
   `};
 `;
 
-export const EventTable = styled.div<{ gridNumber?: number }>`
+export const EventTable = styled.div<{ gridnumber?: number }>`
   display: grid;
   width: 100%;
-  grid-template-columns: ${({ gridNumber }) => `repeat(${gridNumber || 3}, 1fr)`};
+  grid-template-columns: ${({ gridnumber }) => `repeat(${gridnumber || 3}, 1fr)`};
   gap: 8px;
 `;

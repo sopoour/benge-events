@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef, useState } from 'react';
+import { FC, useMemo } from 'react';
 import Typography from '../Typography/Typography';
 import {
   ColTitle,
@@ -8,15 +8,11 @@ import {
   EventTitle,
   VenueBox,
   Date,
-  DetailsContainer,
   OverviewContainer,
-  MarkDownEvent,
-  Details,
 } from './styles';
 import { Events } from '@app/services/graphql/types';
 import { ISOToDate } from '@app/utils/formatDate';
 import LoadingSkeleton from './elements/LoadingSkeleton';
-import useClickOutside from '@app/hooks/useClickOutside';
 import useLang from '@app/hooks/useLang';
 import Button from '../Button';
 import theme from '@app/styles/theme';
@@ -27,21 +23,9 @@ type Props = {
   event?: Events;
   loading?: boolean;
   className?: string;
-  showDescription?: boolean;
 };
 
-const EventBox: FC<Props> = ({
-  subTitle,
-  event,
-  loading,
-  loadingSubTitle,
-  className,
-  showDescription = true,
-}) => {
-  const [view, setView] = useState<boolean>(false);
-  const ref = useRef<HTMLButtonElement>(null);
-  useClickOutside(ref, () => setView(false));
-
+const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, className }) => {
   const lang = useLang();
 
   const eventDetails = [
@@ -61,7 +45,8 @@ const EventBox: FC<Props> = ({
   ];
 
   const showDescriptionContent = useMemo(
-    () => (!loading ? `/events/${event?.datum.split('T')[0]}` : ''),
+    () =>
+      !loading ? `/events/${event?.datum.split('T')[0]}${lang === 'en' ? '?lang=en' : ''}` : '',
     [event, loading],
   );
 
@@ -70,12 +55,7 @@ const EventBox: FC<Props> = ({
   }
 
   return (
-    <EventBoxContent
-      as={showDescription ? 'button' : 'div'}
-      className={className}
-      $viewDetails={view}
-      ref={ref}
-    >
+    <EventBoxContent className={className}>
       <OverviewContainer>
         {subTitle && (
           <Typography fontSize="16px" fontSizeSm="18px">
@@ -111,11 +91,15 @@ const EventBox: FC<Props> = ({
             </Typography>
           )}
         </VenueBox>
-        <EventTable gridNumber={eventDetails.filter((item) => item.detail).length}>
+        <EventTable gridnumber={eventDetails.filter((item) => item.detail).length}>
           {eventDetails.map((event, index) => (
             <>
               {event.detail && (
-                <EventCol key={event.title + index} href={showDescriptionContent} target="_blank">
+                <EventCol
+                  key={event.title + event.titleEn + index}
+                  href={showDescriptionContent}
+                  target="_blank"
+                >
                   <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
                   <EventTitle fontSize="14px" fontSizeSm="16px">
                     {event.detail}
@@ -134,26 +118,6 @@ const EventBox: FC<Props> = ({
           />
         )}
       </OverviewContainer>
-      {/*  <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
-        <Details onClick={showDescriptionContent}>
-          {eventDetails.map((event, index) => (
-            <span key={event.title + 'detailsContainer' + index}>
-              <Typography fontSize="18px">
-                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
-              </Typography>
-              {event.description && <MarkDownEvent content={event.description} />}
-            </span>
-          ))}
-        </Details>
-
-        {event?.ticketLink && (
-          <Button
-            href={event?.ticketLink}
-            newTab
-            text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-          />
-        )}
-      </DetailsContainer> */}
     </EventBoxContent>
   );
 };

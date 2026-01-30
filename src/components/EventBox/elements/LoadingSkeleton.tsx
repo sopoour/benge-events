@@ -48,8 +48,8 @@ const LoadingSkeleton: FC<Props> = ({ hasSubTitle }) => (
         <SkeletonStyle height={15} width="60%" />
       </VenueBox>
       <EventTable>
-        {eventTitles.map((eventTitle) => (
-          <EventCol key={eventTitle + 'skeleton'} href="">
+        {eventTitles.map((eventTitle, index) => (
+          <EventCol key={eventTitle + 'skeleton' + index} href="">
             <ColTitle>{eventTitle}</ColTitle>
             <EventTitle>
               <SkeletonStyle height={15} width={80} />
