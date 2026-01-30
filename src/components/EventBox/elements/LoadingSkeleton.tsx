@@ -41,15 +41,15 @@ const LoadingSkeleton: FC<Props> = ({ hasSubTitle }) => (
     <OverviewContainer>
       {hasSubTitle && <SkeletonStyle height={15} width={150} />}
       <SkeletonStyle height={30} width={300} />
-      <VenueBox style={{ gap: '8px' }}>
+      <VenueBox style={{ gap: '8px' }} href="">
         <SkeletonStyle height={15} width="60%" />
         <SkeletonStyle height={15} width="30%" />
         <SkeletonStyle height={40} width="90%" />
         <SkeletonStyle height={15} width="60%" />
       </VenueBox>
       <EventTable>
-        {eventTitles.map((eventTitle) => (
-          <EventCol key={eventTitle + 'skeleton'}>
+        {eventTitles.map((eventTitle, index) => (
+          <EventCol key={eventTitle + 'skeleton' + index} href="">
             <ColTitle>{eventTitle}</ColTitle>
             <EventTitle>
               <SkeletonStyle height={15} width={80} />

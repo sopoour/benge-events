@@ -156,7 +156,6 @@ const Landing: FC = () => {
         subTitle={data?.generalContent.homepageSubtitle}
         loadingSubTitle
         loading={isLoading}
-        showDescription={false}
       />
       {!isDesktop && <MobileBubbles slicedBubbles={bubbles.slice(-3)} lang={lang} />}
     </Content>

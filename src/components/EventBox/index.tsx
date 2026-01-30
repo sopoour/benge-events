@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useMemo } from 'react';
 import Typography from '../Typography/Typography';
 import {
   ColTitle,
@@ -8,18 +8,15 @@ import {
   EventTitle,
   VenueBox,
   Date,
-  DetailsContainer,
   OverviewContainer,
-  MarkDownEvent,
-  Details,
 } from './styles';
 import { Events } from '@app/services/graphql/types';
 import { ISOToDate } from '@app/utils/formatDate';
 import LoadingSkeleton from './elements/LoadingSkeleton';
-import useClickOutside from '@app/hooks/useClickOutside';
 import useLang from '@app/hooks/useLang';
 import Button from '../Button';
 import theme from '@app/styles/theme';
+import eventDetailsArray from '@app/utils/eventdetails';
 
 type Props = {
   subTitle?: string;
@@ -27,52 +24,25 @@ type Props = {
   event?: Events;
   loading?: boolean;
   className?: string;
-  showDescription?: boolean;
 };
 
-const EventBox: FC<Props> = ({
-  subTitle,
-  event,
-  loading,
-  loadingSubTitle,
-  className,
-  showDescription = true,
-}) => {
-  const [view, setView] = useState<boolean>(false);
-  const ref = useRef<HTMLButtonElement>(null);
-  useClickOutside(ref, () => setView(false));
-
+const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, className }) => {
   const lang = useLang();
 
-  const eventDetails = [
-    {
-      title: 'Workshop',
-      titleEn: 'Workshop',
-      detail: event?.workshopTitel,
-      description: event?.workshopBeschreibung,
-    },
-    {
-      title: 'Konzert',
-      titleEn: 'Concert',
-      detail: event?.konzertTitel,
-      description: event?.konzertBeschreibung,
-    },
-    { title: 'DJ', titleEn: 'DJ', detail: event?.djTitel, description: event?.djBeschreibung },
-  ];
+  const eventDetails = eventDetailsArray(event);
 
-  const showDescriptionContent = () => showDescription && setView((prev) => !prev);
+  const showDescriptionContent = useMemo(
+    () =>
+      !loading ? `/events/${event?.datum.split('T')[0]}${lang === 'en' ? '?lang=en' : ''}` : '',
+    [event, loading],
+  );
 
   if (loading) {
     return <LoadingSkeleton hasSubTitle={loadingSubTitle} />;
   }
 
   return (
-    <EventBoxContent
-      as={showDescription ? 'button' : 'div'}
-      className={className}
-      $viewDetails={view}
-      ref={ref}
-    >
+    <EventBoxContent className={className}>
       <OverviewContainer>
         {subTitle && (
           <Typography fontSize="16px" fontSizeSm="18px">
@@ -85,7 +55,11 @@ const EventBox: FC<Props> = ({
             {event?.optionaleNotiz}
           </Typography>
         )}
-        <VenueBox $tba={event?.venue?.includes('tba')} onClick={showDescriptionContent}>
+        <VenueBox
+          $tba={event?.venue?.includes('tba')}
+          href={showDescriptionContent}
+          target="_blank"
+        >
           {event?.venue?.includes('tba') ? (
             <>
               <Typography $textalign="center" fontSize="16px" fontSizeSm="20px" lineHeight="1.25">
@@ -104,11 +78,15 @@ const EventBox: FC<Props> = ({
             </Typography>
           )}
         </VenueBox>
-        <EventTable gridNumber={eventDetails.filter((item) => item.detail).length}>
+        <EventTable gridnumber={eventDetails.filter((item) => item.detail).length}>
           {eventDetails.map((event, index) => (
             <>
               {event.detail && (
-                <EventCol key={event.title + index} onClick={showDescriptionContent}>
+                <EventCol
+                  key={event.title + event.titleEn + index}
+                  href={showDescriptionContent}
+                  target="_blank"
+                >
                   <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
                   <EventTitle fontSize="14px" fontSizeSm="16px">
                     {event.detail}
@@ -127,26 +105,6 @@ const EventBox: FC<Props> = ({
           />
         )}
       </OverviewContainer>
-      <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
-        <Details onClick={showDescriptionContent}>
-          {eventDetails.map((event, index) => (
-            <span key={event.title + 'detailsContainer' + index}>
-              <Typography fontSize="18px">
-                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
-              </Typography>
-              {event.description && <MarkDownEvent content={event.description} />}
-            </span>
-          ))}
-        </Details>
-
-        {event?.ticketLink && (
-          <Button
-            href={event?.ticketLink}
-            newTab
-            text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-          />
-        )}
-      </DetailsContainer>
     </EventBoxContent>
   );
 };

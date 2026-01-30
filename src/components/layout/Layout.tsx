@@ -17,7 +17,7 @@ const Root = styled.div`
   min-height: 100vh;
   ${flexColumn};
   width: 100%;
-  background: url('leo_pattern.png');
+  background: url('/leo_pattern.png');
   background-repeat: repeat;
   background-size: 500px 500px;
   background-position: top left;

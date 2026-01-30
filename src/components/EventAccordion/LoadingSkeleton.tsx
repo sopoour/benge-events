@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
 import Accordion from '../Accordion/Accordion';
-import { Header } from './index';
+import { Header } from './styles';
 
 const SkeletonStyle = styled(Skeleton)`
   && {

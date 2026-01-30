@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-const ButtonStyle = styled(Link)<{ hoverColor?: string }>`
+const ButtonStyle = styled(Link)<{ hoverColor?: string; $width?: string }>`
   width: 100%;
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.colors.bg.default};
@@ -21,6 +21,9 @@ const ButtonStyle = styled(Link)<{ hoverColor?: string }>`
     color: ${({ theme, hoverColor }) =>
       hoverColor ? theme.colors.fg.default : theme.colors.fg.contrast};
   }
+  ${({ theme, $width }) => theme.media('sm')`
+    width: ${$width || '100%'};
+  `}
 `;
 
 type Props = {
@@ -29,9 +32,19 @@ type Props = {
   newTab?: boolean;
   text: string;
   hoverColor?: string;
+  width?: string;
+  className?: string;
 };
 
-const Button: FC<Props> = ({ href, newTab = false, text, isSubmitButton = false, hoverColor }) => {
+const Button: FC<Props> = ({
+  href,
+  newTab = false,
+  text,
+  isSubmitButton = false,
+  hoverColor,
+  width,
+  className,
+}) => {
   return (
     <ButtonStyle
       href={href || ''}
@@ -39,6 +52,8 @@ const Button: FC<Props> = ({ href, newTab = false, text, isSubmitButton = false,
       as={isSubmitButton ? 'button' : Link}
       type={isSubmitButton ? 'submit' : 'button'}
       hoverColor={hoverColor}
+      $width={width}
+      className={className}
     >
       {text}
     </ButtonStyle>
