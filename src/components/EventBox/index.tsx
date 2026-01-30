@@ -31,11 +31,7 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
 
   const eventDetails = eventDetailsArray(event);
 
-  const showDescriptionContent = useMemo(
-    () =>
-      !loading ? `/events/${event?.datum.split('T')[0]}${lang === 'en' ? '?lang=en' : ''}` : '',
-    [event, loading],
-  );
+  const showDescriptionContent = `/events/${event?.datum.split('T')[0]}${lang === 'en' ? '?lang=en' : ''}`;
 
   if (loading) {
     return <LoadingSkeleton hasSubTitle={loadingSubTitle} />;
