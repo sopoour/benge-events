@@ -5,7 +5,7 @@ import Button from '../Button';
 import Link from 'next/link';
 
 export const MobileAccordion = styled(Accordion)`
-  display: flex;
+  display: block;
 
   ${({ theme }) => theme.media('sm')`
     display: none;
@@ -32,7 +32,7 @@ export const DetailsContainer = styled.div`
   height: 100%;
   ${slowTransition};
   ${flexColumn};
-  gap: 0;
+  gap: 12px;
   justify-content: space-between;
 `;
 
@@ -53,8 +53,20 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ReadMoreButton = styled(Button)`
+  width: initial;
   background-color: ${({ theme }) => theme.colors.bg.default};
   color: white;
+  ${({ theme }) => theme.media('xs')`
+    width: 100%;
+  `}
+`;
+
+export const TicketButton = styled(Button)`
+  width: initial;
+
+  ${({ theme }) => theme.media('xs')`
+    width: 100%;
+  `}
 `;
 
 export const StyledLink = styled(Link)`

@@ -2,20 +2,13 @@ import { slowTransition } from '@app/styles/mixins';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 
-export const AccordionContainer = styled.button<{ $open?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+export const AccordionContainer = styled.details<{ $open?: boolean }>`
   margin: 0;
   border-radius: 8px;
   text-align: start;
-
+  border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.bg.default};
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+
   ${slowTransition}
   ${(props) =>
     !props.$open &&
@@ -26,7 +19,7 @@ export const AccordionContainer = styled.button<{ $open?: boolean }>`
 `}
 `;
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.summary`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,11 +27,16 @@ export const HeaderContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.bg.soft};
   align-items: center;
   padding: 12px 16px;
-  width: 100%;
   gap: 12px;
 
   :hover {
     cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: 3px solid ${({ theme }) => theme.colors.fg.contrast} !important;
+    outline-offset: 4px;
+    border-radius: 8px;
   }
 `;
 
@@ -51,9 +49,7 @@ export const HorizontalRuler = styled.hr`
 export const BodyContainer = styled.div<{ $hasAnimation: boolean }>`
   animation: ${(props) => (props.$hasAnimation ? 'spring 0.4s ease' : 'none')};
   padding: 0 16px;
-  width: 100%;
   background-color: rgba(109, 92, 219, 0.3);
-  cursor: default;
   @keyframes spring {
     from {
       opacity: 0;

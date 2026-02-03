@@ -15,6 +15,7 @@ import {
   MobileAccordion,
   ReadMoreButton,
   StyledLink,
+  TicketButton,
 } from './styles';
 
 type Props = {
@@ -79,43 +80,41 @@ const EventAccordion: FC<Props> = ({
       }
     >
       <DetailsContainer style={{ display: !showDescription ? 'none' : 'flex' }}>
-        <Details>
-          {event?.optionaleNotiz && (
-            <Typography
-              fontSize="16px"
-              fontSizeSm="18px"
-              style={{ marginBottom: '16px', fontStyle: 'italic' }}
-            >
-              {event?.optionaleNotiz}
-            </Typography>
-          )}
-          {eventDetails.map((event) => (
-            <>
-              {event.detail && (
-                <Typography fontSize="16px" fontSizeSm="18px">
-                  {lang === 'en' ? event.titleEn : event.title}:{' '}
-                  <StyledLink href={subpage} target="_blank">
-                    {event.detail}
-                  </StyledLink>
-                </Typography>
-              )}
-            </>
-          ))}
-          <ButtonContainer>
-            <ReadMoreButton
-              href={subpage}
-              text={lang === 'en' ? 'Find out more' : 'Erfahre mehr'}
-              newTab
-            />
-            {event?.ticketLink && (
-              <Button
-                href={event?.ticketLink}
-                newTab
-                text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-              />
+        {event?.optionaleNotiz && (
+          <Typography
+            fontSize="16px"
+            fontSizeSm="18px"
+            style={{ marginBottom: '16px', fontStyle: 'italic' }}
+          >
+            {event?.optionaleNotiz}
+          </Typography>
+        )}
+        {eventDetails.map((event) => (
+          <>
+            {event.detail && (
+              <Typography fontSize="16px" fontSizeSm="18px">
+                {lang === 'en' ? event.titleEn : event.title}:{' '}
+                <StyledLink href={subpage} target="_blank">
+                  {event.detail}
+                </StyledLink>
+              </Typography>
             )}
-          </ButtonContainer>
-        </Details>
+          </>
+        ))}
+        <ButtonContainer>
+          <ReadMoreButton
+            href={subpage}
+            text={lang === 'en' ? 'Find out more' : 'Erfahre mehr'}
+            newTab
+          />
+          {event?.ticketLink && (
+            <TicketButton
+              href={event?.ticketLink}
+              newTab
+              text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
+            />
+          )}
+        </ButtonContainer>
       </DetailsContainer>
     </MobileAccordion>
   );
