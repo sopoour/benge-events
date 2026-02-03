@@ -18,9 +18,14 @@ const LexikonEintrag = styled.div`
 
 const AdjMarkdownConfig = styled(MarkdownConfig)`
   p,
-  a {
+  a,
+  li {
     font-size: 14px;
     font-weight: 400;
+    margin: 0;
+  }
+
+  ul {
     margin: 0;
   }
 `;
