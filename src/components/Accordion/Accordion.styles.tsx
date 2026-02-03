@@ -53,6 +53,7 @@ export const BodyContainer = styled.div<{ $hasAnimation: boolean }>`
   padding: 0 16px;
   width: 100%;
   background-color: rgba(109, 92, 219, 0.3);
+  cursor: default;
   @keyframes spring {
     from {
       opacity: 0;
