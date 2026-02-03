@@ -20,7 +20,8 @@ const AdjMarkdownConfig = styled(MarkdownConfig)`
   p,
   a,
   li {
-    font-size: 14px;
+    text-align: start;
+    font-size: 16px;
     font-weight: 400;
     margin: 0;
   }
