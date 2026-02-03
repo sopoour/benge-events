@@ -5,61 +5,18 @@ import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
-import { Lexikon as LexikonData } from '@app/services/graphql/types';
 import { LexikonPage } from '@app/types';
+import lexikonGrouping from '@app/utils/lexikonGrouping';
 import { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import useSWR from 'swr';
-
-export type GroupedLexikonData = {
-  kategorie: string;
-  elements: LexikonData[];
-};
-
-export type GroupedOrderedLexikonData = {
-  kategorie: string;
-  orderedElements: LexikonData[];
-  unorderedElements: LexikonData[];
-};
 
 const Lexikon: FC = () => {
   const lang = useLang();
 
   const { data, isLoading } = useSWR<LexikonPage | null>(`/api/lexikon?lang=${lang}`, fetcher);
 
-  const groupedData: GroupedOrderedLexikonData[] = data?.lexikonCollection.items.reduce(
-    (acc: any, { kategorie, titel, beschreibung, orderNumber }) => {
-      let group: any = acc.find((item: LexikonData) => item.kategorie === kategorie);
-
-      if (!group) {
-        group = { kategorie, orderedElements: [], unorderedElements: [] };
-        acc.push(group);
-      }
-
-      const element = { titel, beschreibung, orderNumber };
-
-      if (orderNumber !== null && orderNumber !== undefined) {
-        group.orderedElements.push(element);
-      } else {
-        group.unorderedElements.push(element);
-      }
-
-      return acc;
-    },
-    [],
-  );
-
-  const result: GroupedLexikonData[] = groupedData?.map((group) => ({
-    kategorie: group.kategorie,
-    elements: [
-      ...group.orderedElements?.sort(
-        (a, b) => (a.orderNumber as number) - (b.orderNumber as number),
-      ),
-      ...group.unorderedElements?.sort((a, b) =>
-        a.titel && b.titel ? a.titel?.localeCompare(b.titel) : 0,
-      ),
-    ],
-  }));
+  const sortedResult = lexikonGrouping(lang, data);
 
   if (isLoading) {
     return (
@@ -92,7 +49,9 @@ const Lexikon: FC = () => {
           {data?.generalContent.lexikonHeadline}
         </Typography>
         <MarkdownConfig content={data?.generalContent.lexikonDescription as string} />
-        {result?.map((data) => <LexikonAccordion lexikonGrouped={data} key={data.kategorie} />)}
+        {sortedResult?.map((data) => (
+          <LexikonAccordion lexikonGrouped={data} key={data.kategorie} />
+        ))}
       </>
     </Section>
   );

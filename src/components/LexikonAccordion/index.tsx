@@ -1,11 +1,10 @@
 import { FC, useState } from 'react';
 import Accordion from '../Accordion/Accordion';
 import Typography from '../Typography/Typography';
-import { GroupedLexikonData } from '@app/pages/lexikon';
 import styled from 'styled-components';
 import { flexColumn } from '@app/styles/mixins';
 import MarkdownConfig from '../MarkdownConfig/MarkdownConfig';
-import { Lexikon } from '@app/services/graphql/types';
+import { GroupedLexikonData } from '@app/utils/lexikonGrouping';
 
 const LexikonWrapper = styled.div`
   ${flexColumn};
