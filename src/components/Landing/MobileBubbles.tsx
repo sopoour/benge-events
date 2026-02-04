@@ -13,7 +13,7 @@ const MobileBubbles: FC<Props> = ({ slicedBubbles, lang }) => (
     {slicedBubbles.map((b, i) => (
       <Bubble
         key={i}
-        href={b.href}
+        href={`${b.href}${lang === 'en' ? '?lang=en' : ''}`}
         className="bubble"
         style={{
           top: b.top,
