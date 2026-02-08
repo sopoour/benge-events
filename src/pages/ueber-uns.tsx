@@ -6,7 +6,41 @@ import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
 import { GeneralContent } from '@app/services/graphql/types';
 import { FC } from 'react';
+import styled from 'styled-components';
 import useSWR from 'swr';
+
+const StyledMarkdown = styled(MarkdownConfig)`
+  h2 {
+    margin-bottom: 40px;
+  }
+
+  #ueber-uns-foto {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  #about-photo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    > p {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+
+  ${({ theme }) => theme.media('sm')`
+      #ueber-uns-foto {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap:40px;
+        align-items: center;
+        margin: 0 auto;
+      }
+    `}
+`;
 
 const UeberUns: FC = () => {
   const lang = useLang();
@@ -24,7 +58,7 @@ const UeberUns: FC = () => {
         <Typography as="h1" fontSize="48px">
           {data?.aboutHeadline}
         </Typography>
-        <MarkdownConfig content={data?.aboutText as string} />
+        <StyledMarkdown content={data?.aboutText as string} />
       </>
     </Section>
   );

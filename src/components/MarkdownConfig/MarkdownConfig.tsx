@@ -56,25 +56,7 @@ const MarkdownSettings = styled.div`
   }
 
   img {
-    max-height: 100%;
-    width: 80%;
-  }
-
-  #ueber-uns-foto {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  #about-photo {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    > p {
-      margin: 0;
-      font-size: 12px;
-    }
+    height: unset;
   }
 
   ${({ theme }) => theme.media('sm')`
@@ -91,16 +73,11 @@ const MarkdownSettings = styled.div`
         font-size: 20px;
         margin-bottom: -8px;
       }
-      #ueber-uns-foto {
-        display: flex;
-        flex-direction: row;
-        gap:40px;
-        align-items: center;
-      }
 
       img {
-        max-height: 450px;
-        width: max-content;
+        height: auto;
+        width: 100%;
+        object-fit: cover;
       }
 
        p {
