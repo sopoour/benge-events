@@ -45,7 +45,9 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
             {subTitle}
           </Typography>
         )}
-        <Date>{event?.datum ? ISOToDate(event?.datum) : ''}</Date>
+        <Date>
+          {event?.datum ? ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
+        </Date>
         {event?.optionaleNotiz && (
           <Typography fontSize="16px" fontSizeSm="18px" style={{ marginTop: '-12px' }}>
             {event?.optionaleNotiz}

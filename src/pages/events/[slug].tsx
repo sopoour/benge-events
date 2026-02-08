@@ -46,7 +46,8 @@ const Event: FC = () => {
     <Section id={'event' + event?.datum}>
       <>
         <Typography as="h1" fontSize="36px" fontSizeSm="48px" style={{ marginBottom: '24px' }}>
-          {lang === 'en' ? 'Event on' : 'Event am'} {event?.datum ? ISOToDate(event.datum) : ''}
+          {lang === 'en' ? 'Event on' : 'Event am'}{' '}
+          {event?.datum ? ISOToDate(event.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
         </Typography>
         <Flex
           justify={'space-between'}

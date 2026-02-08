@@ -5,7 +5,6 @@ import { ISOToDate } from '@app/utils/formatDate';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import useLang from '@app/hooks/useLang';
-import Button from '../Button';
 import eventDetailsArray from '@app/utils/eventdetails';
 import {
   ButtonContainer,
@@ -50,7 +49,7 @@ const EventAccordion: FC<Props> = ({
       header={
         <Header $hasDetailsHeader={hasDetailsHeader}>
           <Typography fontSize="16px" fontSizeSm="20px">
-            {event?.datum ? ISOToDate(event?.datum) : ''}
+            {event?.datum ? ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
           </Typography>
           <Typography fontSize="16px" fontSizeSm="20px">
             {event?.venue?.includes('tba')

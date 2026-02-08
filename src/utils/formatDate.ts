@@ -29,8 +29,8 @@ export const dateToLocalDateType = (date: Date) => {
   return `${year}-${strMonth}-${strDay}`;
 };
 
-export const ISOToDate = (isoString: string) => {
-  return new Intl.DateTimeFormat('de-DE', {
+export const ISOToDate = (isoString: string, lang?: 'de-De' | 'en-US') => {
+  return new Intl.DateTimeFormat(lang || 'de-DE', {
     day: '2-digit',
     month: 'long',
     year: 'numeric'
