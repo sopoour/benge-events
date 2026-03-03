@@ -1,6 +1,7 @@
 import Section from '@app/components/layout/Section';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
+import SeoHead from '@app/components/SeoHead';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
 import { LegalPages } from '@app/services/graphql/types';
@@ -38,9 +39,12 @@ const Datenschutz: FC = () => {
   }
 
   return (
-    <Section id="datenschutz">
-      <MarkdownConfigAdjust content={data?.datenschutz as string} />
-    </Section>
+    <>
+      <SeoHead />
+      <Section id="datenschutz">
+        <MarkdownConfigAdjust content={data?.datenschutz as string} />
+      </Section>
+    </>
   );
 };
 

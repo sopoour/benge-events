@@ -1,6 +1,7 @@
 import Section from '@app/components/layout/Section';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
+import SeoHead from '@app/components/SeoHead';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
@@ -53,14 +54,17 @@ const UeberUns: FC = () => {
     return <LoadingSkeletonGeneral />;
   }
   return (
-    <Section id="about">
-      <>
-        <Typography as="h1" fontSize="48px">
-          {data?.aboutHeadline}
-        </Typography>
-        <StyledMarkdown content={data?.aboutText as string} />
-      </>
-    </Section>
+    <>
+      <SeoHead title={lang === 'en' ? 'About us | BENGE' : 'Über uns | BENGE'} />
+      <Section id="about">
+        <>
+          <Typography as="h1" fontSize="48px">
+            {data?.aboutHeadline}
+          </Typography>
+          <StyledMarkdown content={data?.aboutText as string} />
+        </>
+      </Section>
+    </>
   );
 };
 

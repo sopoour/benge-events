@@ -2,6 +2,7 @@ import LoadingSkeleton from '@app/components/EventAccordion/LoadingSkeleton';
 import Section from '@app/components/layout/Section';
 import LexikonAccordion from '@app/components/LexikonAccordion';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
+import SeoHead from '@app/components/SeoHead';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
@@ -43,17 +44,20 @@ const Lexikon: FC = () => {
   }
 
   return (
-    <Section id="lexikon">
-      <>
-        <Typography as="h1" fontSize="48px">
-          {data?.generalContent.lexikonHeadline}
-        </Typography>
-        <MarkdownConfig content={data?.generalContent.lexikonDescription as string} />
-        {sortedResult?.map((data) => (
-          <LexikonAccordion lexikonGrouped={data} key={data.kategorie} />
-        ))}
-      </>
-    </Section>
+    <>
+      <SeoHead title={lang === 'en' ? 'Dictionary | BENGE' : 'Lexikon | BENGE'} />
+      <Section id="lexikon">
+        <>
+          <Typography as="h1" fontSize="48px">
+            {data?.generalContent.lexikonHeadline}
+          </Typography>
+          <MarkdownConfig content={data?.generalContent.lexikonDescription as string} />
+          {sortedResult?.map((data) => (
+            <LexikonAccordion lexikonGrouped={data} key={data.kategorie} />
+          ))}
+        </>
+      </Section>
+    </>
   );
 };
 

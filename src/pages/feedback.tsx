@@ -15,6 +15,7 @@ import { FC, useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import theme from '@app/styles/theme';
+import SeoHead from '@app/components/SeoHead';
 
 const FormContainer = styled.form`
   ${flexColumn};
@@ -147,83 +148,86 @@ const Feedback: FC = () => {
   }
 
   return (
-    <Section id="feedback">
-      <>
-        <Typography as="h1" fontSize="48px">
-          {data?.feedbackHeadline}
-        </Typography>
-        <MarkdownConfig content={data?.feedbackDescription as string} />
-        <FormContainer onSubmit={form.onSubmit(handleSubmit)}>
-          <TextInput
-            label="Name"
-            placeholder={labels().namePlaceholder}
-            {...form.getInputProps('name')}
-            withAsterisk
-            size="md"
-            radius="md"
-            key={form.key('name')}
-          />
-          <TextInput
-            label={labels().email}
-            placeholder={labels().emailPlaceholder}
-            {...form.getInputProps('email')}
-            withAsterisk
-            size="md"
-            radius="md"
-            key={form.key('email')}
-          />
-          <Textarea
-            label={labels().message}
-            placeholder={labels().messagePlaceholder}
-            minRows={4}
-            autosize
-            {...form.getInputProps('message')}
-            withAsterisk
-            size="md"
-            radius="md"
-          />
-          <Checkbox
-            label={labels().checkbox}
-            color={theme.colors.bg.default}
-            {...form.getInputProps('gdpr', { type: 'checkbox' })}
-          />
-          <Group mt="md">
-            <Button
-              isSubmitButton
-              text={lang === 'en' ? 'Send' : 'Senden'}
-              hoverColor={theme.colors.bg.default}
+    <>
+      <SeoHead title="Feedback | BENGE" />
+      <Section id="feedback">
+        <>
+          <Typography as="h1" fontSize="48px">
+            {data?.feedbackHeadline}
+          </Typography>
+          <MarkdownConfig content={data?.feedbackDescription as string} />
+          <FormContainer onSubmit={form.onSubmit(handleSubmit)}>
+            <TextInput
+              label="Name"
+              placeholder={labels().namePlaceholder}
+              {...form.getInputProps('name')}
+              withAsterisk
+              size="md"
+              radius="md"
+              key={form.key('name')}
             />
-          </Group>
-          {status === 'sent' && (
-            <Typography
-              type={text.style.fontFamily}
-              $textalign="center"
-              style={{ fontStyle: 'italic' }}
-              fontWeight={500}
-            >
-              {labels().sent}
-            </Typography>
-          )}
-          {status === 'error' && (
-            <Typography
-              type={text.style.fontFamily}
-              color="red"
-              $textalign="center"
-              style={{ fontStyle: 'italic' }}
-              fontWeight={500}
-            >
-              {labels().error}
-            </Typography>
-          )}
-          <EmailContact>
-            <Typography fontWeight={600} as="h3" fontSize="18px">
-              {labels().sideNote}:
-            </Typography>
-            <EmailCopy email="susi.nguimba@gmail.com" />
-          </EmailContact>
-        </FormContainer>
-      </>
-    </Section>
+            <TextInput
+              label={labels().email}
+              placeholder={labels().emailPlaceholder}
+              {...form.getInputProps('email')}
+              withAsterisk
+              size="md"
+              radius="md"
+              key={form.key('email')}
+            />
+            <Textarea
+              label={labels().message}
+              placeholder={labels().messagePlaceholder}
+              minRows={4}
+              autosize
+              {...form.getInputProps('message')}
+              withAsterisk
+              size="md"
+              radius="md"
+            />
+            <Checkbox
+              label={labels().checkbox}
+              color={theme.colors.bg.default}
+              {...form.getInputProps('gdpr', { type: 'checkbox' })}
+            />
+            <Group mt="md">
+              <Button
+                isSubmitButton
+                text={lang === 'en' ? 'Send' : 'Senden'}
+                hoverColor={theme.colors.bg.default}
+              />
+            </Group>
+            {status === 'sent' && (
+              <Typography
+                type={text.style.fontFamily}
+                $textalign="center"
+                style={{ fontStyle: 'italic' }}
+                fontWeight={500}
+              >
+                {labels().sent}
+              </Typography>
+            )}
+            {status === 'error' && (
+              <Typography
+                type={text.style.fontFamily}
+                color="red"
+                $textalign="center"
+                style={{ fontStyle: 'italic' }}
+                fontWeight={500}
+              >
+                {labels().error}
+              </Typography>
+            )}
+            <EmailContact>
+              <Typography fontWeight={600} as="h3" fontSize="18px">
+                {labels().sideNote}:
+              </Typography>
+              <EmailCopy email="susi.nguimba@gmail.com" />
+            </EmailContact>
+          </FormContainer>
+        </>
+      </Section>
+    </>
   );
 };
 

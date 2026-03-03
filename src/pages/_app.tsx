@@ -6,30 +6,11 @@ import { GlobalStyle } from '@app/styles/global';
 import { ThemeProvider } from 'styled-components';
 import 'react-loading-skeleton/dist/skeleton.css';
 import theme from '@app/styles/theme';
-import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  // TODO: Change description and title
-  const metaDescription = 'BENGE - FLINTA Events';
-  const metaTitle = 'BENGE';
-
   return (
     <>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
-        />
-        <meta charSet="utf-8" />
-        <meta key="name" itemProp="name" content={metaTitle} />
-        <meta key="description" name="description" content={metaDescription} />
-        <meta key="og:title" property="og:title" content={metaTitle} />
-        <meta key="og:type" property="og:type" content="website" />
-        <meta key="og:description" property="og:description" content={metaDescription} />
-        <meta key="og:site_name" property="og:site_name" content="BENGE" />
-        <link rel="icon" href="/favicon.svg" />
-      </Head>
       <ThemeProvider theme={theme}>
         <MantineProvider withGlobalClasses withCssVariables forceColorScheme="light">
           <GlobalStyle />

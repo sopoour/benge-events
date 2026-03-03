@@ -1,6 +1,7 @@
 import Section from '@app/components/layout/Section';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
+import SeoHead from '@app/components/SeoHead';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
@@ -20,14 +21,17 @@ const Awareness: FC = () => {
   }
 
   return (
-    <Section id="awareness">
-      <>
-        <Typography as="h1" fontSize="48px">
-          {data?.awarenessHeadline}
-        </Typography>
-        <MarkdownConfig content={data?.awarenessDescription as string} />
-      </>
-    </Section>
+    <>
+      <SeoHead title="Awareness | BENGE" />
+      <Section id="awareness">
+        <>
+          <Typography as="h1" fontSize="48px">
+            {data?.awarenessHeadline}
+          </Typography>
+          <MarkdownConfig content={data?.awarenessDescription as string} />
+        </>
+      </Section>
+    </>
   );
 };
 

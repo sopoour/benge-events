@@ -16,6 +16,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { header } from '@app/styles/fonts';
 import eventDetailsArray from '@app/utils/eventdetails';
+import SeoHead from '@app/components/SeoHead';
 
 const StyledLink = styled(Link)`
   font-size: 28px;
@@ -43,44 +44,49 @@ const Event: FC = () => {
     return <LoadingSkeletonGeneral />;
   }
   return (
-    <Section id={'event' + event?.datum}>
-      <>
-        <Typography as="h1" fontSize="36px" fontSizeSm="48px" style={{ marginBottom: '24px' }}>
-          {lang === 'en' ? 'Event on' : 'Event am'}{' '}
-          {event?.datum ? ISOToDate(event.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
-        </Typography>
-        <Flex
-          justify={'space-between'}
-          style={{ marginBottom: '32px' }}
-          direction={{ base: 'column', sm: 'row' }}
-          gap="md"
-        >
-          <Typography fontSize="28px" fontSizeSm="32px">
-            Venue:{' '}
-            <StyledLink href={event?.venueLink || ''} target="_blank">
-              {event?.venue}
-            </StyledLink>
+    <>
+      <SeoHead
+        title={'BENGE Event am ' + ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De')}
+      />
+      <Section id={'event' + event?.datum}>
+        <>
+          <Typography as="h1" fontSize="36px" fontSizeSm="48px" style={{ marginBottom: '24px' }}>
+            {lang === 'en' ? 'Event on' : 'Event am'}{' '}
+            {event?.datum ? ISOToDate(event.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
           </Typography>
-          {event?.ticketLink && (
-            <Button
-              href={event?.ticketLink}
-              newTab
-              width="25%"
-              hoverColor={theme.colors.bg.default}
-              text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-            />
-          )}
-        </Flex>
-        {eventDetails.map((event, index) => (
-          <span key={event.title + 'detailsContainer' + index}>
-            <Typography fontSize="24px" fontSizeSm="28px">
-              {lang === 'en' ? event.titleEn : event.title}: {event.detail}
+          <Flex
+            justify={'space-between'}
+            style={{ marginBottom: '32px' }}
+            direction={{ base: 'column', sm: 'row' }}
+            gap="md"
+          >
+            <Typography fontSize="28px" fontSizeSm="32px">
+              Venue:{' '}
+              <StyledLink href={event?.venueLink || ''} target="_blank">
+                {event?.venue}
+              </StyledLink>
             </Typography>
-            <MarkdownConfig content={event.description as string} />
-          </span>
-        ))}
-      </>
-    </Section>
+            {event?.ticketLink && (
+              <Button
+                href={event?.ticketLink}
+                newTab
+                width="25%"
+                hoverColor={theme.colors.bg.default}
+                text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
+              />
+            )}
+          </Flex>
+          {eventDetails.map((event, index) => (
+            <span key={event.title + 'detailsContainer' + index}>
+              <Typography fontSize="24px" fontSizeSm="28px">
+                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
+              </Typography>
+              <MarkdownConfig content={event.description as string} />
+            </span>
+          ))}
+        </>
+      </Section>
+    </>
   );
 };
 
