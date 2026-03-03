@@ -1,6 +1,7 @@
 import Section from '@app/components/layout/Section';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
+import SeoHead from '@app/components/SeoHead';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
 import { LegalPages } from '@app/services/graphql/types';
@@ -30,9 +31,12 @@ const Impressum: FC = () => {
   }
 
   return (
-    <Section id="impressum">
-      <MarkdownConfigAdjust content={data?.impressum as string} />
-    </Section>
+    <>
+      <SeoHead />
+      <Section id="impressum">
+        <MarkdownConfigAdjust content={data?.impressum as string} />
+      </Section>
+    </>
   );
 };
 

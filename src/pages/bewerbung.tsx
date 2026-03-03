@@ -1,6 +1,7 @@
 import Section from '@app/components/layout/Section';
 import LoadingSkeletonGeneral from '@app/components/LoadingSkeletonGeneral.tsx';
 import MarkdownConfig from '@app/components/MarkdownConfig/MarkdownConfig';
+import SeoHead from '@app/components/SeoHead';
 import Typography from '@app/components/Typography/Typography';
 import { fetcher } from '@app/hooks/fetch/useFetch';
 import useLang from '@app/hooks/useLang';
@@ -20,24 +21,27 @@ const Bewerbung: FC = () => {
   }
 
   return (
-    <Section id="bewerbung">
-      <>
-        <Typography as="h1" fontSize="48px">
-          {data?.bewerbungHeadline}
-        </Typography>
-        <MarkdownConfig content={data?.bewerbungDescription as string} />
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSeGpKTUxHHeAc7j3Axi7VH3Rz5NNDIXm2S_K96onzGPRHWI_Q/viewform?embedded=true"
-          width="100%"
-          height="1500"
-          frameBorder={0}
-          marginHeight={0}
-          marginWidth={0}
-        >
-          Wird geladen…
-        </iframe>
-      </>
-    </Section>
+    <>
+      <SeoHead title={lang === 'en' ? 'Application | BENGE' : 'Bewerbung | BENGE'} />
+      <Section id="bewerbung">
+        <>
+          <Typography as="h1" fontSize="48px">
+            {data?.bewerbungHeadline}
+          </Typography>
+          <MarkdownConfig content={data?.bewerbungDescription as string} />
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSeGpKTUxHHeAc7j3Axi7VH3Rz5NNDIXm2S_K96onzGPRHWI_Q/viewform?embedded=true"
+            width="100%"
+            height="1500"
+            frameBorder={0}
+            marginHeight={0}
+            marginWidth={0}
+          >
+            Wird geladen…
+          </iframe>
+        </>
+      </Section>
+    </>
   );
 };
 

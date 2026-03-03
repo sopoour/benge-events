@@ -16,6 +16,7 @@ import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
 import LoadingSkeletonMobile from '@app/components/EventAccordion/LoadingSkeleton';
 import useLang from '@app/hooks/useLang';
+import SeoHead from '@app/components/SeoHead';
 
 const EventSection = styled.div`
   ${flexColumn};
@@ -62,28 +63,31 @@ const Events: FC = () => {
 
   if (isLoading) {
     return (
-      <Section>
-        <>
-          <Skeleton height={40} width={300} style={{ margin: '28px 0' }} />
-          <SkeletonContent>
-            <Skeleton height={20} width="80%" />
-            <Skeleton height={20} width="100%" />
-            <Skeleton height={30} width="75%" style={{ marginTop: '24px' }} />
-          </SkeletonContent>
-          {isDesktop ? (
-            <EventBoxContainer>
-              <LoadingSkeleton />
-              <LoadingSkeleton />
-            </EventBoxContainer>
-          ) : (
-            <EventBoxContainer>
-              <LoadingSkeletonMobile />
-              <LoadingSkeletonMobile />
-              <LoadingSkeletonMobile />
-            </EventBoxContainer>
-          )}
-        </>
-      </Section>
+      <>
+        <SeoHead title="Events | BENGE" />
+        <Section>
+          <>
+            <Skeleton height={40} width={300} style={{ margin: '28px 0' }} />
+            <SkeletonContent>
+              <Skeleton height={20} width="80%" />
+              <Skeleton height={20} width="100%" />
+              <Skeleton height={30} width="75%" style={{ marginTop: '24px' }} />
+            </SkeletonContent>
+            {isDesktop ? (
+              <EventBoxContainer>
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+              </EventBoxContainer>
+            ) : (
+              <EventBoxContainer>
+                <LoadingSkeletonMobile />
+                <LoadingSkeletonMobile />
+                <LoadingSkeletonMobile />
+              </EventBoxContainer>
+            )}
+          </>
+        </Section>
+      </>
     );
   }
 

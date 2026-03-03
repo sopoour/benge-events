@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const useLang = () => {
   const router = useRouter();
-  const [lang, setLang] = useState<string>('de');
+  const [lang, setLang] = useState<'en' | 'de'>('de');
 
   useEffect(() => {
     if (!router.isReady) return;
