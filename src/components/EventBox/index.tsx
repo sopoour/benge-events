@@ -9,6 +9,7 @@ import {
   VenueBox,
   Date,
   OverviewContainer,
+  ColTime,
 } from './styles';
 import { Events } from '@app/services/graphql/types';
 import { ISOToDate } from '@app/utils/formatDate';
@@ -48,6 +49,7 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
         <Date>
           {event?.datum ? ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
         </Date>
+        {/* {<ColTime>17.00 - 23.00</ColTime>} */}
         {event?.optionaleNotiz && (
           <Typography fontSize="16px" fontSizeSm="18px" style={{ marginTop: '-12px' }}>
             {event?.optionaleNotiz}
@@ -86,6 +88,7 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
                   target="_blank"
                 >
                   <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
+                  {event.time && <ColTime>{event.time}</ColTime>}
                   <EventTitle fontSize="14px" fontSizeSm="16px">
                     {event.detail}
                   </EventTitle>

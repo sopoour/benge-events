@@ -15,6 +15,7 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
   Dimension: { input: any; output: any; }
   HexColor: { input: any; output: any; }
+  JSON: { input: any; output: any; }
   Quality: { input: any; output: any; }
 };
 
@@ -284,7 +285,7 @@ export enum EntryOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type Events = Entry & _Node & {
   __typename?: 'Events';
   _id: Scalars['ID']['output'];
@@ -292,8 +293,10 @@ export type Events = Entry & _Node & {
   datum?: Maybe<Scalars['DateTime']['output']>;
   djBeschreibung?: Maybe<Scalars['String']['output']>;
   djTitel?: Maybe<Scalars['String']['output']>;
+  djZeit?: Maybe<Scalars['String']['output']>;
   konzertBeschreibung?: Maybe<Scalars['String']['output']>;
   konzertTitel?: Maybe<Scalars['String']['output']>;
+  konzertZeit?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<EventsLinkingCollections>;
   optionaleNotiz?: Maybe<Scalars['String']['output']>;
   sys: Sys;
@@ -302,87 +305,109 @@ export type Events = Entry & _Node & {
   venueLink?: Maybe<Scalars['String']['output']>;
   workshopBeschreibung?: Maybe<Scalars['String']['output']>;
   workshopTitel?: Maybe<Scalars['String']['output']>;
+  workshopZeit?: Maybe<Scalars['String']['output']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsDatumArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsDjBeschreibungArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsDjTitelArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDjZeitArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsKonzertBeschreibungArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsKonzertTitelArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsKonzertZeitArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsOptionaleNotizArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsTicketLinkArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsVenueArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsVenueLinkArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsWorkshopBeschreibungArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Erstelle für jedes Event eines dieser Content Types. Diese werden dann auf der Events Page gezeigt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsWorkshopTitelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsWorkshopZeitArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -422,6 +447,13 @@ export type EventsFilter = {
   djTitel_not?: InputMaybe<Scalars['String']['input']>;
   djTitel_not_contains?: InputMaybe<Scalars['String']['input']>;
   djTitel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  djZeit?: InputMaybe<Scalars['String']['input']>;
+  djZeit_contains?: InputMaybe<Scalars['String']['input']>;
+  djZeit_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  djZeit_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  djZeit_not?: InputMaybe<Scalars['String']['input']>;
+  djZeit_not_contains?: InputMaybe<Scalars['String']['input']>;
+  djZeit_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   konzertBeschreibung?: InputMaybe<Scalars['String']['input']>;
   konzertBeschreibung_contains?: InputMaybe<Scalars['String']['input']>;
   konzertBeschreibung_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -436,6 +468,13 @@ export type EventsFilter = {
   konzertTitel_not?: InputMaybe<Scalars['String']['input']>;
   konzertTitel_not_contains?: InputMaybe<Scalars['String']['input']>;
   konzertTitel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzertZeit?: InputMaybe<Scalars['String']['input']>;
+  konzertZeit_contains?: InputMaybe<Scalars['String']['input']>;
+  konzertZeit_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  konzertZeit_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzertZeit_not?: InputMaybe<Scalars['String']['input']>;
+  konzertZeit_not_contains?: InputMaybe<Scalars['String']['input']>;
+  konzertZeit_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   optionaleNotiz?: InputMaybe<Scalars['String']['input']>;
   optionaleNotiz_contains?: InputMaybe<Scalars['String']['input']>;
   optionaleNotiz_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -479,6 +518,13 @@ export type EventsFilter = {
   workshopTitel_not?: InputMaybe<Scalars['String']['input']>;
   workshopTitel_not_contains?: InputMaybe<Scalars['String']['input']>;
   workshopTitel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  workshopZeit?: InputMaybe<Scalars['String']['input']>;
+  workshopZeit_contains?: InputMaybe<Scalars['String']['input']>;
+  workshopZeit_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  workshopZeit_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  workshopZeit_not?: InputMaybe<Scalars['String']['input']>;
+  workshopZeit_not_contains?: InputMaybe<Scalars['String']['input']>;
+  workshopZeit_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type EventsLinkingCollections = {
@@ -500,8 +546,12 @@ export enum EventsOrder {
   DatumDesc = 'datum_DESC',
   DjTitelAsc = 'djTitel_ASC',
   DjTitelDesc = 'djTitel_DESC',
+  DjZeitAsc = 'djZeit_ASC',
+  DjZeitDesc = 'djZeit_DESC',
   KonzertTitelAsc = 'konzertTitel_ASC',
   KonzertTitelDesc = 'konzertTitel_DESC',
+  KonzertZeitAsc = 'konzertZeit_ASC',
+  KonzertZeitDesc = 'konzertZeit_DESC',
   OptionaleNotizAsc = 'optionaleNotiz_ASC',
   OptionaleNotizDesc = 'optionaleNotiz_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -519,10 +569,12 @@ export enum EventsOrder {
   VenueAsc = 'venue_ASC',
   VenueDesc = 'venue_DESC',
   WorkshopTitelAsc = 'workshopTitel_ASC',
-  WorkshopTitelDesc = 'workshopTitel_DESC'
+  WorkshopTitelDesc = 'workshopTitel_DESC',
+  WorkshopZeitAsc = 'workshopZeit_ASC',
+  WorkshopZeitDesc = 'workshopZeit_DESC'
 }
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContent = Entry & _Node & {
   __typename?: 'GeneralContent';
   _id: Scalars['ID']['output'];
@@ -546,104 +598,104 @@ export type GeneralContent = Entry & _Node & {
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentAboutHeadlineArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentAboutTextArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentAwarenessDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentAwarenessHeadlineArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentBewerbungDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentBewerbungHeadlineArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentEventsDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentEventsHeadlineArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentFeedbackDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentFeedbackHeadlineArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentHomepageSubtitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentLexikonDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentLexikonHeadlineArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** Hier werden alle Headlines & basic Texte von allen Seiten eingestellt [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/generalContent) */
 export type GeneralContentVersionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -899,7 +951,7 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']['input']>;
 };
 
-/** Texte für Impressum & Datenschutz [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
 export type LegalPages = Entry & _Node & {
   __typename?: 'LegalPages';
   _id: Scalars['ID']['output'];
@@ -912,27 +964,27 @@ export type LegalPages = Entry & _Node & {
 };
 
 
-/** Texte für Impressum & Datenschutz [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
 export type LegalPagesDatenschutzArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Texte für Impressum & Datenschutz [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
 export type LegalPagesImpressumArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Texte für Impressum & Datenschutz [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
 export type LegalPagesLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** Texte für Impressum & Datenschutz [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/legalPages) */
 export type LegalPagesVersionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1001,7 +1053,7 @@ export enum LegalPagesOrder {
   VersionDesc = 'version_DESC'
 }
 
-/** Individueller Eintrag zu dem Lexikon [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
 export type Lexikon = Entry & _Node & {
   __typename?: 'Lexikon';
   _id: Scalars['ID']['output'];
@@ -1015,34 +1067,34 @@ export type Lexikon = Entry & _Node & {
 };
 
 
-/** Individueller Eintrag zu dem Lexikon [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
 export type LexikonBeschreibungArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Individueller Eintrag zu dem Lexikon [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
 export type LexikonKategorieArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Individueller Eintrag zu dem Lexikon [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
 export type LexikonLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** Individueller Eintrag zu dem Lexikon [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
 export type LexikonOrderNumberArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Individueller Eintrag zu dem Lexikon [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/lexikon) */
 export type LexikonTitelArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;

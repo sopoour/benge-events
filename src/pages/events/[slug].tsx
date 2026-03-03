@@ -46,7 +46,9 @@ const Event: FC = () => {
   return (
     <>
       <SeoHead
-        title={'BENGE Event am ' + ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De')}
+        title={`BENGE Event am ${
+          event?.datum && ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De')
+        }`}
       />
       <Section id={'event' + event?.datum}>
         <>
