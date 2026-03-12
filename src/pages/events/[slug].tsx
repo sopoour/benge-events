@@ -46,7 +46,9 @@ const Event: FC = () => {
   return (
     <>
       <SeoHead
-        title={'BENGE Event am ' + ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De')}
+        title={`BENGE Event am ${
+          event?.datum && ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De')
+        }`}
       />
       <Section id={'event' + event?.datum}>
         <>
@@ -81,6 +83,11 @@ const Event: FC = () => {
               <Typography fontSize="24px" fontSizeSm="28px">
                 {lang === 'en' ? event.titleEn : event.title}: {event.detail}
               </Typography>
+              {event.time && (
+                <Typography fontSize="18px" fontSizeSm="20px">
+                  {event.time}
+                </Typography>
+              )}
               <MarkdownConfig content={event.description as string} />
             </span>
           ))}

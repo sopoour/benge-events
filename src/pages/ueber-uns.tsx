@@ -55,7 +55,7 @@ const UeberUns: FC = () => {
   }
   return (
     <>
-      <SeoHead title={lang === 'en' ? 'About us | BENGE' : 'Über uns | BENGE'} />
+      <SeoHead title={lang === 'en' ? 'About | BENGE' : 'Über uns | BENGE'} />
       <Section id="about">
         <>
           <Typography as="h1" fontSize="48px">

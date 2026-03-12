@@ -110,9 +110,21 @@ export const ColTitle = styled(Typography)`
   text-align: center;
   font-size: 16px;
   background-color: ${({ theme }) => theme.colors.bg.default};
-
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   ${({ theme }) => theme.media('md')`
     font-size: 18px;
+  `}
+`;
+
+export const ColTime = styled(Typography)`
+  padding: 4px 8px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  background-color: ${({ theme }) => theme.colors.bg.soft};
+  ${({ theme }) => theme.media('md')`
+    font-size: 16px;
   `}
 `;
 
