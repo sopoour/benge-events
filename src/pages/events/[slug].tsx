@@ -81,9 +81,13 @@ const Event: FC = () => {
           {eventDetails.map((event, index) => (
             <span key={event.title + 'detailsContainer' + index}>
               <Typography fontSize="24px" fontSizeSm="28px">
-                {lang === 'en' ? event.titleEn : event.title} {event.time && `(${event.time})`}:{' '}
-                {event.detail}
+                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
               </Typography>
+              {event.time && (
+                <Typography fontSize="18px" fontSizeSm="20px">
+                  {event.time}
+                </Typography>
+              )}
               <MarkdownConfig content={event.description as string} />
             </span>
           ))}

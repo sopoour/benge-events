@@ -11,7 +11,7 @@ const eventDetailsArray = (event?: Events) =>  [
     {
       title: 'Konzert',
       titleEn: 'Concert',
-      time: event?.djZeit,
+      time: event?.konzertZeit,
       detail: event?.konzertTitel,
       description: event?.konzertBeschreibung,
     },
