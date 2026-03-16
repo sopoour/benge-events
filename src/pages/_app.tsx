@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import 'react-loading-skeleton/dist/skeleton.css';
 import theme from '@app/styles/theme';
 import { MantineProvider } from '@mantine/core';
+import { Analytics } from '@vercel/analytics/next';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -16,6 +17,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <GlobalStyle />
           <Layout>
             <Component {...pageProps} />
+            <Analytics />
           </Layout>
         </MantineProvider>
       </ThemeProvider>
