@@ -106,6 +106,13 @@ export type AssetCollection = {
   total: Scalars['Int']['output'];
 };
 
+export type AssetCursorCollection = {
+  __typename?: 'AssetCursorCollection';
+  items: Array<Maybe<Asset>>;
+  limit: Scalars['Int']['output'];
+  pages: CursorPages;
+};
+
 export type AssetFilter = {
   AND?: InputMaybe<Array<InputMaybe<AssetFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<AssetFilter>>>;
@@ -178,6 +185,7 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  entryCursorCollection?: Maybe<EntryCursorCollection>;
 };
 
 
@@ -186,6 +194,16 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type AssetLinkingCollectionsEntryCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -254,6 +272,12 @@ export type ContentfulTag = {
   name?: Maybe<Scalars['String']['output']>;
 };
 
+export type CursorPages = {
+  __typename?: 'CursorPages';
+  next?: Maybe<Scalars['String']['output']>;
+  prev?: Maybe<Scalars['String']['output']>;
+};
+
 export type Entry = {
   contentfulMetadata: ContentfulMetadata;
   sys: Sys;
@@ -265,6 +289,13 @@ export type EntryCollection = {
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
+};
+
+export type EntryCursorCollection = {
+  __typename?: 'EntryCursorCollection';
+  items: Array<Maybe<Entry>>;
+  limit: Scalars['Int']['output'];
+  pages: CursorPages;
 };
 
 export type EntryFilter = {
@@ -302,7 +333,9 @@ export type Events = Entry & _Node & {
   sys: Sys;
   ticketLink?: Maybe<Scalars['String']['output']>;
   venue?: Maybe<Scalars['String']['output']>;
+  venueAddress?: Maybe<Scalars['String']['output']>;
   venueLink?: Maybe<Scalars['String']['output']>;
+  venueMapLink?: Maybe<Scalars['String']['output']>;
   workshopBeschreibung?: Maybe<Scalars['String']['output']>;
   workshopTitel?: Maybe<Scalars['String']['output']>;
   workshopZeit?: Maybe<Scalars['String']['output']>;
@@ -386,7 +419,21 @@ export type EventsVenueArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsVenueAddressArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsVenueLinkArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsVenueMapLinkArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -418,6 +465,13 @@ export type EventsCollection = {
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
+};
+
+export type EventsCursorCollection = {
+  __typename?: 'EventsCursorCollection';
+  items: Array<Maybe<Events>>;
+  limit: Scalars['Int']['output'];
+  pages: CursorPages;
 };
 
 export type EventsFilter = {
@@ -491,6 +545,13 @@ export type EventsFilter = {
   ticketLink_not_contains?: InputMaybe<Scalars['String']['input']>;
   ticketLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   venue?: InputMaybe<Scalars['String']['input']>;
+  venueAddress?: InputMaybe<Scalars['String']['input']>;
+  venueAddress_contains?: InputMaybe<Scalars['String']['input']>;
+  venueAddress_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  venueAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  venueAddress_not?: InputMaybe<Scalars['String']['input']>;
+  venueAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
+  venueAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   venueLink?: InputMaybe<Scalars['String']['input']>;
   venueLink_contains?: InputMaybe<Scalars['String']['input']>;
   venueLink_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -498,6 +559,13 @@ export type EventsFilter = {
   venueLink_not?: InputMaybe<Scalars['String']['input']>;
   venueLink_not_contains?: InputMaybe<Scalars['String']['input']>;
   venueLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  venueMapLink?: InputMaybe<Scalars['String']['input']>;
+  venueMapLink_contains?: InputMaybe<Scalars['String']['input']>;
+  venueMapLink_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  venueMapLink_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  venueMapLink_not?: InputMaybe<Scalars['String']['input']>;
+  venueMapLink_not_contains?: InputMaybe<Scalars['String']['input']>;
+  venueMapLink_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   venue_contains?: InputMaybe<Scalars['String']['input']>;
   venue_exists?: InputMaybe<Scalars['Boolean']['input']>;
   venue_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -530,6 +598,7 @@ export type EventsFilter = {
 export type EventsLinkingCollections = {
   __typename?: 'EventsLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  entryCursorCollection?: Maybe<EntryCursorCollection>;
 };
 
 
@@ -538,6 +607,16 @@ export type EventsLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type EventsLinkingCollectionsEntryCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -564,8 +643,12 @@ export enum EventsOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
   TicketLinkAsc = 'ticketLink_ASC',
   TicketLinkDesc = 'ticketLink_DESC',
+  VenueAddressAsc = 'venueAddress_ASC',
+  VenueAddressDesc = 'venueAddress_DESC',
   VenueLinkAsc = 'venueLink_ASC',
   VenueLinkDesc = 'venueLink_DESC',
+  VenueMapLinkAsc = 'venueMapLink_ASC',
+  VenueMapLinkDesc = 'venueMapLink_DESC',
   VenueAsc = 'venue_ASC',
   VenueDesc = 'venue_DESC',
   WorkshopTitelAsc = 'workshopTitel_ASC',
@@ -709,6 +792,13 @@ export type GeneralContentCollection = {
   total: Scalars['Int']['output'];
 };
 
+export type GeneralContentCursorCollection = {
+  __typename?: 'GeneralContentCursorCollection';
+  items: Array<Maybe<GeneralContent>>;
+  limit: Scalars['Int']['output'];
+  pages: CursorPages;
+};
+
 export type GeneralContentFilter = {
   AND?: InputMaybe<Array<InputMaybe<GeneralContentFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<GeneralContentFilter>>>;
@@ -817,6 +907,7 @@ export type GeneralContentFilter = {
 export type GeneralContentLinkingCollections = {
   __typename?: 'GeneralContentLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  entryCursorCollection?: Maybe<EntryCursorCollection>;
 };
 
 
@@ -825,6 +916,16 @@ export type GeneralContentLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type GeneralContentLinkingCollectionsEntryCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -998,6 +1099,13 @@ export type LegalPagesCollection = {
   total: Scalars['Int']['output'];
 };
 
+export type LegalPagesCursorCollection = {
+  __typename?: 'LegalPagesCursorCollection';
+  items: Array<Maybe<LegalPages>>;
+  limit: Scalars['Int']['output'];
+  pages: CursorPages;
+};
+
 export type LegalPagesFilter = {
   AND?: InputMaybe<Array<InputMaybe<LegalPagesFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<LegalPagesFilter>>>;
@@ -1029,6 +1137,7 @@ export type LegalPagesFilter = {
 export type LegalPagesLinkingCollections = {
   __typename?: 'LegalPagesLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  entryCursorCollection?: Maybe<EntryCursorCollection>;
 };
 
 
@@ -1037,6 +1146,16 @@ export type LegalPagesLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type LegalPagesLinkingCollectionsEntryCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1108,6 +1227,13 @@ export type LexikonCollection = {
   total: Scalars['Int']['output'];
 };
 
+export type LexikonCursorCollection = {
+  __typename?: 'LexikonCursorCollection';
+  items: Array<Maybe<Lexikon>>;
+  limit: Scalars['Int']['output'];
+  pages: CursorPages;
+};
+
 export type LexikonFilter = {
   AND?: InputMaybe<Array<InputMaybe<LexikonFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<LexikonFilter>>>;
@@ -1148,6 +1274,7 @@ export type LexikonFilter = {
 export type LexikonLinkingCollections = {
   __typename?: 'LexikonLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  entryCursorCollection?: Maybe<EntryCursorCollection>;
 };
 
 
@@ -1156,6 +1283,16 @@ export type LexikonLinkingCollectionsEntryCollectionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type LexikonLinkingCollectionsEntryCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1182,15 +1319,21 @@ export type Query = {
   _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  assetCursorCollection?: Maybe<AssetCursorCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  entryCursorCollection?: Maybe<EntryCursorCollection>;
   events?: Maybe<Events>;
   eventsCollection?: Maybe<EventsCollection>;
+  eventsCursorCollection?: Maybe<EventsCursorCollection>;
   generalContent?: Maybe<GeneralContent>;
   generalContentCollection?: Maybe<GeneralContentCollection>;
+  generalContentCursorCollection?: Maybe<GeneralContentCursorCollection>;
   legalPages?: Maybe<LegalPages>;
   legalPagesCollection?: Maybe<LegalPagesCollection>;
+  legalPagesCursorCollection?: Maybe<LegalPagesCursorCollection>;
   lexikon?: Maybe<Lexikon>;
   lexikonCollection?: Maybe<LexikonCollection>;
+  lexikonCursorCollection?: Maybe<LexikonCursorCollection>;
 };
 
 
@@ -1229,12 +1372,36 @@ export type QueryAssetCollectionArgs = {
 };
 
 
+export type QueryAssetCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<AssetOrder>>>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<AssetFilter>;
+};
+
+
 export type QueryEntryCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   order?: InputMaybe<Array<InputMaybe<EntryOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryEntryCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<EntryOrder>>>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<EntryFilter>;
 };
@@ -1259,6 +1426,18 @@ export type QueryEventsCollectionArgs = {
 };
 
 
+export type QueryEventsCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<EventsOrder>>>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<EventsFilter>;
+};
+
+
 export type QueryGeneralContentArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1273,6 +1452,18 @@ export type QueryGeneralContentCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<GeneralContentOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<GeneralContentFilter>;
+};
+
+
+export type QueryGeneralContentCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<GeneralContentOrder>>>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<GeneralContentFilter>;
 };
@@ -1297,6 +1488,18 @@ export type QueryLegalPagesCollectionArgs = {
 };
 
 
+export type QueryLegalPagesCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<LegalPagesOrder>>>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<LegalPagesFilter>;
+};
+
+
 export type QueryLexikonArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1311,6 +1514,18 @@ export type QueryLexikonCollectionArgs = {
   order?: InputMaybe<Array<InputMaybe<LexikonOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<LexikonFilter>;
+};
+
+
+export type QueryLexikonCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<LexikonOrder>>>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<LexikonFilter>;
 };

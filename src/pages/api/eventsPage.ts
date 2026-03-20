@@ -17,6 +17,8 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
                 optionaleNotiz
                 venue
                 venueLink
+                venueMapLink
+                venueAddress
                 ticketLink
                 workshopTitel
                 workshopZeit

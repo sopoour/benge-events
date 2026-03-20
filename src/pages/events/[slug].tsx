@@ -56,18 +56,14 @@ const Event: FC = () => {
             {lang === 'en' ? 'Event on' : 'Event am'}{' '}
             {event?.datum ? ISOToDate(event.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
           </Typography>
-          <Flex
-            justify={'space-between'}
-            style={{ marginBottom: '32px' }}
-            direction={{ base: 'column', sm: 'row' }}
-            gap="md"
-          >
+          <Flex justify={'space-between'} direction={{ base: 'column', sm: 'row' }} gap="md">
             <Typography fontSize="28px" fontSizeSm="32px">
               Venue:{' '}
               <StyledLink href={event?.venueLink || ''} target="_blank">
                 {event?.venue}
               </StyledLink>
             </Typography>
+
             {event?.ticketLink && (
               <Button
                 href={event?.ticketLink}
@@ -78,6 +74,13 @@ const Event: FC = () => {
               />
             )}
           </Flex>
+          <StyledLink
+            href={event?.venueMapLink || ''}
+            target="_blank"
+            style={{ fontSize: '16px', marginBottom: '32px', marginTop: '-16px' }}
+          >
+            {event?.venueAddress}
+          </StyledLink>
           {eventDetails.map((event, index) => (
             <span key={event.title + 'detailsContainer' + index}>
               <Typography fontSize="24px" fontSizeSm="28px">
