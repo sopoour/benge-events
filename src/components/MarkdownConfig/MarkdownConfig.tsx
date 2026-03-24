@@ -59,6 +59,12 @@ const MarkdownSettings = styled.div`
     height: unset;
   }
 
+  #side-by-side {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
   ${({ theme }) => theme.media('sm')`
       h1 {
         font-size: 48px;
@@ -82,6 +88,14 @@ const MarkdownSettings = styled.div`
 
        p {
         font-size: 18px;
+      }
+
+      #side-by-side {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap:40px;
+        align-items: center;
+        margin: 0 auto;
       }
     `}
 `;

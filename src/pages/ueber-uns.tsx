@@ -15,12 +15,6 @@ const StyledMarkdown = styled(MarkdownConfig)`
     margin-bottom: 40px;
   }
 
-  #ueber-uns-foto {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
   #about-photo {
     display: flex;
     flex-direction: column;
@@ -31,16 +25,6 @@ const StyledMarkdown = styled(MarkdownConfig)`
       font-size: 12px;
     }
   }
-
-  ${({ theme }) => theme.media('sm')`
-      #ueber-uns-foto {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
-        gap:40px;
-        align-items: center;
-        margin: 0 auto;
-      }
-    `}
 `;
 
 const UeberUns: FC = () => {
