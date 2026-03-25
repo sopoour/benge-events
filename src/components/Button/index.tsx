@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const ButtonStyle = styled(Link)<{ hoverColor?: string; $width?: string }>`
   width: 100%;
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.colors.bg.default};
+  border: 1px solid ${({ theme }) => theme.colors.bg.default};
   padding: 8px 16px;
   text-align: center;
   font-size: 16px;

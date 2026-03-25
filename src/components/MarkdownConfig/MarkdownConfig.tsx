@@ -97,13 +97,11 @@ const MarkdownSettings = styled.div`
         align-items: center;
         margin: 0 auto;
 
-        img {
-          max-height: 490px;
-          width: auto;
-        }
+        
       }
 
       .side-by-side-reverse {
+      grid-template-columns: 1fr 1.5fr;
         > span:first-child {
             order: 2;
         }
