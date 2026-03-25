@@ -22,12 +22,16 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
                 ticketLink
                 workshopTitel
                 workshopZeit
+                workshopLink
+                workshopHost
                 workshopBeschreibung
                 konzertTitel
                 konzertZeit
+                konzertLink
                 konzertBeschreibung
                 djTitel
                 djZeit
+                djLink
                 djBeschreibung
               }
             }

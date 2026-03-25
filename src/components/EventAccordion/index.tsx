@@ -106,13 +106,7 @@ const EventAccordion: FC<Props> = ({
             text={lang === 'en' ? 'Find out more' : 'Erfahre mehr'}
             newTab
           />
-          {event?.ticketLink && (
-            <TicketButton
-              href={event?.ticketLink}
-              newTab
-              text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-            />
-          )}
+          {event?.ticketLink && <TicketButton href={event?.ticketLink} newTab />}
         </ButtonContainer>
       </DetailsContainer>
     </MobileAccordion>

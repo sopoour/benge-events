@@ -59,7 +59,7 @@ const MarkdownSettings = styled.div`
     height: unset;
   }
 
-  #side-by-side {
+  .side-by-side {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0;
@@ -90,12 +90,24 @@ const MarkdownSettings = styled.div`
         font-size: 18px;
       }
 
-      #side-by-side {
+      .side-by-side {
         display: grid;
         grid-template-columns: 1.5fr 1fr;
         gap:40px;
         align-items: center;
         margin: 0 auto;
+
+        
+      }
+
+      .side-by-side-reverse {
+      grid-template-columns: 1fr 1.5fr;
+        > span:first-child {
+            order: 2;
+        }
+        > span:nth-child(2) {
+            order: 1;
+        }
       }
     `}
 `;

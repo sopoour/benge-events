@@ -7,22 +7,24 @@ import styled from 'styled-components';
 const ButtonStyle = styled(Link)<{ hoverColor?: string; $width?: string }>`
   width: 100%;
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.colors.bg.default};
+  border: 1px solid ${({ theme }) => theme.colors.bg.default};
   padding: 8px 16px;
   text-align: center;
-  background-color: white;
-  color: ${({ theme }) => theme.colors.fg.contrast};
+  font-size: 16px;
+  align-content: center;
+  background-color: ${({ theme }) => theme.colors.accent.lightPink};
+  color: white;
   font-weight: 700;
   ${fastTransition};
   font-family: ${header.style.fontFamily};
 
   &:hover {
-    background-color: ${({ theme, hoverColor }) => hoverColor || theme.colors.fg.inactive};
-    color: ${({ theme, hoverColor }) =>
-      hoverColor ? theme.colors.fg.default : theme.colors.fg.contrast};
+    background-color: ${({ theme, hoverColor }) => hoverColor || '#c46ec7'};
+    color: ${({ theme }) => theme.colors.fg.default};
   }
   ${({ theme, $width }) => theme.media('sm')`
     width: ${$width || '100%'};
+    font-size: 20px;
   `}
 `;
 
@@ -30,7 +32,7 @@ type Props = {
   href?: string;
   isSubmitButton?: boolean;
   newTab?: boolean;
-  text: string;
+  text?: string;
   hoverColor?: string;
   width?: string;
   className?: string;
@@ -39,7 +41,7 @@ type Props = {
 const Button: FC<Props> = ({
   href,
   newTab = false,
-  text,
+  text = 'Ticket',
   isSubmitButton = false,
   hoverColor,
   width,

@@ -14,7 +14,7 @@ const theme = {
     },
     accent: {
       pink: '#fa56a8',
-      lightPink: '#D57ED8',
+      lightPink: '#d577d8',
       orange: '#FF4F09',
       green: '#30FF7F',
     },
