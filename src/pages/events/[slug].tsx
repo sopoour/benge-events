@@ -17,6 +17,10 @@ import Link from 'next/link';
 import { header } from '@app/styles/fonts';
 import eventDetailsArray from '@app/utils/eventdetails';
 import SeoHead from '@app/components/SeoHead';
+import { Bubble } from '@app/components/Landing/styles';
+import useBubbleAnimation from '@app/hooks/useBubbleAnimation';
+import { useMedia } from '@app/hooks/useMedia';
+import { Breakpoints } from '@app/styles/media';
 
 const StyledLink = styled(Link)`
   font-size: 28px;
@@ -31,14 +35,25 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const EventSection = styled(Section)`
+  gap: 48px;
+
+  ${({ theme }) => theme.media('sm')`
+    gap: 120px;
+  `}
+`;
+
 const Event: FC = () => {
   const lang = useLang();
   const { data, isLoading } = useSWR<EventsPage | null>(`/api/eventsPage?lang=${lang}`, fetcher);
   const router = useRouter();
   const { slug } = router.query;
+  const isDesktop = useMedia(Breakpoints.md);
 
   const event = data?.eventsCollection.items.find((e) => e?.datum.split('T')[0] === slug);
   const eventDetails = eventDetailsArray(event);
+
+  useBubbleAnimation(true);
 
   if (isLoading) {
     return <LoadingSkeletonGeneral />;
@@ -50,13 +65,14 @@ const Event: FC = () => {
           event?.datum && ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De')
         }`}
       />
-      <Section id={'event' + event?.datum}>
+      <EventSection id={'event' + event?.datum}>
         <>
-          <Typography as="h1" fontSize="36px" fontSizeSm="48px" style={{ marginBottom: '24px' }}>
-            {lang === 'en' ? 'Event on' : 'Event am'}{' '}
-            {event?.datum ? ISOToDate(event.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
-          </Typography>
-          <Flex justify={'space-between'} direction={{ base: 'column', sm: 'row' }} gap="md">
+          <Flex direction={'column'} gap={'sm'}>
+            <Typography as="h1" fontSize="36px" fontSizeSm="48px">
+              {lang === 'en' ? 'Event on' : 'Event am'}{' '}
+              {event?.datum ? ISOToDate(event.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
+            </Typography>
+
             <Typography fontSize="28px" fontSizeSm="32px">
               Venue:{' '}
               <StyledLink href={event?.venueLink || ''} target="_blank">
@@ -64,38 +80,54 @@ const Event: FC = () => {
               </StyledLink>
             </Typography>
 
-            {event?.ticketLink && (
-              <Button
-                href={event?.ticketLink}
-                newTab
-                width="25%"
-                hoverColor={theme.colors.bg.default}
-                text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-              />
+            <StyledLink
+              href={event?.venueMapLink || ''}
+              target="_blank"
+              style={{
+                fontSize: '18px',
+
+                marginTop: '-16px',
+                width: 'max-content',
+              }}
+            >
+              {event?.venueAddress}
+            </StyledLink>
+            {isDesktop ? (
+              <Bubble
+                href={event?.ticketLink || ''}
+                target="_blank"
+                className="bubble"
+                style={{
+                  top: '0px',
+                  right: '0px',
+                  width: '400px',
+                  height: '400px',
+                  opacity: 1,
+                }}
+              >
+                <Typography fontSize="64px">Ticket</Typography>
+              </Bubble>
+            ) : (
+              <Button newTab href={event?.ticketLink || ''} text="Ticket" />
             )}
           </Flex>
-          <StyledLink
-            href={event?.venueMapLink || ''}
-            target="_blank"
-            style={{ fontSize: '16px', marginBottom: '32px', marginTop: '-16px' }}
-          >
-            {event?.venueAddress}
-          </StyledLink>
-          {eventDetails.map((event, index) => (
-            <span key={event.title + 'detailsContainer' + index}>
-              <Typography fontSize="24px" fontSizeSm="28px">
-                {lang === 'en' ? event.titleEn : event.title}: {event.detail}
-              </Typography>
-              {event.time && (
-                <Typography fontSize="18px" fontSizeSm="20px">
-                  {event.time}
+          <Flex direction={'column'} gap={'48px'}>
+            {eventDetails.map((event, index) => (
+              <span key={event.title + 'detailsContainer' + index}>
+                <Typography fontSize="24px" fontSizeSm="28px">
+                  {lang === 'en' ? event.titleEn : event.title}: {event.detail}
                 </Typography>
-              )}
-              <MarkdownConfig content={event.description as string} />
-            </span>
-          ))}
+                {event.time && (
+                  <Typography fontSize="18px" fontSizeSm="20px">
+                    {event.time}
+                  </Typography>
+                )}
+                <MarkdownConfig content={event.description as string} />
+              </span>
+            ))}
+          </Flex>
         </>
-      </Section>
+      </EventSection>
     </>
   );
 };

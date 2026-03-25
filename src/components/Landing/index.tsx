@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import {
   Bubble,
   Content,
@@ -6,7 +6,6 @@ import {
   LangToggleLanding,
   LinkContainerLanding,
 } from './styles';
-import { gsap } from 'gsap';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
 import Image from 'next/image';
@@ -19,6 +18,7 @@ import MobileBubbles from './MobileBubbles';
 import { normalizeDate } from '@app/utils/formatDate';
 import { navItems } from '../layout/Navigation';
 import useLang from '@app/hooks/useLang';
+import useBubbleAnimation from '@app/hooks/useBubbleAnimation';
 
 export type Bubbles = {
   name: string;
@@ -39,73 +39,12 @@ const addedInfo = [
 ];
 const bubbles: Bubbles[] = navItems.map((item, i) => ({ ...item, ...addedInfo[i] }));
 
-const rand = (min: number, max: number) => Math.random() * (max - min) + min;
-
 const Landing: FC = () => {
   const isDesktop = useMedia(Breakpoints.md);
   const lang = useLang();
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      const bubblesDOM = gsap.utils.toArray('.bubble');
-      bubblesDOM.forEach((bubble) => {
-        if (!bubble) return;
 
-        const tl = gsap.timeline();
-        const floatY = isDesktop ? rand(10, 50) : rand(5, 10);
-        const floatX = isDesktop ? rand(-30, 50) : rand(-20, 20);
-        const duration = rand(5, 9);
-        const delay = rand(0, 0);
+  useBubbleAnimation();
 
-        // Appear Animation
-        tl.fromTo(
-          '#logo',
-          {
-            scale: 0.8,
-          },
-          { scale: 1 },
-        )
-          .fromTo(
-            '#langToggle',
-            {
-              opacity: 0,
-            },
-            { opacity: 1 },
-          )
-          .fromTo(
-            '#linkContainerLanding',
-            {
-              opacity: 0,
-            },
-            { opacity: 1 },
-          )
-          .fromTo(
-            bubble,
-            { scale: 0.5, opacity: 0 },
-            {
-              scale: 1,
-              opacity: 1,
-              duration: 2,
-              delay,
-              ease: 'power3.out',
-              onComplete: () => {
-                // Floating Loop
-                gsap.to(bubble, {
-                  y: `+=${floatY}`,
-                  x: `+=${floatX}`,
-                  duration,
-                  repeat: -1,
-                  yoyo: true,
-                  ease: 'sine.inOut',
-                  delay,
-                });
-              },
-            },
-          );
-      });
-    });
-
-    return () => ctx.revert(); // cleanup
-  }, [isDesktop]);
   const today = new Date();
   const { data, isLoading } = useSWR<Homepage | null>(`/api/homepage?lang=${lang}`, fetcher);
   const upcomingEvent = data?.eventsCollection?.items

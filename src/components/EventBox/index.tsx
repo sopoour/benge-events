@@ -96,14 +96,7 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
             </>
           ))}
         </EventTable>
-        {event?.ticketLink && (
-          <Button
-            href={event?.ticketLink}
-            newTab
-            hoverColor={theme.colors.bg.default}
-            text={lang === 'en' ? 'Reserve a ticket' : 'Ticket reservieren'}
-          />
-        )}
+        {event?.ticketLink && <Button href={event?.ticketLink} newTab />}
       </OverviewContainer>
     </EventBoxContent>
   );
