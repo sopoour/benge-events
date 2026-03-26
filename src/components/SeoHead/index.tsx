@@ -11,8 +11,8 @@ type Props = {
 };
 
 const SeoHead: FC<Props> = ({
-  title = 'BENGE - FLINTA Events',
-  description = 'Eventreihe von FLINTA für FLINTA - Workshop, Live Musik und DJ',
+  title = 'BENGE - FLINTA* Events',
+  description = 'Eventreihe von FLINTA* für FLINTA* - Workshop, Live Musik und DJ',
   type = 'website',
   children,
 }) => {
