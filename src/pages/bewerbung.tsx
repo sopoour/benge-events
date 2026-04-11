@@ -29,16 +29,6 @@ const Bewerbung: FC = () => {
             {data?.bewerbungHeadline}
           </Typography>
           <MarkdownConfig content={data?.bewerbungDescription as string} />
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSeGpKTUxHHeAc7j3Axi7VH3Rz5NNDIXm2S_K96onzGPRHWI_Q/viewform?embedded=true"
-            width="100%"
-            height="1500"
-            frameBorder={0}
-            marginHeight={0}
-            marginWidth={0}
-          >
-            Wird geladen…
-          </iframe>
         </>
       </Section>
     </>
