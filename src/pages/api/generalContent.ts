@@ -11,10 +11,6 @@ export default async function getGeneralContent(req: NextApiRequest, res: NextAp
         generalContent(id: "2jtBnER7xiNejTl3cAwSlk", locale: $locale) {
             aboutHeadline
             aboutText
-            awarenessHeadline
-            awarenessDescription
-            lexikonHeadline
-            lexikonDescription
             feedbackHeadline
             feedbackDescription
             bewerbungHeadline

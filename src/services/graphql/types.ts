@@ -230,6 +230,130 @@ export enum AssetOrder {
   WidthDesc = 'width_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/awareness) */
+export type Awareness = Entry & _Node & {
+  __typename?: 'Awareness';
+  _id: Scalars['ID']['output'];
+  beschreibung?: Maybe<Scalars['String']['output']>;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<AwarenessLinkingCollections>;
+  orderNumber?: Maybe<Scalars['Int']['output']>;
+  sys: Sys;
+  titel?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/awareness) */
+export type AwarenessBeschreibungArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/awareness) */
+export type AwarenessLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/awareness) */
+export type AwarenessOrderNumberArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/awareness) */
+export type AwarenessTitelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type AwarenessCollection = {
+  __typename?: 'AwarenessCollection';
+  items: Array<Maybe<Awareness>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type AwarenessCursorCollection = {
+  __typename?: 'AwarenessCursorCollection';
+  items: Array<Maybe<Awareness>>;
+  limit: Scalars['Int']['output'];
+  pages: CursorPages;
+};
+
+export type AwarenessFilter = {
+  AND?: InputMaybe<Array<InputMaybe<AwarenessFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<AwarenessFilter>>>;
+  beschreibung?: InputMaybe<Scalars['String']['input']>;
+  beschreibung_contains?: InputMaybe<Scalars['String']['input']>;
+  beschreibung_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  beschreibung_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  beschreibung_not?: InputMaybe<Scalars['String']['input']>;
+  beschreibung_not_contains?: InputMaybe<Scalars['String']['input']>;
+  beschreibung_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  orderNumber?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  orderNumber_gt?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_gte?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  orderNumber_lt?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_lte?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_not?: InputMaybe<Scalars['Int']['input']>;
+  orderNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  titel?: InputMaybe<Scalars['String']['input']>;
+  titel_contains?: InputMaybe<Scalars['String']['input']>;
+  titel_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  titel_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  titel_not?: InputMaybe<Scalars['String']['input']>;
+  titel_not_contains?: InputMaybe<Scalars['String']['input']>;
+  titel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type AwarenessLinkingCollections = {
+  __typename?: 'AwarenessLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  entryCursorCollection?: Maybe<EntryCursorCollection>;
+};
+
+
+export type AwarenessLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type AwarenessLinkingCollectionsEntryCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum AwarenessOrder {
+  OrderNumberAsc = 'orderNumber_ASC',
+  OrderNumberDesc = 'orderNumber_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitelAsc = 'titel_ASC',
+  TitelDesc = 'titel_DESC'
+}
+
 export type ContentfulMetadata = {
   __typename?: 'ContentfulMetadata';
   concepts: Array<Maybe<TaxonomyConcept>>;
@@ -1388,6 +1512,9 @@ export type Query = {
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
   assetCursorCollection?: Maybe<AssetCursorCollection>;
+  awareness?: Maybe<Awareness>;
+  awarenessCollection?: Maybe<AwarenessCollection>;
+  awarenessCursorCollection?: Maybe<AwarenessCursorCollection>;
   entryCollection?: Maybe<EntryCollection>;
   entryCursorCollection?: Maybe<EntryCursorCollection>;
   events?: Maybe<Events>;
@@ -1449,6 +1576,37 @@ export type QueryAssetCursorCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AssetFilter>;
+};
+
+
+export type QueryAwarenessArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryAwarenessCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<AwarenessOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<AwarenessFilter>;
+};
+
+
+export type QueryAwarenessCursorCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<AwarenessOrder>>>;
+  pageNext?: InputMaybe<Scalars['String']['input']>;
+  pagePrev?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<AwarenessFilter>;
 };
 
 
