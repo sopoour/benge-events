@@ -88,7 +88,7 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
                   <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
                   {event?.elements[0]?.time && <ColTime>{event?.elements[0]?.time}</ColTime>}
                   {event.elements.map((element) => (
-                    <EventTitle fontSize="14px" fontSizeSm="16px">
+                    <EventTitle key={element?.detail} fontSize="14px" fontSizeSm="16px">
                       {element?.detail}
                     </EventTitle>
                   ))}
