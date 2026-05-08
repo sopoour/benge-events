@@ -132,7 +132,7 @@ const Event: FC = () => {
                 </Typography>
                 <Flex direction={'column'} gap={'52px'}>
                   {event.elements.map((element) => (
-                    <Flex direction={'column'} gap={'0px'}>
+                    <Flex direction={'column'} gap={'0px'} key={element?.detail + 'tags'}>
                       <Flex
                         gap={'sm'}
                         style={{ marginTop: '12px', marginBottom: '16px' }}
