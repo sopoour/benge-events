@@ -29,10 +29,22 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
                 konzertZeit
                 konzertLink
                 konzertBeschreibung
+                 konzert2Titel
+                konzert2Zeit
+                konzert2Link
+                konzert2Beschreibung
                 djTitel
                 djZeit
                 djLink
                 djBeschreibung
+                dj2Titel
+                dj2Zeit
+                dj2Link
+                dj2Beschreibung
+                dj3Titel
+                dj3Zeit
+                dj3Link
+                dj3Beschreibung
               }
             }
           }`,

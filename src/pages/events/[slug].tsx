@@ -130,18 +130,28 @@ const Event: FC = () => {
                 <Typography fontSize="32px" fontSizeSm="40px">
                   {lang === 'en' ? event.titleEn : event.title}
                 </Typography>
-                <Flex gap={'sm'} style={{ marginTop: '12px', marginBottom: '16px' }} wrap={'wrap'}>
-                  {event.time && <Tag>{event.time}</Tag>}
-                  <Tag>{event.detail}</Tag>
-                  {event.host && <Tag>{event.host}</Tag>}
-                  {event.link && (
-                    <TagLinked as={'a'} href={event.link} target="_blank">
-                      Info
-                    </TagLinked>
-                  )}
-                </Flex>
+                <Flex direction={'column'} gap={'52px'}>
+                  {event.elements.map((element) => (
+                    <Flex direction={'column'} gap={'0px'} key={element?.detail + 'tags'}>
+                      <Flex
+                        gap={'sm'}
+                        style={{ marginTop: '12px', marginBottom: '16px' }}
+                        wrap={'wrap'}
+                      >
+                        {element?.time && <Tag>{element.time}</Tag>}
+                        <Tag>{element?.detail}</Tag>
+                        {element?.host && <Tag>{element?.host}</Tag>}
+                        {element?.link && (
+                          <TagLinked as={'a'} href={element.link} target="_blank">
+                            Info
+                          </TagLinked>
+                        )}
+                      </Flex>
 
-                <MarkdownConfig content={event.description as string} />
+                      <MarkdownConfig content={element?.description as string} />
+                    </Flex>
+                  ))}
+                </Flex>
               </span>
             ))}
           </Flex>

@@ -62,15 +62,17 @@ const EventAccordion: FC<Props> = ({
             <Details>
               {eventDetails.map((event) => (
                 <>
-                  {event.detail && (
-                    <Typography
-                      key={event.title + 'pastEventsDetails'}
-                      fontSize="16px"
-                      fontSizeSm="18px"
-                    >
-                      {lang === 'en' ? event.titleEn : event.title}: {event.detail}
-                    </Typography>
-                  )}
+                  <Typography
+                    key={event.title + 'pastEventsDetails'}
+                    fontSize="16px"
+                    fontSizeSm="18px"
+                  >
+                    {lang === 'en' ? event.titleEn : event.title}:{' '}
+                    {event.elements
+                      .map((element) => element?.detail)
+                      .filter((e) => typeof e === 'string')
+                      .join(', ')}
+                  </Typography>
                 </>
               ))}
             </Details>
@@ -90,14 +92,15 @@ const EventAccordion: FC<Props> = ({
         )}
         {eventDetails.map((event) => (
           <>
-            {event.detail && (
-              <Typography fontSize="16px" fontSizeSm="18px">
-                {lang === 'en' ? event.titleEn : event.title}:{' '}
-                <StyledLink href={subpage} target="_blank">
-                  {event.detail}
-                </StyledLink>
-              </Typography>
-            )}
+            <Typography fontSize="16px" fontSizeSm="18px">
+              {lang === 'en' ? event.titleEn : event.title}:{' '}
+              <StyledLink href={subpage} target="_blank">
+                {event.elements
+                  .map((element) => element?.detail)
+                  .filter((e) => typeof e === 'string')
+                  .join(', ')}
+              </StyledLink>
+            </Typography>
           </>
         ))}
         <ButtonContainer>

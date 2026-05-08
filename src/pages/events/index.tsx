@@ -37,7 +37,7 @@ const EventBoxContainer = styled.div`
 `;
 
 const EventAccordionPast = styled(EventAccordion)`
-  display: flex !important;
+  display: block !important;
 `;
 
 const SkeletonContent = styled.div`

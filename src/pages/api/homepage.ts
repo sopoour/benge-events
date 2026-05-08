@@ -18,8 +18,14 @@ export default async function getHomepage(req: NextApiRequest, res: NextApiRespo
                 workshopZeit
                 konzertTitel
                 konzertZeit
+                konzert2Titel
+                konzert2Zeit
                 djTitel
                 djZeit
+                dj2Titel
+                dj2Zeit
+                dj3Titel
+                dj3Zeit
                 ticketLink
               }
             }
