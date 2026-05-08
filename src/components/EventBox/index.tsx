@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import Typography from '../Typography/Typography';
 import {
   ColTitle,
@@ -16,7 +16,6 @@ import { ISOToDate } from '@app/utils/formatDate';
 import LoadingSkeleton from './elements/LoadingSkeleton';
 import useLang from '@app/hooks/useLang';
 import Button from '../Button';
-import theme from '@app/styles/theme';
 import eventDetailsArray from '@app/utils/eventdetails';
 
 type Props = {
@@ -77,20 +76,22 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
             </Typography>
           )}
         </VenueBox>
-        <EventTable gridnumber={eventDetails.filter((item) => item.detail).length}>
+        <EventTable gridnumber={event?.datum === '2026-06-12T12:00:00.000Z' ? 2 : 3}>
           {eventDetails.map((event, index) => (
             <>
-              {event.detail && (
+              {event.elements.find((e) => !!e?.detail) && (
                 <EventCol
                   key={event.title + event.titleEn + index}
                   href={showDescriptionContent}
                   target="_blank"
                 >
                   <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
-                  {event.time && <ColTime>{event.time}</ColTime>}
-                  <EventTitle fontSize="14px" fontSizeSm="16px">
-                    {event.detail}
-                  </EventTitle>
+                  {event?.elements[0]?.time && <ColTime>{event?.elements[0]?.time}</ColTime>}
+                  {event.elements.map((element) => (
+                    <EventTitle fontSize="14px" fontSizeSm="16px">
+                      {element?.detail}
+                    </EventTitle>
+                  ))}
                 </EventCol>
               )}
             </>

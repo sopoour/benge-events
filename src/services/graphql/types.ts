@@ -446,10 +446,22 @@ export type Events = Entry & _Node & {
   _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulMetadata;
   datum?: Maybe<Scalars['DateTime']['output']>;
+  dj2Beschreibung?: Maybe<Scalars['String']['output']>;
+  dj2Link?: Maybe<Scalars['String']['output']>;
+  dj2Titel?: Maybe<Scalars['String']['output']>;
+  dj2Zeit?: Maybe<Scalars['String']['output']>;
+  dj3Beschreibung?: Maybe<Scalars['String']['output']>;
+  dj3Link?: Maybe<Scalars['String']['output']>;
+  dj3Titel?: Maybe<Scalars['String']['output']>;
+  dj3Zeit?: Maybe<Scalars['String']['output']>;
   djBeschreibung?: Maybe<Scalars['String']['output']>;
   djLink?: Maybe<Scalars['String']['output']>;
   djTitel?: Maybe<Scalars['String']['output']>;
   djZeit?: Maybe<Scalars['String']['output']>;
+  konzert2Beschreibung?: Maybe<Scalars['String']['output']>;
+  konzert2Link?: Maybe<Scalars['String']['output']>;
+  konzert2Titel?: Maybe<Scalars['String']['output']>;
+  konzert2Zeit?: Maybe<Scalars['String']['output']>;
   konzertBeschreibung?: Maybe<Scalars['String']['output']>;
   konzertLink?: Maybe<Scalars['String']['output']>;
   konzertTitel?: Maybe<Scalars['String']['output']>;
@@ -478,6 +490,62 @@ export type EventsDatumArgs = {
 
 
 /** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj2BeschreibungArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj2LinkArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj2TitelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj2ZeitArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj3BeschreibungArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj3LinkArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj3TitelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDj3ZeitArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsDjBeschreibungArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -500,6 +568,34 @@ export type EventsDjTitelArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsDjZeitArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsKonzert2BeschreibungArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsKonzert2LinkArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsKonzert2TitelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsKonzert2ZeitArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -643,6 +739,62 @@ export type EventsFilter = {
   datum_lte?: InputMaybe<Scalars['DateTime']['input']>;
   datum_not?: InputMaybe<Scalars['DateTime']['input']>;
   datum_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  dj2Beschreibung?: InputMaybe<Scalars['String']['input']>;
+  dj2Beschreibung_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Beschreibung_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj2Beschreibung_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj2Beschreibung_not?: InputMaybe<Scalars['String']['input']>;
+  dj2Beschreibung_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Beschreibung_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj2Link?: InputMaybe<Scalars['String']['input']>;
+  dj2Link_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Link_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj2Link_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj2Link_not?: InputMaybe<Scalars['String']['input']>;
+  dj2Link_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj2Titel?: InputMaybe<Scalars['String']['input']>;
+  dj2Titel_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Titel_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj2Titel_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj2Titel_not?: InputMaybe<Scalars['String']['input']>;
+  dj2Titel_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Titel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj2Zeit?: InputMaybe<Scalars['String']['input']>;
+  dj2Zeit_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Zeit_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj2Zeit_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj2Zeit_not?: InputMaybe<Scalars['String']['input']>;
+  dj2Zeit_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj2Zeit_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Beschreibung?: InputMaybe<Scalars['String']['input']>;
+  dj3Beschreibung_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Beschreibung_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj3Beschreibung_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Beschreibung_not?: InputMaybe<Scalars['String']['input']>;
+  dj3Beschreibung_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Beschreibung_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Link?: InputMaybe<Scalars['String']['input']>;
+  dj3Link_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Link_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj3Link_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Link_not?: InputMaybe<Scalars['String']['input']>;
+  dj3Link_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Titel?: InputMaybe<Scalars['String']['input']>;
+  dj3Titel_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Titel_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj3Titel_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Titel_not?: InputMaybe<Scalars['String']['input']>;
+  dj3Titel_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Titel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Zeit?: InputMaybe<Scalars['String']['input']>;
+  dj3Zeit_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Zeit_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  dj3Zeit_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  dj3Zeit_not?: InputMaybe<Scalars['String']['input']>;
+  dj3Zeit_not_contains?: InputMaybe<Scalars['String']['input']>;
+  dj3Zeit_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   djBeschreibung?: InputMaybe<Scalars['String']['input']>;
   djBeschreibung_contains?: InputMaybe<Scalars['String']['input']>;
   djBeschreibung_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -671,6 +823,34 @@ export type EventsFilter = {
   djZeit_not?: InputMaybe<Scalars['String']['input']>;
   djZeit_not_contains?: InputMaybe<Scalars['String']['input']>;
   djZeit_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Beschreibung?: InputMaybe<Scalars['String']['input']>;
+  konzert2Beschreibung_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Beschreibung_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  konzert2Beschreibung_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Beschreibung_not?: InputMaybe<Scalars['String']['input']>;
+  konzert2Beschreibung_not_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Beschreibung_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Link?: InputMaybe<Scalars['String']['input']>;
+  konzert2Link_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Link_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  konzert2Link_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Link_not?: InputMaybe<Scalars['String']['input']>;
+  konzert2Link_not_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Titel?: InputMaybe<Scalars['String']['input']>;
+  konzert2Titel_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Titel_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  konzert2Titel_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Titel_not?: InputMaybe<Scalars['String']['input']>;
+  konzert2Titel_not_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Titel_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Zeit?: InputMaybe<Scalars['String']['input']>;
+  konzert2Zeit_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Zeit_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  konzert2Zeit_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  konzert2Zeit_not?: InputMaybe<Scalars['String']['input']>;
+  konzert2Zeit_not_contains?: InputMaybe<Scalars['String']['input']>;
+  konzert2Zeit_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   konzertBeschreibung?: InputMaybe<Scalars['String']['input']>;
   konzertBeschreibung_contains?: InputMaybe<Scalars['String']['input']>;
   konzertBeschreibung_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -807,12 +987,30 @@ export type EventsLinkingCollectionsEntryCursorCollectionArgs = {
 export enum EventsOrder {
   DatumAsc = 'datum_ASC',
   DatumDesc = 'datum_DESC',
+  Dj2LinkAsc = 'dj2Link_ASC',
+  Dj2LinkDesc = 'dj2Link_DESC',
+  Dj2TitelAsc = 'dj2Titel_ASC',
+  Dj2TitelDesc = 'dj2Titel_DESC',
+  Dj2ZeitAsc = 'dj2Zeit_ASC',
+  Dj2ZeitDesc = 'dj2Zeit_DESC',
+  Dj3LinkAsc = 'dj3Link_ASC',
+  Dj3LinkDesc = 'dj3Link_DESC',
+  Dj3TitelAsc = 'dj3Titel_ASC',
+  Dj3TitelDesc = 'dj3Titel_DESC',
+  Dj3ZeitAsc = 'dj3Zeit_ASC',
+  Dj3ZeitDesc = 'dj3Zeit_DESC',
   DjLinkAsc = 'djLink_ASC',
   DjLinkDesc = 'djLink_DESC',
   DjTitelAsc = 'djTitel_ASC',
   DjTitelDesc = 'djTitel_DESC',
   DjZeitAsc = 'djZeit_ASC',
   DjZeitDesc = 'djZeit_DESC',
+  Konzert2LinkAsc = 'konzert2Link_ASC',
+  Konzert2LinkDesc = 'konzert2Link_DESC',
+  Konzert2TitelAsc = 'konzert2Titel_ASC',
+  Konzert2TitelDesc = 'konzert2Titel_DESC',
+  Konzert2ZeitAsc = 'konzert2Zeit_ASC',
+  Konzert2ZeitDesc = 'konzert2Zeit_DESC',
   KonzertLinkAsc = 'konzertLink_ASC',
   KonzertLinkDesc = 'konzertLink_DESC',
   KonzertTitelAsc = 'konzertTitel_ASC',

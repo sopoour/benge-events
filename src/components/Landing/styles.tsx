@@ -87,7 +87,6 @@ export const EventBoxLanding = styled(EventBox)`
   ${({ theme }) => theme.media('sm')`
    margin-top: 40px;
    width: 450px !important;
-  
   `}
 `;
 

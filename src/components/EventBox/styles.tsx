@@ -133,9 +133,6 @@ export const EventTitle = styled(Typography)`
   text-align: center;
   font-family: ${text.style.fontFamily} !important;
   font-weight: 500;
-  ${({ theme }) => theme.media('md')`
-    padding: 24px 8px;
-  `};
 `;
 
 export const EventTable = styled.div<{ gridnumber?: number }>`
