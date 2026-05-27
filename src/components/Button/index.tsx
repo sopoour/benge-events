@@ -36,6 +36,7 @@ type Props = {
   hoverColor?: string;
   width?: string;
   className?: string;
+  id?: string;
 };
 
 const Button: FC<Props> = ({
@@ -46,6 +47,7 @@ const Button: FC<Props> = ({
   hoverColor,
   width,
   className,
+  id,
 }) => {
   return (
     <ButtonStyle
@@ -56,6 +58,7 @@ const Button: FC<Props> = ({
       hoverColor={hoverColor}
       $width={width}
       className={className}
+      id={id || ''}
     >
       {text}
     </ButtonStyle>

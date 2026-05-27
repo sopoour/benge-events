@@ -5,6 +5,7 @@ import { header } from '@app/styles/fonts';
 import EventBox from '../EventBox';
 import LangToggle from '../LangToggle';
 import LinkContainer from '../LinkContainer';
+import Button from '../Button';
 
 export const Content = styled.div`
   position: relative;
@@ -91,9 +92,6 @@ export const EventBoxLanding = styled(EventBox)`
 `;
 
 export const LangToggleLanding = styled(LangToggle)`
-  position: absolute;
-  right: 2%;
-  top: 2%;
   opacity: 0;
 `;
 
@@ -102,4 +100,21 @@ export const LinkContainerLanding = styled(LinkContainer)`
   left: 2%;
   top: 2%;
   opacity: 0;
+`;
+
+export const DonationButton = styled(Button)`
+  opacity: 0;
+  width: max-content;
+  height: max-content;
+  padding: 0px 8px;
+  background-color: ${({ theme }) => theme.colors.bg.default};
+  font-size: 16px;
+`;
+
+export const RightSideNav = styled.span`
+  position: absolute;
+  ${flexRow};
+  gap: 12px;
+  right: 2%;
+  top: 2%;
 `;

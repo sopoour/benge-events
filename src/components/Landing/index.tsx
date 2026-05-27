@@ -2,9 +2,11 @@ import { FC } from 'react';
 import {
   Bubble,
   Content,
+  DonationButton,
   EventBoxLanding,
   LangToggleLanding,
   LinkContainerLanding,
+  RightSideNav,
 } from './styles';
 import Typography from '@app/components/Typography/Typography';
 import Logo from '@app/assets/logo.png';
@@ -19,6 +21,7 @@ import { normalizeDate } from '@app/utils/formatDate';
 import { navItems } from '../layout/Navigation';
 import useLang from '@app/hooks/useLang';
 import useBubbleAnimation from '@app/hooks/useBubbleAnimation';
+import { Flex } from '@mantine/core';
 
 export type Bubbles = {
   name: string;
@@ -53,6 +56,7 @@ const Landing: FC = () => {
 
   return (
     <Content>
+      <Flex justify={'space-between'}></Flex>
       <LinkContainerLanding />
       <Image
         id="logo"
@@ -67,7 +71,16 @@ const Landing: FC = () => {
         width={isDesktop ? Logo.width / 2 : Logo.width / 4}
         height={isDesktop ? Logo.height / 2 : Logo.height / 4}
       />
-      <LangToggleLanding />
+      <RightSideNav>
+        <DonationButton
+          id="donation"
+          href="https://paypal.me/sopoour"
+          text={lang === 'en' ? 'Donate' : 'Spenden'}
+          newTab
+        />
+        <LangToggleLanding />
+      </RightSideNav>
+
       <nav>
         {isDesktop ? (
           bubbles.map((b, i) => (

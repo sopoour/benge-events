@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import Logo from '@app/assets/logo.png';
 import Image from 'next/image';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { flexColumn } from '@app/styles/mixins';
+import { flexColumn, flexRow } from '@app/styles/mixins';
 import useSidebar from '@app/hooks/useSidebar';
 import { useRouter } from 'next/router';
 import { animateScroll } from 'react-scroll';
@@ -14,6 +14,7 @@ import { Breakpoints } from '@app/styles/media';
 import LinkContainer from '@app/components/LinkContainer';
 import LangToggle from '@app/components/LangToggle';
 import useLang from '@app/hooks/useLang';
+import Button from '@app/components/Button';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,6 +119,23 @@ const LinkContainerDesktop = styled(LinkContainer)`
   `}
 `;
 
+const RightSideNav = styled.span`
+  display: none;
+
+  gap: 12px;
+  ${({ theme }) => theme.media('sm')`
+     ${flexRow};
+  `}
+`;
+
+const DonationButton = styled(Button)`
+  width: max-content;
+  height: max-content;
+  padding: 0px 8px;
+  background-color: ${({ theme }) => theme.colors.bg.default};
+  font-size: 16px;
+`;
+
 const Header: React.FC = () => {
   const { open, setOpen } = useSidebar((state) => state);
   const router = useRouter();
@@ -130,7 +148,14 @@ const Header: React.FC = () => {
       <TopNavigation>
         <LinkContainerDesktop />
         <NavigationDesktop />
-        <LangToggle />
+        <RightSideNav>
+          <DonationButton
+            href="https://paypal.me/sopoour"
+            text={lang === 'en' ? 'Donate' : 'Spenden'}
+            newTab
+          />
+          <LangToggle />
+        </RightSideNav>
       </TopNavigation>
 
       <Image

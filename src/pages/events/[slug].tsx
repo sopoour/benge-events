@@ -74,6 +74,8 @@ const Event: FC = () => {
 
   useBubbleAnimation(true);
 
+  console.log(eventDetails);
+
   if (isLoading) {
     return <LoadingSkeletonGeneral />;
   }
@@ -125,35 +127,37 @@ const Event: FC = () => {
             )}
           </Flex>
           <Flex direction={'column'} gap={{ base: '32px', sm: '48px' }}>
-            {eventDetails.map((event, index) => (
-              <span key={event.title + 'detailsContainer' + index}>
-                <Typography fontSize="32px" fontSizeSm="40px">
-                  {lang === 'en' ? event.titleEn : event.title}
-                </Typography>
-                <Flex direction={'column'} gap={'52px'}>
-                  {event.elements.map((element) => (
-                    <Flex direction={'column'} gap={'0px'} key={element?.detail + 'tags'}>
-                      <Flex
-                        gap={'sm'}
-                        style={{ marginTop: '12px', marginBottom: '16px' }}
-                        wrap={'wrap'}
-                      >
-                        {element?.time && <Tag>{element.time}</Tag>}
-                        <Tag>{element?.detail}</Tag>
-                        {element?.host && <Tag>{element?.host}</Tag>}
-                        {element?.link && (
-                          <TagLinked as={'a'} href={element.link} target="_blank">
-                            Info
-                          </TagLinked>
-                        )}
-                      </Flex>
+            {eventDetails
+              .filter((e) => typeof e.title === 'string')
+              .map((event, index) => (
+                <span key={event.title + 'detailsContainer' + index}>
+                  <Typography fontSize="32px" fontSizeSm="40px">
+                    {lang === 'en' ? event.titleEn : event.title}
+                  </Typography>
+                  <Flex direction={'column'} gap={'52px'}>
+                    {event.elements.map((element) => (
+                      <Flex direction={'column'} gap={'0px'} key={element?.detail + 'tags'}>
+                        <Flex
+                          gap={'sm'}
+                          style={{ marginTop: '12px', marginBottom: '16px' }}
+                          wrap={'wrap'}
+                        >
+                          {element?.time && <Tag>{element.time}</Tag>}
+                          <Tag>{element?.detail}</Tag>
+                          {element?.host && <Tag>{element?.host}</Tag>}
+                          {element?.link && (
+                            <TagLinked as={'a'} href={element.link} target="_blank">
+                              Info
+                            </TagLinked>
+                          )}
+                        </Flex>
 
-                      <MarkdownConfig content={element?.description as string} />
-                    </Flex>
-                  ))}
-                </Flex>
-              </span>
-            ))}
+                        <MarkdownConfig content={element?.description as string} />
+                      </Flex>
+                    ))}
+                  </Flex>
+                </span>
+              ))}
           </Flex>
         </>
       </EventSection>

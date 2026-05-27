@@ -39,6 +39,13 @@ const useBubbleAnimation = (plain?: boolean) =>{
               { opacity: 1 },
             )
             .fromTo(
+              '#donation',
+              {
+                opacity: 0,
+              },
+              { opacity: 1 },
+            )
+            .fromTo(
               '#linkContainerLanding',
               {
                 opacity: 0,

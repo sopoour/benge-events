@@ -18,9 +18,13 @@ const NavigationWrapper = styled.nav`
   ${flexColumn};
   gap: 28px;
 
+  ${({ theme }) => theme.media('md')`
+     margin-left: 90px;
+  `}
   ${({ theme }) => theme.media('sm')`
     ${flexRow}
      gap: 16px;
+      margin-left: 40px;
   `}
 `;
 
