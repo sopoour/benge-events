@@ -20,7 +20,6 @@ import { Bubble } from '@app/components/Landing/styles';
 import useBubbleAnimation from '@app/hooks/useBubbleAnimation';
 import { useMedia } from '@app/hooks/useMedia';
 import { Breakpoints } from '@app/styles/media';
-import theme from '@app/styles/theme';
 
 const StyledLink = styled(Link)`
   font-size: 24px;
@@ -72,6 +71,8 @@ const Event: FC = () => {
   const event = data?.eventsCollection.items.find((e) => e?.datum.split('T')[0] === slug);
   const eventDetails = eventDetailsArray(event);
 
+  console.log(eventDetails);
+
   useBubbleAnimation(true);
 
   if (isLoading) {
@@ -111,7 +112,7 @@ const Event: FC = () => {
                 target="_blank"
                 className="bubble"
                 style={{
-                  top: '-3%',
+                  top: '-2%',
                   right: '0px',
                   width: '400px',
                   height: '400px',
@@ -125,35 +126,37 @@ const Event: FC = () => {
             )}
           </Flex>
           <Flex direction={'column'} gap={{ base: '32px', sm: '48px' }}>
-            {eventDetails.map((event, index) => (
-              <span key={event.title + 'detailsContainer' + index}>
-                <Typography fontSize="32px" fontSizeSm="40px">
-                  {lang === 'en' ? event.titleEn : event.title}
-                </Typography>
-                <Flex direction={'column'} gap={'52px'}>
-                  {event.elements.map((element) => (
-                    <Flex direction={'column'} gap={'0px'} key={element?.detail + 'tags'}>
-                      <Flex
-                        gap={'sm'}
-                        style={{ marginTop: '12px', marginBottom: '16px' }}
-                        wrap={'wrap'}
-                      >
-                        {element?.time && <Tag>{element.time}</Tag>}
-                        <Tag>{element?.detail}</Tag>
-                        {element?.host && <Tag>{element?.host}</Tag>}
-                        {element?.link && (
-                          <TagLinked as={'a'} href={element.link} target="_blank">
-                            Info
-                          </TagLinked>
-                        )}
-                      </Flex>
+            {eventDetails
+              .filter((e) => e.elements.find((e) => typeof e?.detail === 'string'))
+              .map((event, index) => (
+                <span key={event.title + 'detailsContainer' + index}>
+                  <Typography fontSize="32px" fontSizeSm="40px">
+                    {lang === 'en' ? event.titleEn : event.title}
+                  </Typography>
+                  <Flex direction={'column'} gap={'52px'}>
+                    {event.elements.map((element) => (
+                      <Flex direction={'column'} gap={'0px'} key={element?.detail + 'tags'}>
+                        <Flex
+                          gap={'sm'}
+                          style={{ marginTop: '12px', marginBottom: '16px' }}
+                          wrap={'wrap'}
+                        >
+                          {element?.time && <Tag>{element.time}</Tag>}
+                          <Tag>{element?.detail}</Tag>
+                          {element?.host && <Tag>{element?.host}</Tag>}
+                          {element?.link && (
+                            <TagLinked as={'a'} href={element.link} target="_blank">
+                              Info
+                            </TagLinked>
+                          )}
+                        </Flex>
 
-                      <MarkdownConfig content={element?.description as string} />
-                    </Flex>
-                  ))}
-                </Flex>
-              </span>
-            ))}
+                        <MarkdownConfig content={element?.description as string} />
+                      </Flex>
+                    ))}
+                  </Flex>
+                </span>
+              ))}
           </Flex>
         </>
       </EventSection>

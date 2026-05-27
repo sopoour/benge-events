@@ -60,7 +60,7 @@ const Landing: FC = () => {
         alt="Benge Logo"
         style={{
           cursor: 'pointer',
-          top: '2%',
+          top: '0%',
           position: isDesktop ? 'absolute' : 'static',
           scale: '0.8',
         }}
