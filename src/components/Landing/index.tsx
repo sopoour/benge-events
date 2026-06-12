@@ -46,6 +46,7 @@ const Landing: FC = () => {
   useBubbleAnimation();
 
   const today = new Date();
+  today.setHours(0, 0, 0, 0);
   const { data, isLoading } = useSWR<Homepage | null>(`/api/homepage?lang=${lang}`, fetcher);
   const upcomingEvent = data?.eventsCollection?.items
     ?.filter((event) => normalizeDate(event.datum) >= today)

@@ -76,7 +76,7 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
             </Typography>
           )}
         </VenueBox>
-        <EventTable gridnumber={event?.datum === '2026-06-12T12:00:00.000Z' ? 2 : 3}>
+        <EventTable gridnumber={event?.datum === '2026-06-12T00:00:00.000Z' ? 2 : 3}>
           {eventDetails.map((event, index) => (
             <>
               {event.elements.find((e) => !!e?.detail) && (
