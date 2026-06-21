@@ -31,7 +31,9 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
 
   const eventDetails = eventDetailsArray(event);
 
-  const showDescriptionContent = `/events/${event?.datum.split('T')[0]}${lang === 'en' ? '?lang=en' : ''}`;
+  const showDescriptionContent = event?.datumFallback
+    ? '/events'
+    : `/events/${event?.datum.split('T')[0]}${lang === 'en' ? '?lang=en' : ''}`;
 
   if (loading) {
     return <LoadingSkeleton hasSubTitle={loadingSubTitle} />;
@@ -59,7 +61,7 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
         <VenueBox
           $tba={event?.venue?.includes('tba')}
           href={showDescriptionContent}
-          target="_blank"
+          target={!event?.datumFallback ? '_blank' : '_self'}
         >
           {event?.venue?.includes('tba') ? (
             <>
@@ -80,17 +82,17 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
           )}
         </VenueBox>
         <EventTable gridnumber={event?.datum === '2026-06-12T00:00:00.000Z' ? 2 : 3}>
-          {eventDetails.map((event, index) => (
+          {eventDetails.map((e, index) => (
             <>
-              {event.elements.find((e) => !!e?.detail) && (
+              {e.elements.find((e) => !!e?.detail) && (
                 <EventCol
-                  key={event.title + event.titleEn + index}
+                  key={e.title + e.titleEn + index}
                   href={showDescriptionContent}
-                  target="_blank"
+                  target={!event?.datumFallback ? '_blank' : '_self'}
                 >
-                  <ColTitle>{lang === 'en' ? event.titleEn : event.title}</ColTitle>
-                  {event?.elements[0]?.time && <ColTime>{event?.elements[0]?.time}</ColTime>}
-                  {event.elements.map((element) => (
+                  <ColTitle>{lang === 'en' ? e.titleEn : e.title}</ColTitle>
+                  {e?.elements[0]?.time && <ColTime>{e?.elements[0]?.time}</ColTime>}
+                  {e.elements.map((element) => (
                     <EventTitle key={element?.detail} fontSize="14px" fontSizeSm="16px">
                       {element?.detail}
                     </EventTitle>
