@@ -13,6 +13,7 @@ export default async function getHomepage(req: NextApiRequest, res: NextApiRespo
             eventsCollection(limit: 10, locale: $locale) {
               items {
                 datum
+                datumFallback
                 venue
                 workshopTitel
                 workshopZeit

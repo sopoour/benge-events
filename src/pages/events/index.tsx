@@ -98,19 +98,23 @@ const Events: FC = () => {
           {data?.generalContent.eventsHeadline}
         </Typography>
         <MarkdownConfig content={data?.generalContent.eventsDescription as string} />
-        <EventSection>
-          <Typography as="h2" fontSizeSm="40px" fontSize="32px">
-            {lang === 'en' ? 'Upcoming Events' : 'Kommende Events'}
-          </Typography>
-          <EventBoxContainer>
-            {upcomingEvents?.map((event) => (
-              <EventBox key={event.datum} event={event} loading={isLoading} />
-            ))}
-            {upcomingEvents?.map((event) => (
-              <EventAccordion key={event.datum + 'mobile'} event={event} loading={isLoading} />
-            ))}
-          </EventBoxContainer>
-        </EventSection>
+        {/* when there is a datumFallback it means there is no fixed upcoming event. This should only
+        show on landingpage/homepage and not on the events page */}
+        {upcomingEvents?.find((event) => !event.datumFallback) && (
+          <EventSection>
+            <Typography as="h2" fontSizeSm="40px" fontSize="32px">
+              {lang === 'en' ? 'Upcoming Events' : 'Kommende Events'}
+            </Typography>
+            <EventBoxContainer>
+              {upcomingEvents?.map((event) => (
+                <EventBox key={event.datum} event={event} loading={isLoading} />
+              ))}
+              {upcomingEvents?.map((event) => (
+                <EventAccordion key={event.datum + 'mobile'} event={event} loading={isLoading} />
+              ))}
+            </EventBoxContainer>
+          </EventSection>
+        )}
         {pastEvents && pastEvents?.length > 0 && (
           <EventSection>
             <Typography as="h2" fontSizeSm="40px" fontSize="32px">
