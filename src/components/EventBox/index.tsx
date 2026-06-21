@@ -46,7 +46,10 @@ const EventBox: FC<Props> = ({ subTitle, event, loading, loadingSubTitle, classN
           </Typography>
         )}
         <Date>
-          {event?.datum ? ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De') : ''}
+          {/* when datumFallback exists, then it means there are no fixed events yet (there should be
+          only one in Contentful) */}
+          {event?.datumFallback ||
+            (event?.datum ? ISOToDate(event?.datum, lang === 'en' ? 'en-US' : 'de-De') : '')}
         </Date>
         {event?.optionaleNotiz && (
           <Typography fontSize="16px" fontSizeSm="18px" style={{ marginTop: '-12px' }}>

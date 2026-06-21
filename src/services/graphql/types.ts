@@ -446,6 +446,7 @@ export type Events = Entry & _Node & {
   _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulMetadata;
   datum?: Maybe<Scalars['DateTime']['output']>;
+  datumFallback?: Maybe<Scalars['String']['output']>;
   dj2Beschreibung?: Maybe<Scalars['String']['output']>;
   dj2Link?: Maybe<Scalars['String']['output']>;
   dj2Titel?: Maybe<Scalars['String']['output']>;
@@ -484,6 +485,13 @@ export type Events = Entry & _Node & {
 
 /** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
 export type EventsDatumArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/f32g7k86nsff/content_types/events) */
+export type EventsDatumFallbackArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -731,6 +739,13 @@ export type EventsFilter = {
   OR?: InputMaybe<Array<InputMaybe<EventsFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   datum?: InputMaybe<Scalars['DateTime']['input']>;
+  datumFallback?: InputMaybe<Scalars['String']['input']>;
+  datumFallback_contains?: InputMaybe<Scalars['String']['input']>;
+  datumFallback_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  datumFallback_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  datumFallback_not?: InputMaybe<Scalars['String']['input']>;
+  datumFallback_not_contains?: InputMaybe<Scalars['String']['input']>;
+  datumFallback_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   datum_exists?: InputMaybe<Scalars['Boolean']['input']>;
   datum_gt?: InputMaybe<Scalars['DateTime']['input']>;
   datum_gte?: InputMaybe<Scalars['DateTime']['input']>;
@@ -985,6 +1000,8 @@ export type EventsLinkingCollectionsEntryCursorCollectionArgs = {
 };
 
 export enum EventsOrder {
+  DatumFallbackAsc = 'datumFallback_ASC',
+  DatumFallbackDesc = 'datumFallback_DESC',
   DatumAsc = 'datum_ASC',
   DatumDesc = 'datum_DESC',
   Dj2LinkAsc = 'dj2Link_ASC',

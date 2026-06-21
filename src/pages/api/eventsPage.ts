@@ -14,6 +14,7 @@ export default async function getEvents(req: NextApiRequest, res: NextApiRespons
             eventsCollection(limit: 1000, locale: $locale) {
               items {
                 datum
+                datumFallback
                 optionaleNotiz
                 venue
                 venueLink
