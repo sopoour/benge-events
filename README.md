@@ -1,26 +1,24 @@
-# Own Next.js template/boiler plate for quicker setup
+<div align="center">
+  <img alt="Logo" src="https://raw.githubusercontent.com/sopoour/benge-events/main/src/assets/logo.png" width="100" />
+</div>
+<h1 align="center">
+ BENGE website - benge-events.de
+</h1>
+<p align="center">
+  A website for a FLINTA* Event series called BENGE <a href="https://www.benge-events.de" target="_blank">benge-events.de</a> built with React, Next.js, styled-components, and hosted with Vercel
+</p>
 
-## Contains
+![demo](https://raw.githubusercontent.com/sopoour/benge-events/main/src/assets/demo.png)
 
-### Tech stack
+## Tech stack overview
 
-1. next.js and react written in Typescript
-2. styled-components for styling with global styles and theme
-4. custom hooks for data fetching, media queries and more to come
-5. basic components (Typography, Date, MaxWidthContainer)
-6. layout set-up
-7. more utils, hooks and components will be added
+1. Typescript, React and Next.js using Next13 pages route 
+2. styled-components for styling
+3. Contentful as CMS. It's fetched via GraphQL through Next.js API route and SWR.
+4. gsap for Animations
 
 
-### Main packages
-
-1. styled-components
-2. eslint & prettier
-3. gsap for animations
-4. various types
-5. react icons
-6. react loading skeleton
-7. suggestions for Markdown, context and data fetching
+## Planned features
 
 
 ## Getting Started
@@ -31,10 +29,5 @@ Run the development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
