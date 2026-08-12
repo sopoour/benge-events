@@ -71,8 +71,6 @@ const Event: FC = () => {
   const event = data?.eventsCollection.items.find((e) => e?.datum.split('T')[0] === slug);
   const eventDetails = eventDetailsArray(event);
 
-  console.log(eventDetails);
-
   useBubbleAnimation(true);
 
   if (isLoading) {

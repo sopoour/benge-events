@@ -5,7 +5,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function getGeneralContent(req: NextApiRequest, res: NextApiResponse) {
   try {
     const locale = getLocaleFromRequest(req);
-    console.log(locale)
     const data = await fetchGraphQL(
       `query generalContent($locale: String!) {
         generalContent(id: "2jtBnER7xiNejTl3cAwSlk", locale: $locale) {
